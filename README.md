@@ -1,6 +1,6 @@
-# Web Application Viewer Boilerplate
+# 조은샷시 - 부산·김해·창원 샷시·창문 수리 전문 및 로컬 SEO 전략
 
-Next.js 15+ App Router를 기반으로 한 모던 웹 서비스/홈페이지용 보일러플레이트입니다. **Dembrandt**를 활용한 프로젝트 고유의 자체 디자인 시스템, SCSS, Redux Toolkit, 그리고 AI 에이전트용 행동 규범 및 지식 베이스를 표준 탑재하고 있습니다.
+부산·김해·창원 지역 특화형 샷시·창문·방충망 수리 및 보수 전문 웹사이트입니다. Next.js 15+ App Router, React 19, TypeScript 5, 그리고 Dembrandt 기반 커스텀 디자인 시스템을 바탕으로 네이버/구글 로컬 SEO 및 AI 검색(AEO/GEO)에 최적화되어 있습니다.
 
 ---
 
@@ -46,12 +46,13 @@ NEXT_DEFAULT_METADATA_DESCRIPTION="서비스 소개 문구"
 
 ---
 
-## 🧭 아키텍처 및 에이전트 규약
+## 🧭 아키텍처 및 프로젝트 규약
 
+- [PROJECT.md](PROJECT.md): 샷시·창호 시공 홈페이지 구축 및 로컬 SEO/GEO 전략 상세 명세서
+- [AGENTS.md](AGENTS.md): AI 에이전트의 작업 프로토콜, 페르소나 및 단일 진실 공급원(SSOT) 규약
 - [DESIGN.md](DESIGN.md): 프로젝트 고유의 디자인 시스템 설계서 (Dembrandt 연동)
 - [ARCHITECTURE.md](ARCHITECTURE.md): 변경 유형별 시작 경로(Starting Paths) 및 레이어 책임 맵
 - [TECH.md](TECH.md): 10대 금지 규칙(Negative Constraints) 및 코드 규약
-- [AGENTS.md](AGENTS.md): AI 에이전트의 작업 프로토콜 및 단일 진실 공급원(SSOT) 규약
 - [.agents/learnings/](.agents/learnings/): 과거 트러블 및 해결책을 축적하는 지식 베이스
 - [.agents/skills/](.agents/skills/): 페이지 및 API 추가 표준 가이드
 

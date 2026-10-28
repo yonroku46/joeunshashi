@@ -1,0 +1,271 @@
+{
+  "serviceAreaSummary": "부산광역시·김해시·창원시 전 지역 샷시·창문 수리 및 외풍차단 당일 출장",
+  "regions": [
+    {
+      "slug": "busan",
+      "name": "부산",
+      "fullName": "부산광역시",
+      "shortName": "부산",
+      "metaDescription": "부산 전지역 아파트·빌라·상가 샷시 수리, 창문 롤러 교체, 레일 파손 보강, 외풍 차단 모헤어 교체, 미세방충망 당일 출장.",
+      "districts": [
+        {
+          "slug": "haeundae",
+          "name": "해운대구",
+          "fullName": "부산광역시 해운대구",
+          "postalName": "해운대구",
+          "characteristics": ["해운대 신도시 1기 구축 아파트 밀집", "강한 해풍 및 염분 부식으로 롤러/레일 마모 심각"],
+          "majorNeighborhoods": ["좌동", "우동", "중동", "재송동", "반여동"],
+          "keyIssues": ["해풍 염분 부식 롤러 교체", "창문 틈새 외풍 모헤어 수리", "베란다 창문 흔들림 보강"]
+        },
+        {
+          "slug": "suyeong",
+          "name": "수영구",
+          "fullName": "부산광역시 수영구",
+          "postalName": "수영구",
+          "characteristics": ["해안 인접 고층 및 저층 주거 혼재", "광안리 바닷바람 직격 외풍 차단 필요"],
+          "majorNeighborhoods": ["남천동", "광안동", "민락동", "망미동"],
+          "keyIssues": ["노후 아파트/빌라 창문 틈새 바람 차단", "깨진 샷시 레일 덧방 보수", "방충망 망갈이"]
+        },
+        {
+          "slug": "nam-gu",
+          "name": "남구",
+          "fullName": "부산광역시 남구",
+          "postalName": "남구",
+          "characteristics": ["대단지 구축 아파트 밀집 (용호동 등)", "대형 베란다창 무거움 및 개폐 불량 다수"],
+          "majorNeighborhoods": ["용호동", "대연동", "문현동", "우암동"],
+          "keyIssues": ["무거운 대형 창문 전용 롤러 교체", "창문 수평 맞춤", "잠금장치 크리센트 수리"]
+        },
+        {
+          "slug": "dongnae",
+          "name": "동래구",
+          "fullName": "부산광역시 동래구",
+          "postalName": "동래구",
+          "characteristics": ["전통적 주거 중심지", "20~30년차 구축 아파트 창호 부속 노후화"],
+          "majorNeighborhoods": ["사직동", "온천동", "명륜동", "안락동", "수안동"],
+          "keyIssues": ["삭아서 가루 날리는 모헤어 교체", "뻑뻑한 창문 레일 보강", "외풍 차단 풍지판 시공"]
+        },
+        {
+          "slug": "geumjeong",
+          "name": "금정구",
+          "fullName": "부산광역시 금정구",
+          "postalName": "금정구",
+          "characteristics": ["금정산 인접 산바람으로 겨울철 체감온도 낮음", "틈새 바람 차단 시급"],
+          "majorNeighborhoods": ["구서동", "장전동", "남산동", "부곡동", "청룡동"],
+          "keyIssues": ["산바람 외풍 완벽 차단 모헤어", "창문 유격 조정", "주택/빌라 창문 수리"]
+        },
+        {
+          "slug": "busanjin",
+          "name": "부산진구",
+          "fullName": "부산광역시 부산진구",
+          "postalName": "부산진구",
+          "characteristics": ["부산 도심 중심 주거권", "노후 아파트 및 다세대/빌라 창문 고장 다수"],
+          "majorNeighborhoods": ["당감동", "개금동", "부암동", "양정동", "전포동", "가야동"],
+          "keyIssues": ["바닥 긁힘 창문 들어올림 수리", "도로 소음 차단 틈새 보강", "방충망 교체"]
+        },
+        {
+          "slug": "buk-gu",
+          "name": "북구",
+          "fullName": "부산광역시 북구",
+          "postalName": "북구",
+          "characteristics": ["화명신도시 및 덕천·만덕 주거벨트", "낙동강 강바람 대응 창문 기밀 수리"],
+          "majorNeighborhoods": ["화명동", "덕천동", "만덕동", "구포동"],
+          "keyIssues": ["화명신도시 20~25년차 샷시 롤러/레일 수리", "강변 외풍 차단 모헤어", "창문 흔들림 방지"]
+        },
+        {
+          "slug": "sasang",
+          "name": "사상구",
+          "fullName": "부산광역시 사상구",
+          "postalName": "사상구",
+          "characteristics": ["공단 및 배후 주거지역", "외부 분진 차단 미세방충망 및 창문 수리"],
+          "majorNeighborhoods": ["모라동", "엄궁동", "주례동", "학장동", "덕포동"],
+          "keyIssues": ["미세먼지 차단 미세방충망", "노후 샷시 롤러 교체", "깨진 창문 레일 보강"]
+        },
+        {
+          "slug": "saha",
+          "name": "사하구",
+          "fullName": "부산광역시 사하구",
+          "postalName": "사하구",
+          "characteristics": ["다대포 해안 인근 강풍 지대", "강풍에 창문 흔들림 및 이탈 위험"],
+          "majorNeighborhoods": ["다대동", "하단동", "괴정동", "신평동", "장림동"],
+          "keyIssues": ["태풍 대비 창문 흔들림 고정 수리", "낙하 방지 안전 레일 보강", "외풍 차단"]
+        },
+        {
+          "slug": "yeonje",
+          "name": "연제구",
+          "fullName": "부산광역시 연제구",
+          "postalName": "연제구",
+          "characteristics": ["행정 및 주거 중심지", "구축 아파트 창호 부속 리폼"],
+          "majorNeighborhoods": ["연산동", "거제동"],
+          "keyIssues": ["안 닫히는 창문 락 수리", "창문 수평 조정", "베란다 외풍 차단"]
+        },
+        {
+          "slug": "gangseo",
+          "name": "강서구",
+          "fullName": "부산광역시 강서구",
+          "postalName": "강서구",
+          "characteristics": ["명지국제신도시 및 에코델타시티 인근", "강한 바닷바람 및 창문 잠금 수리"],
+          "majorNeighborhoods": ["명지동", "신호동", "지사동", "녹산동"],
+          "keyIssues": ["창문 기밀성 복원 수리", "손잡이/자동락 수리", "미세방충망 교체"]
+        }
+      ]
+    },
+    {
+      "slug": "gimhae",
+      "name": "김해",
+      "fullName": "경상남도 김해시",
+      "shortName": "김해",
+      "metaDescription": "김해 전지역 장유·율하·내외동·삼계 아파트 샷시 수리, 창문 롤러 교체, 레일 파손 보강, 모헤어 외풍 차단 전문.",
+      "districts": [
+        {
+          "slug": "jangyu",
+          "name": "장유동",
+          "fullName": "경상남도 김해시 장유동(장유1·2·3동)",
+          "postalName": "김해시 장유동",
+          "characteristics": ["김해 최대 주거단지", "장유 1기 신도시 20~25년차 샷시 롤러/레일 마모 집중"],
+          "majorNeighborhoods": ["무계동", "신문동", "부곡동", "삼문동", "대청동"],
+          "keyIssues": ["장유 구축 아파트 롤러 교체", "깨진 플라스틱 레일 스텐 보강", "외풍차단 모헤어"]
+        },
+        {
+          "slug": "yulha",
+          "name": "율하동",
+          "fullName": "경상남도 김해시 율하동",
+          "postalName": "김해시 율하동",
+          "characteristics": ["율하 1·2지구 아파트 및 주택", "방충망 교체, 창문 틈새 수리, 시스템창호 점검"],
+          "majorNeighborhoods": ["율하동", "관동동"],
+          "keyIssues": ["친환경 미세방충망 교체", "프로젝트창 롤방충망 수리", "창문 잠금장치 수리"]
+        },
+        {
+          "slug": "naewoe",
+          "name": "내외동",
+          "fullName": "경상남도 김해시 내외동",
+          "postalName": "김해시 내외동",
+          "characteristics": ["김해 전통 도심 최대 아파트 밀집 지구", "30년차 구축 창문 뻑뻑함/바닥 끌림 다수"],
+          "majorNeighborhoods": ["외동", "내동"],
+          "keyIssues": ["안 열리는 뻑뻑한 샷시 수리", "가루 날리는 모헤어 전면 교체", "레일 파손 보강"]
+        },
+        {
+          "slug": "bukbu-samgye",
+          "name": "북부동·삼계동",
+          "fullName": "경상남도 김해시 북부동(삼계·구산·대성)",
+          "postalName": "김해시 북부동",
+          "characteristics": ["삼계지구 및 구산지구 주거벨트", "20년차 전후 창문 외풍 및 소음"],
+          "majorNeighborhoods": ["삼계동", "구산동", "대성동"],
+          "keyIssues": ["겨울철 외풍 차단 모헤어 시공", "베란다 샷시 수평 조정", "롤러 교체"]
+        },
+        {
+          "slug": "hwalcheon",
+          "name": "활천동·삼안동",
+          "fullName": "경상남도 김해시 활천동·삼안동",
+          "postalName": "김해시 동김해권",
+          "characteristics": ["구도심 아파트 및 다세대/빌라", "가성비 높은 창문 부속 수리"],
+          "majorNeighborhoods": ["삼방동", "안동", "어방동"],
+          "keyIssues": ["창문 롤러/바퀴 교체 수리", "알루미늄창 모헤어 교체", "창문 흔들림 방지"]
+        },
+        {
+          "slug": "jinyeong",
+          "name": "진영읍",
+          "fullName": "경상남도 김해시 진영읍",
+          "postalName": "김해시 진영읍",
+          "characteristics": ["진영 신도시 및 구도심 주택/아파트", "창원·김해 인접 생활권 출장 수리"],
+          "majorNeighborhoods": ["진영리", "여래리", "신용리"],
+          "keyIssues": ["구축 아파트 창문 수리", "창문 외풍 차단", "방충망 교체"]
+        },
+        {
+          "slug": "juchon",
+          "name": "주촌면",
+          "fullName": "경상남도 김해시 주촌면",
+          "postalName": "김해시 주촌면",
+          "characteristics": ["주촌선천지구 신규 및 인근 공장/주택"],
+          "majorNeighborhoods": ["선지리", "천곡리", "농소리"],
+          "keyIssues": ["미세방충망 시공", "창문 개폐 조정", "상가 창호 수리"]
+        }
+      ]
+    },
+    {
+      "slug": "changwon",
+      "name": "창원",
+      "fullName": "경상남도 창원시",
+      "shortName": "창원",
+      "metaDescription": "창원 전지역 성산구·의창구·마산·진해 아파트 샷시 수리, 창문 롤러 교체, 레일 파손 보강, 모헤어 외풍 차단 당일 출장.",
+      "districts": [
+        {
+          "slug": "seongsan",
+          "name": "성산구",
+          "fullName": "경상남도 창원시 성산구",
+          "postalName": "창원시 성산구",
+          "characteristics": ["창원 핵심 계획 주거지", "30년차 대단지 아파트 창문 노후화 및 롤러/레일 마모"],
+          "majorNeighborhoods": ["상남동", "반송동", "가음정동", "성주동", "대방동", "남양동", "중앙동"],
+          "keyIssues": ["30년차 대단지 샷시 수리 복원", "뻑뻑한 베란다창 롤러 교체", "외풍 차단 모헤어 전면 교체"]
+        },
+        {
+          "slug": "uichang",
+          "name": "의창구",
+          "fullName": "경상남도 창원시 의창구",
+          "postalName": "창원시 의창구",
+          "characteristics": ["북면 신도시 및 명서/팔용 구도심 주거벨트"],
+          "majorNeighborhoods": ["명서동", "봉곡동", "팔용동", "중동", "북면(감계·무동)"],
+          "keyIssues": ["구도심 아파트 샷시 레일 보강", "북면 아파트 방충망 교체", "창문 틈새 바람 차단"]
+        },
+        {
+          "slug": "masan-hoewon",
+          "name": "마산회원구",
+          "fullName": "경상남도 창원시 마산회원구",
+          "postalName": "창원시 마산회원구",
+          "characteristics": ["내서읍 대규모 아파트 지구 및 양덕/합성 주거권"],
+          "majorNeighborhoods": ["내서읍(호계·삼계)", "양덕동", "합성동", "구암동", "회성동"],
+          "keyIssues": ["내서읍 20~25년차 아파트 샷시 수리", "겨울철 협곡 바람 외풍 차단 모헤어", "깨진 레일 수리"]
+        },
+        {
+          "slug": "masan-happo",
+          "name": "마산합포구",
+          "fullName": "경상남도 창원시 마산합포구",
+          "postalName": "창원시 마산합포구",
+          "characteristics": ["마산만 해안 인접 구도심 및 월영마을 대단지"],
+          "majorNeighborhoods": ["월영동", "해운동", "완월동", "자산동", "반월중앙동"],
+          "keyIssues": ["마산만 바닷바람 차단 기밀 수리", "월영마을 대단지 노후 창문 롤러 교체", "창문 흔들림 보수"]
+        },
+        {
+          "slug": "jinhae",
+          "name": "진해구",
+          "fullName": "경상남도 창원시 진해구",
+          "postalName": "창원시 진해구",
+          "characteristics": ["진해만 해안 지대 및 부산 강서 인접(용원)"],
+          "majorNeighborhoods": ["석동", "이동", "자은동", "풍호동", "여좌동", "용원동"],
+          "keyIssues": ["해풍 염분 부식 롤러 수리", "용원지구 강풍 대비 창문 흔들림 고정", "방충망 교체"]
+        }
+      ]
+    }
+  ],
+  "commonServices": [
+    {
+      "id": "roller-repair",
+      "name": "창문 롤러(바퀴) 교체 & 수평 조정",
+      "shortDesc": "뻑뻑하고 무거운 창문, 바닥에 긁히는 창문을 새것처럼 부드럽게 복원",
+      "leadTime": "당일 출장 30분~1시간"
+    },
+    {
+      "id": "rail-repair",
+      "name": "깨진 샷시 레일 스테인리스 보강",
+      "shortDesc": "깨지거나 갈라진 플라스틱 레일을 튼튼한 고강도 스텐 레일로 덧방 수리",
+      "leadTime": "당일 현장 완벽 시공"
+    },
+    {
+      "id": "mohair-replacement",
+      "name": "외풍·먼지 차단 모헤어(방풍털) 전면 교체",
+      "shortDesc": "삭아서 털가루 날리고 바람 새는 모헤어 전면 교체로 단열·외풍 차단 복원",
+      "leadTime": "창틀 탈거 후 정밀 교체"
+    },
+    {
+      "id": "screen-window",
+      "name": "친환경 미세방충망 교체 & 망갈이",
+      "shortDesc": "부식되고 찢어진 알루미늄망 대신 0.5mm 초미세 날벌레 차단망 시공",
+      "leadTime": "현장 맞춤 당일 제작"
+    },
+    {
+      "id": "window-lock-repair",
+      "name": "창문 잠금장치(크리센트·오토락) 수리",
+      "shortDesc": "안 닫히고 헛도는 창문 락, 파손된 자동 손잡이 규격품 교체",
+      "leadTime": "당일 출장 수리"
+    }
+  ]
+}

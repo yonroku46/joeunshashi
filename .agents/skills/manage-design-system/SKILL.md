@@ -1,112 +1,85 @@
 ---
 name: manage-design-system
-description: Dembrandt를 사용한 디자인 시스템 토큰 추출, DESIGN.md 및 _variables.scss 반영, 자체 UI 컴포넌트 생성 스킬
+description: Dembrandt를 사용한 샷시·창호 디자인 시스템 토큰 관리, DESIGN.md 및 _variables.scss 동기화, 전환형 시공 UI 컴포넌트 구축 스킬
 ---
 
-# Dembrandt 기반 디자인 시스템 관리 워크플로우 (Design System Workflow)
+# 샷시·창호 시공 디자인 시스템 운영 스킬 (Design System Skill)
 
-> **원칙**: 본 프로젝트에서는 외부 UI 컴포넌트 라이브러리에 의존하지 않고, **Dembrandt**를 활용하여 프로젝트별 독립적인 디자인 시스템(토큰 및 자체 컴포넌트군)을 구축 및 운영합니다.
+> **원칙**: 본 프로젝트는 외부 거대 UI 컴포넌트 라이브러리(MUI, AntD, Tailwind 등)에 일절 의존하지 않고, **Dembrandt**를 활용하여 참고 사이트([https://gaya-door.hsweb.pics/](https://gaya-door.hsweb.pics/))의 세련된 토스/현대적 룩앤필(Pretendard, Trust Blue `#3182F6`, Deep Ink `#191F28`)을 단일 진실 공급원(SSOT)으로 삼아 가볍고 전환율 높은 자체 UI 컴포넌트군을 구축 및 운영합니다.
 
 ---
 
-## 1. Dembrandt를 통한 토큰 추출 및 갱신 절차
+## 1. Dembrandt 토큰 및 디자인 동기화 워크플로우
 
-브랜드나 레퍼런스 사이트로부터 디자인 시스템을 도출할 때는 아래 절차로 실행합니다.
+참고 사이트나 리브랜딩 레퍼런스로부터 디자인 시스템을 갱신할 때는 아래 절차를 따릅니다.
 
-### 1.1. Dembrandt 명령어 실행
+### 1.1. Dembrandt 실행
 ```bash
-# 1. AI용 디자인 명세서 (DESIGN.md) 생성
-npx dembrandt <target-url> --design-md
+# 참고 사이트로부터 AI용 마크다운 명세 추출
+npx dembrandt https://gaya-door.hsweb.pics/ --design-md
 
-# 2. W3C 표준 DTCG 토큰 (JSON) 추출
-npx dembrandt <target-url> --dtcg
+# W3C 표준 DTCG 토큰 JSON 추출
+npx dembrandt https://gaya-door.hsweb.pics/ --dtcg
 ```
 
-### 1.2. `DESIGN.md` 갱신
-Dembrandt의 콘솔 출력 및 생성된 마크다운을 루트의 `DESIGN.md`에 집약 및 반영합니다.
-- 색상 팔레트 (Primary, Secondary, Background, Foreground, Surface, Muted, Status)
-- 타이포그래피 (Font Family, Font Scale, Font Weights, Line Heights)
-- 간격 (4px/8px 그리드 베이스)
-- 모서리 라운딩 (Border Radii)
-- 박스 그림자 (Box Shadows / Elevations)
-- 트랜지션 (Transitions / Timing Functions)
+### 1.2. 디자인 시스템 SSOT (`DESIGN.md` 및 `_variables.scss`) 동기화
+1. 추출된 콘솔 및 `output/<domain>/DESIGN.md` 내용을 루트의 [DESIGN.md](file:///c:/git/joeunshashi/DESIGN.md)에 동기화.
+2. 색상, 폰트(Pretendard Variable), 라운딩(8/10/12/16px), 그림자(`rgba(2, 32, 71, 0.05)`)를 [src/styles/base/_variables.scss](file:///c:/git/joeunshashi/src/styles/base/_variables.scss)의 CSS 커스텀 속성으로 전개.
+3. 컴포넌트 및 페이지 스타일링 시 직접적인 색상/수치 하드코딩을 엄격히 금지하고 반드시 `var(--primary-color)` 등 CSS 변수를 참조.
 
 ---
 
-## 2. `_variables.scss`로의 토큰 전개
+## 2. 샷시·창호 시공 특화 5대 전환형 UI 컴포넌트 명세
 
-`DESIGN.md`에서 합의 및 추출된 토큰을 `src/styles/base/_variables.scss`의 CSS 커스텀 속성에 반영합니다.
+홈페이지의 검색 유입을 실제 시공 전화 문의 및 무료 견적 신청으로 직결시키기 위해 다음 컴포넌트를 `src/components/ui/` 하위에 자체 완결형(동반 SCSS)으로 구축합니다.
 
-```scss
-// src/styles/base/_variables.scss
-:root {
-  // 색상 팔레트
-  --primary-color: #2563eb;
-  --primary-color-hover: #1d4ed8;
-  --primary-color-bg: #eff6ff;
-  --secondary-color: #6366f1;
-  --background: #ffffff;
-  --foreground: #171717;
-  --surface: #f8fafc;
-  --border: #e2e8f0;
+### 2.1. `FloatingCtaBar` (`src/components/ui/FloatingCtaBar/`)
+- **목적**: 모바일 화면 하단에 상시 고정되어 고객의 이탈을 막고 즉각적인 전화 상담을 유도.
+- **핵심 요소**:
+  - 대표번호 원클릭 바로연결 버튼 (`<a href="tel:..." className="cta-tel">`)
+  - 실시간 무료 견적 신청 버튼 (`<Link href="/contact" className="cta-estimate">`)
+  - "오늘 접수 시 무료 출장 실측" 안내 캡션
+- **모바일 UX**: 스크롤 시 부드럽게 나타나며 하단 여백 및 홈 인디케이터 침범 방지 (`env(safe-area-inset-bottom)`).
 
-  // 타이포그래피
-  --font-xs: 0.75rem;
-  --font-sm: 0.875rem;
-  --font-base: 1rem;
-  --font-lg: 1.125rem;
-  --font-xl: 1.25rem;
-  --font-2xl: 1.5rem;
+### 2.2. `BeforeAfterSlider` (`src/components/ui/BeforeAfterSlider/`)
+- **목적**: 노후 알루미늄/나무 창호에서 단열 1등급 하이샷시로 교체된 전후 상태를 마우스 드래그/터치로 직관적 비교.
+- **핵심 요소**:
+  - 분할선(Divider) 드래그 핸들 (터치 제스처 대응)
+  - '시공 전 (기존 노후 창호)' / '시공 후 (로이유리 이중창)' 라벨 뱃지
+  - 결로 방지, 외풍 차단 효과 수치 오버레이
 
-  // 간격
-  --space-1: 0.25rem; // 4px
-  --space-2: 0.5rem;  // 8px
-  --space-3: 0.75rem; // 12px
-  --space-4: 1rem;    // 16px
-  --space-6: 1.5rem;  // 24px
-  --space-8: 2rem;    // 32px
+### 2.3. `QuickEstimateForm` (`src/components/ui/QuickEstimateForm/`)
+- **목적**: 복잡한 절차 없이 30초 만에 간이 견적을 신청할 수 있는 초경량 전환 폼.
+- **입력 필드**:
+  1. 주거 유형 (아파트 / 빌라 / 단독주택 / 상가)
+  2. 공급 평형 (20평형대 / 30평형대 / 40평형대 이상)
+  3. 교체 범위 (전체 교체 / 외부 베란다창 / 내부 방창)
+  4. 시공 희망 지역 (시·군·구 선택)
+  5. 고객 연락처 및 성함
+- **UX 요건**: 단계별(Step-by-Step) 카드 전환 방식 또는 깔끔한 한 화면 폼, 성공 시 `notistack` 스낵바 피드백.
 
-  // 라운딩 및 그림자
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
+### 2.4. `ProjectCaseCard` (`src/components/ui/ProjectCaseCard/`)
+- **목적**: 10단계 시공 사례 목록 및 지역별 페이지에서 고객 신뢰를 확보하는 카드 UI.
+- **핵심 요소**:
+  - 고화질 시공 대표 썸네일 (WebP 포맷, 반응형 최적화)
+  - 시공 지역 및 아파트 단지명 (예: `[안양시 동안구] OO아파트 32평형`)
+  - 시공 내역 요약 뱃지 (예: `전체 창호 교체`, `KCC 140 발코니창`, `로이복층유리`)
+  - 시공 전후 비교 보기 링크 (`/projects/[slug]`)
 
-// 다크 모드 대응
-[data-theme="dark"] {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --surface: #1e293b;
-  --border: #334155;
-}
-```
+### 2.5. `TrustBadge` (`src/components/ui/TrustBadge/`)
+- **목적**: 헤로 섹션 및 견적 폼 하단에 배치하여 고객의 불안을 즉시 해소.
+- **핵심 뱃지 항목**:
+  - ⚡ **1일 철거 및 시공 완료 (원데이 시공)**
+  - 🌡️ **에너지소비효율 1등급 창호 (단열·기밀 공인 시험성적서)**
+  - 🛡️ **정품 자재 & 10년 품질 보증 (철저한 A/S 책임제)**
+  - 💰 **직영 공장 제작 직판 (중간 유통 마진 제거)**
 
 ---
 
-## 3. `src/components/ui/`에서 자체 UI 컴포넌트 생성
+## 3. UI 컴포넌트 구현 필수 규약 (Strict Implementation Rules)
 
-모든 UI 컴포넌트는 서드파티 라이브러리를 거치지 않고 순수 React + TypeScript + 동반 SCSS(`<Component>.scss`)로 자체 완결형으로 생성합니다.
-
-### 3.1. 디렉터리 구조
-```
-src/components/ui/
-  ├─ Button/
-  │    ├─ Button.tsx
-  │    └─ Button.scss
-  ├─ Dialog/
-  │    ├─ Dialog.tsx
-  │    └─ Dialog.scss
-  ├─ Input/
-  │    ├─ Input.tsx
-  │    └─ Input.scss
-  └─ index.ts
-```
-
-### 3.2. 컴포넌트 구현 필수 요건
-1. **토큰 참조 철저**: 색상이나 여백 등 스타일 값은 하드코딩하지 않고 반드시 `var(--...)`를 사용합니다.
-2. **최상위 루트 스코프**: 컴포넌트 SCSS는 단일 루트 클래스(예: `.ui-button`, `.ui-dialog-backdrop`) 내에 모든 요소를 중첩합니다.
-3. **모바일 호버 보호**: 호버 스타일에는 반드시 `@include hover`를 적용합니다.
-4. **접근성(Accessibility)**: 적절한 ARIA 속성(`aria-label`, `aria-hidden`, `role` 등) 및 키보드 조작(Escape 키로 모달 닫기 등)을 구현합니다.
-5. **브라우저 뒤로가기 안전 (Dialog)**: 모달/다이얼로그는 `popstate` 이벤트를 처리하여 모바일 뒤로가기 동작 시 안전하게 닫히도록 설계합니다.
+1. **외부 UI 라이브러리 엄금**: MUI, AntD, Tailwind 등을 일절 쓰지 않고 순수 React 19 + TypeScript + 동반 SCSS로 직접 구현.
+2. **최상위 루트 스코프 필수**: 컴포넌트 SCSS는 단일 루트 클래스(예: `.ui-floating-cta`, `.ui-before-after`) 내부에 모든 요소를 중첩.
+3. **모바일 호버 보호 (`@include hover`)**: 스마트폰 탭 시 호버가 잔류하지 않도록 반드시 `@include hover` 믹스인 사용.
+4. **CSS 커스텀 속성 100% 활용**: 색상(`var(--primary-color)`), 라운딩(`var(--radius-md)`), 폰트(`var(--font-family-base)`)를 철저히 참조.
+5. **접근성(a11y) 준수**: 스크린 리더용 `aria-label`, 키보드 탐색 지원, 모바일 터치 타깃 최소 44px 보장.

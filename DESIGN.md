@@ -7,46 +7,43 @@
 
 ## 1. 디자인 원칙 (Design Principles)
 
-1. **Lightweight & Zero-Bloat**: 외부 거대 UI 라이브러리에 의존하지 않고 순수 React + TypeScript + SCSS로 최상의 성능을 구현.
-2. **Token-Driven Consistency**: 모든 색상, 여백, 타이포그래피, 모서리 라운딩은 CSS 커스텀 속성(`var(--...)`)을 참조하여 하드코딩을 배제.
-3. **Accessibility & Responsive**: 시맨틱 HTML, 적절한 ARIA 속성, 모바일 탭 시 sticky hover 방지(`@include hover`), 완벽한 반응형 설계.
-4. **Adaptive Dark Mode**: CSS 변수를 통한 매끄러운 라이트/다크 모드 전환 기본 지원.
+1. **Lightweight & Zero-Bloat**: 외부 거대 UI 라이브러리(MUI, Tailwind 등)에 일절 의존하지 않고 순수 React 19 + TypeScript + 컴팩트 SCSS로 최상의 모바일 로딩 성능을 구현.
+2. **Token-Driven Consistency**: 참고 사이트([https://gaya-door.hsweb.pics/](https://gaya-door.hsweb.pics/))의 세련된 토스/현대적 시공 사이트 룩앤필(Pretendard, Trust Blue `#3182F6`, Deep Ink `#191F28`)을 기반으로 CSS 커스텀 속성(`var(--...)`)을 100% 참조.
+3. **Accessibility & Responsive**: 시맨틱 HTML, 모바일 탭 시 sticky hover 방지(`@include hover`), 모바일 전화 연결(`tel:`) 및 상담 플로팅 CTA 최적화.
+4. **Trust & Conversion-Oriented**: 샷시·창호 시공의 신뢰감(1일 시공, 1등급 단열, A/S 보증)을 전달하는 깔끔한 카드, 전후(Before/After) 비교 뷰, 라운딩(10px~12px) 디자인.
 
 ---
 
 ## 2. 디자인 토큰 명세 (Design Tokens)
 
-### 2.1. 색상 팔레트 (Color Palette)
+### 2.1. 색상 팔레트 (Color Palette - gaya-door.hsweb.pics 기반)
 
 | 토큰명 | 라이트 모드 값 | 다크 모드 값 | 설명 / 역할 |
 | :--- | :--- | :--- | :--- |
-| `--primary-color` | `#2563eb` (Blue 600) | `#3b82f6` (Blue 500) | 브랜드 프라이머리 컬러, 주요 CTA |
-| `--primary-color-hover` | `#1d4ed8` (Blue 700) | `#60a5fa` (Blue 400) | 프라이머리 호버 시 |
-| `--primary-color-bg` | `#eff6ff` (Blue 50) | `rgba(37, 99, 235, 0.15)` | 프라이머리 배경 하이라이트 |
-| `--secondary-color` | `#6366f1` (Indigo 500) | `#818cf8` (Indigo 400) | 서브 악센트, 보조 배지 등 |
-| `--accent-color` | `#f59e0b` (Amber 500) | `#fbbf24` (Amber 400) | 하이라이트, 주목 요소 |
-| `--background` | `#ffffff` | `#0f172a` (Slate 900) | 애플리케이션 전체 배경 |
-| `--foreground` | `#0f172a` (Slate 900) | `#f8fafc` (Slate 50) | 기본 텍스트 컬러 |
-| `--surface` | `#f8fafc` (Slate 50) | `#1e293b` (Slate 800) | 카드, 서피스, 드로어 배경 |
-| `--surface-hover` | `#f1f5f9` (Slate 100) | `#334155` (Slate 700) | 서피스 호버 배경 |
-| `--border` | `#e2e8f0` (Slate 200) | `#334155` (Slate 700) | 테두리, 구분선 |
-| `--border-focus` | `#2563eb` | `#3b82f6` | 입력 포커스 시 테두리 |
-
-#### 텍스트 및 그레이스케일
-| 토큰명 | 라이트 모드 값 | 다크 모드 값 | 용도 |
-| :--- | :--- | :--- | :--- |
-| `--text-primary` | `#0f172a` | `#f8fafc` | 제목, 메인 텍스트 |
-| `--text-secondary` | `#475569` | `#94a3b8` | 서브타이틀, 메타 정보 |
-| `--text-muted` | `#94a3b8` | `#64748b` | 플레이스홀더, 비활성 텍스트 |
-| `--text-disabled` | `#cbd5e1` | `#475569` | 비활성화 상태 |
+| `--primary-color` | `#3182f6` (Toss Blue) | `#4593fc` (Bright Blue) | 브랜드 대표 신뢰 컬러, 주요 전화/견적 CTA |
+| `--primary-color-hover` | `#1b64da` (Deep Blue) | `#79b2fd` | CTA 버튼 호버 시 |
+| `--primary-color-bg` | `#e8f1fd` (Soft Blue) | `rgba(49, 130, 246, 0.15)` | 블루 소프트 하이라이트, 배지 배경 |
+| `--secondary-color` | `#9ec4ff` (Light Blue) | `#2b5288` | 서브 악센트, 보조 라인 |
+| `--accent-color` | `#ff8a00` (Warm Orange) | `#ffa333` | 무료 견적, 이벤트 배지 등 즉각 시선 유도 |
+| `--background` | `#ffffff` | `#0f1115` (Deep Dark) | 메인 배경색 |
+| `--bg-soft` | `#f4f6f9` (Soft Gray) | `#1a1e26` | 섹션 배경, 폼 배경 |
+| `--bg-hover` | `#f8f9fa` | `#222732` | 리스트/아이템 마우스오버 배경 |
+| `--foreground` | `#191f28` (Ink Black) | `#f8fafc` | 최상위 헤드라인 및 주요 텍스트 |
+| `--text-primary` | `#191f28` (Ink Black) | `#f8fafc` | 제목, 강조 텍스트 |
+| `--text-body` | `#333d4b` (Neutral Gray) | `#d1d5db` | 본문, 설명 텍스트 |
+| `--text-secondary` | `#6b7684` (Muted Gray) | `#9ca3af` | 부가 설명, 작성일, 메타 정보 |
+| `--text-faint` | `#8b95a1` (Light Gray) | `#6b7280` | 비활성, 안내 플레이스홀더 |
+| `--border` | `#e5e8eb` (Line Gray) | `#2d3542` | 카드 테두리, 구분선 |
+| `--border-soft` | `#eef0f3` (Soft Line) | `#222833` | 미세 경계선, 테이블 구분선 |
+| `--border-focus` | `#3182f6` | `#4593fc` | 입력 포커스 시 테두리 |
 
 #### 상태 컬러 (Status Variants)
 | 토큰명 | 값 | 배경색 | 용도 |
 | :--- | :--- | :--- | :--- |
-| `--variant-success` | `#10b981` (Emerald 500) | `rgba(16, 185, 129, 0.1)` | 성공, 완료 알림 |
-| `--variant-error` | `#ef4444` (Red 500) | `rgba(239, 68, 68, 0.1)` | 에러, 유효성 실패 |
-| `--variant-warning` | `#f59e0b` (Amber 500) | `rgba(245, 158, 11, 0.1)` | 경고, 주의 환기 |
-| `--variant-info` | `#3b82f6` (Blue 500) | `rgba(59, 130, 246, 0.1)` | 안내 정보 |
+| `--variant-success` | `#059669` (Emerald) | `rgba(5, 150, 105, 0.1)` | 시공 완료, A/S 보증 완료 |
+| `--variant-error` | `#e11d48` (Rose) | `rgba(225, 29, 72, 0.1)` | 결로/외풍 위험 자가진단, 에러 |
+| `--variant-warning` | `#d97706` (Amber) | `rgba(217, 119, 6, 0.1)` | 교체 주기 경과 경고 |
+| `--variant-info` | `#3182f6` (Blue) | `#e8f1fd` | 시공 안내 정보 |
 
 ---
 

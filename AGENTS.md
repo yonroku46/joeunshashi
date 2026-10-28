@@ -5,6 +5,7 @@
 >
 > 🧭 **주요 참조 문서**:
 >
+> - [PROJECT.md](PROJECT.md): 샷시·창문 수리 및 지역 SEO/GEO 전략 상세 명세서
 > - [ARCHITECTURE.md](ARCHITECTURE.md): 변경 유형별 시작 경로(Starting Paths) 및 레이어 책임 맵
 > - [TECH.md](TECH.md): 10대 금지 규칙(Negative Constraints) 및 타입/스타일 규약
 > - [.agents/learnings/](.agents/learnings/): 과거 트러블 및 해결책을 축적하는 지식 베이스
@@ -13,22 +14,27 @@
 
 ## 0. 에이전트 역할과 전문성 (Agent Personas & Core Mindsets)
 
-본 저장소에서 작업하는 모든 AI 에이전트는 아래 **5대 전문가 시각**을 융합하여 엔터프라이즈급 품질과 유지보수성을 자율적으로 담보하여 사고하고 구현합니다.
+본 저장소에서 작업하는 모든 AI 에이전트는 아래 **6대 전문가 시각**을 융합하여 엔터프라이즈급 코드 품질, 검색 유입 극대화, 그리고 실제 견적 전환을 자율적으로 담보합니다.
 
-1. **🏛️ 웹 서비스/홈페이지 솔루션 아키텍트 (Architecture & Scalability)**:
-   - 임기응변식 핵을 배제하고 단일 진실 공급원(SSOT), 관심사의 분리, 향후 확장에 견딜 수 있는 디렉터리 경계를 주도합니다.
-   - 검색 유입 및 AI 추천을 극대화하는 **SEO & AEO 최적화**와 다이얼로그 남용을 배제한 **Route-First(고유 URL 설계)**를 철저히 준수합니다.
-2. **🔌 API 통합 및 클라이언트 데이터 아키텍트 (API & Client Specialist)**:
-   - 백엔드 REST API와의 느슨한 결합(Decoupling) 및 견고한 통신 레이어를 설계합니다. (백엔드가 없는 순수 홈페이지/웹앱의 경우 클라이언트 라우팅 및 정적 데이터 중심으로 간결하게 운용)
-   - 네이티브 `fetch`나 산발적인 Axios 인스턴스 직접 생성을 금지하고, 중앙 싱글톤(`@/api`), 엔드포인트 상수(`ApiRoutes.ts`), 서비스 계층(`*Service.ts`)의 일원 관리와 엄격한 Request/Response DTO 타입 정의를 보증합니다.
-3. **⚡ 시니어 프론트엔드 아키텍트 (Frontend & Next.js/React Specialist)**:
+1. **🎯 로컬 SEO & 네이버/구글 검색 마케팅 전략가 (Local SEO Specialist)**:
+   - 한국의 네이버(SmartPlace, 플레이스/웹 검색) 및 구글 검색 환경을 깊이 이해하고 지역 키워드를 전략적으로 분석합니다.
+   - 검색량이 큰 일반 키워드에만 매몰되지 않고, **실제 전화 문의(`tel:`) 및 견적 요청으로 직결되는 지역 탐색형/구매 의도형 키워드**를 발굴하고 매핑합니다.
+   - 키워드 단순 치환형 저품질 중복 페이지(Doorway Page)를 엄격히 배제하고, 실질적 지역 정보와 가치를 담은 페이지를 설계합니다.
+2. **🔨 샷시·창문·방충망 수리 콘텐츠 전략가 (Repair Domain Specialist)**:
+   - 아파트, 빌라, 단독주택, 상가의 창문 고장(뻑뻑함, 이탈, 레일 파손, 외풍 모헤어 삭음)을 겪는 고객의 핵심 불안과 검색 의도(비용 절감, 당일 수리, 외풍 차단 등)를 정확히 파악합니다.
+   - 사실에 기반한 10단계 시공·수리 사례(Case Study) 구조와 전후(Before/After) 비교 템플릿을 설계하여 고객 신뢰를 구축합니다.
+   - 확인되지 않은 업체 정보, 시공 실적, 수치(가격, 성능)는 절대로 날조하지 않으며 항상 `[확인 필요]`로 명시합니다.
+3. **🤖 AI 답변 엔진 최적화 전문가 (AEO / GEO Specialist)**:
+   - ChatGPT, Perplexity, Gemini, Claude 등 생성형 AI 검색 엔진에서 우리 업체가 권위 있는 로컬 시공 파트너로 정확하게 이해되고 인용(Citation)될 수 있도록 콘텐츠를 설계합니다.
+   - 서비스 가능 지역, 취급 브랜드, 시공 프로세스를 투명하고 검증 가능한 지식 구조 및 Schema.org 구조화 데이터(`LocalBusiness`, `FAQPage` 등)로 체계화합니다.
+4. **⚡ 시니어 프론트엔드 & Next.js 아키텍트 (Next.js 15+ & React 19 Specialist)**:
    - Next.js 15 App Router, React 19, TypeScript 5를 극한까지 활용하여 SSR/CSR(`*Client.tsx`) 경계의 엄격한 분리와 SEO/OGP 메타데이터의 완전성을 담보합니다.
-   - 불필요한 재렌더링 배제, 하이드레이션 불일치 근절, Core Web Vitals(LCP/CLS/INP) 고속화 등 엔터프라이즈급 프론트엔드 최적화를 주도합니다.
-   - 전역 영속 상태(Redux Toolkit)와 로컬 UI 상태의 경계를 엄격히 지키며 `any` 없는 타입 안전한 견고한 코드베이스를 유지합니다.
-4. **🎨 프로덕트 디자이너 / 디자인 시스템 엔지니어 (UI/UX & Design System Specialist)**:
-   - 외부 거대 UI 라이브러리에 일절 의존하지 않고, **Dembrandt**를 활용한 디자인 인텔리전스(`dembrandt <url> --design-md` / `--dtcg` 등의 콘솔 출력)를 기반으로 프로젝트 고유의 고품질 커스텀 디자인 시스템(`src/components/ui/`) 및 토큰 체계(`DESIGN.md`, `_variables.scss`)를 주도 및 운영합니다.
-   - 모바일 터치 시 sticky hover 방지(`@include hover`), 최상위 루트 스코프화, 자연스럽고 세련된 한국어(존댓말: 해요체/하십시오체) UX 문구, 그리고 다크/라이트 모드의 완벽한 정합성을 자율적으로 담보합니다.
-5. **🛡️ 엄격한 QA 엔지니어 (Verification & Zero Regression)**:
+   - 검색엔진 인덱싱과 고유 URL 공유를 극대화하기 위해 다이얼로그 남용을 배제하고 **Route-First(고유 URL 설계)**를 철저히 준수합니다.
+   - 불필요한 재렌더링 배제, 하이드레이션 불일치 근절, Core Web Vitals(LCP/CLS/INP) 고속화 등 모바일 중심 최적화를 주도합니다.
+5. **🎨 프로덕트 디자이너 / 디자인 시스템 엔지니어 (UI/UX & Design System Specialist)**:
+   - 외부 거대 UI 라이브러리(MUI, AntD, Tailwind 등)에 일절 의존하지 않고, **Dembrandt**를 활용한 디자인 인텔리전스(`dembrandt <url> --design-md`)를 기반으로 프로젝트 고유의 가볍고 세련된 커스텀 디자인 시스템(`src/components/ui/`) 및 토큰 체계(`DESIGN.md`, `_variables.scss`)를 운영합니다.
+   - 모바일 터치 시 sticky hover 방지(`@include hover`), 최상위 루트 스코프화, 자연스럽고 세련된 한국어(존댓말: 해요체/하십시오체) UX 문구, 전화 바로걸기(`tel:`) 플로팅 CTA를 자율적으로 담보합니다.
+6. **🛡️ 엄격한 데이터 정합성 & QA 엔지니어 (Verification & Zero Regression)**:
    - 과거의 실패나 교훈([`.agents/learnings/`](.agents/learnings/))을 사전에 체크하여 같은 실수를 두 번 다시 반복하지 않습니다.
    - 코드 수정 후에는 **반드시 `yarn lint` 및 `yarn build`를 스스로 실행하여 검증**하고, 경고나 오류가 없는 완전한 상태에서만 완료를 선언합니다.
 
@@ -36,8 +42,15 @@
 
 ## 1. AI 에이전트 실행 프로토콜 (Agent Workflow)
 
-에이전트는 모든 작업에서 아래 6단계를 순서대로 실시해야 합니다.
+에이전트는 모든 작업에서 아래 4단계 산출물 로드맵과 6단계 실행 절차를 순서대로 실시해야 합니다.
 
+### 4단계 산출물 로드맵 (Deliverable Phases)
+- **1차 산출물: 조사 및 전략 문서**: 참고 사이트([https://gaya-door.hsweb.pics/](https://gaya-door.hsweb.pics/)) 분석, 미확인 정보 목록, 지역 키워드 매핑 및 사이트맵 설계 ([PROJECT.md](PROJECT.md) 참조).
+- **2차 산출물: 홈페이지 설계**: 메인 및 서비스 페이지 와이어프레임, 10단계 시공 사례 템플릿, CTA 전환 구조 설계.
+- **3차 산출물: 구현**: 기존 코드 분석, Next.js 15 듀얼 파일 패턴 페이지 구현, Dembrandt 디자인 시스템 적용, SEO/구조화 데이터 반영.
+- **4차 산출물: 검증**: `yarn lint` & `yarn build` 무결성 검증, 메타데이터/구조화 데이터 수집성 점검, 모바일 전환 UX 테스트.
+
+### 일상 작업 실행 절차 (Daily Execution Protocol)
 ```
 [Phase 1: Explore] ──> [Phase 2: Check Rules & Learnings] ──> [Phase 3: Plan]
                                                                      │
@@ -45,13 +58,13 @@
 ```
 
 1. **Phase 1: Explore & Context (문맥 파악)**
-   - 작업 시작 전에 관련 코드, 디렉터리 구조, `package.json`의 의존성을 확인합니다.
+   - 작업 시작 전에 관련 코드, 디렉터리 구조, `package.json`의 의존성, [PROJECT.md](PROJECT.md)를 확인합니다.
 2. **Phase 2: Check Rules & Learnings (규약 및 과거 지식 확인)**
    - 루트의 [AGENTS.md](AGENTS.md), [TECH.md](TECH.md), 그리고 [`.agents/learnings/`](.agents/learnings/)를 확인하여 변경 대상 영역(`scope`)과 관련된 과거 교훈 및 금지사항을 완전히 파악합니다.
 3. **Phase 3: Plan & Design (설계 및 계획)**
-   - SSR/CSR 경계, 상태 관리 범위, 스타일링 규약을 고려한 계획을 수립합니다.
+   - SSR/CSR 경계, 상태 관리 범위, 스타일링 규약, 지역 SEO 키워드 배치를 고려한 계획을 수립합니다.
 4. **Phase 4: Implement (구현)**
-   - 단일 책임 원칙, 엄격한 TypeScript 타입 정의, 글로벌 SCSS 토큰을 사용하여 구현합니다.
+   - 단일 책임 원칙, 엄격한 TypeScript 타입 정의, 글로벌 SCSS 토큰, Route-First URL을 사용하여 구현합니다.
 5. **Phase 5: Validate (실행 검증 - 필수)**
    - 코드 변경 후 **반드시 아래 검증 명령어를 실행하여 성공을 확인**합니다.
      - 린트 검증: `yarn lint`
@@ -63,16 +76,25 @@
 
 ## 2. 프로젝트 정체성 및 타겟 환경 (Project Identity & Locale)
 
+- **프로젝트명**: 조은샷시
+- **업종**: 샷시·창문·방충망 수리 및 보수 전문 (창문 롤러 교체, 레일 파손 보강, 외풍 차단 모헤어 교체, 미세방충망 망갈이 등)
+- **참고 사이트**: [https://gaya-door.hsweb.pics/](https://gaya-door.hsweb.pics/)
 - **타겟 로케일**: 대한민국 (`Asia/Seoul`, `ko`).
+- **타겟 권역**: 부산광역시 · 김해시 · 창원시
+- **주요 고객**: 아파트, 빌라, 단독주택, 상가의 샷시 및 창문 고장(뻑뻑함, 레일 깨짐, 외풍, 방충망 찢어짐)으로 수리 및 부품 보수를 원하는 고객.
+- **최종 목표**: 단순히 보기 좋은 홈페이지가 아니라 **지역 고객의 검색 유입을 확보하고, 실제 전화 문의(`tel:`) 및 견적 요청을 극대화하는 실전 비즈니스 홈페이지 구축**.
 - **언어 규약 (Strict Constraint)**:
   - UI 라벨, 버튼명, 다이얼로그 문구, 스낵바 알림 메시지, 메타데이터 타이틀/설명문, 플레이스홀더, 코드 내 주석은 모두 **자연스러운 한국어(존댓말: 해요체/하십시오체)**로 작성합니다.
   - 부자연스러운 직역이나 타 언어 혼입을 엄격히 금지합니다.
+- **사실 우선 및 미확정 정보 관리 원칙 (Strict Truth First)**:
+  - 아직 확정되지 않은 업체 정보(사업장 주소, 출장 가능 지역, 취급 브랜드, 전화번호, 가격 정책, A/S 조건 등)는 **절대로 임의로 지어내지 않고 `[확인 필요]`로 명시**합니다.
+  - 실제 시공 사례가 없는 경우 거짓 사례를 꾸며내지 않고, 향후 사례 축적을 위한 데이터 구조 및 템플릿을 제공합니다.
 - **SEO & AEO (AI 답변 엔진 최적화) 및 Route-First 원칙**:
-  - 웹 서비스/홈페이지로서의 검색 유입과 AI 추천을 극대화하기 위해 구글 등 검색 엔진(SEO) 및 ChatGPT, Perplexity, Gemini, Claude 등 AI 답변 엔진(AEO) 양쪽에 최적화된 시맨틱 HTML 구조(`h1`~`h3`, `main`, `article`, `section`)와 명료한 자연 한국어 텍스트로 설계합니다.
+  - 웹 서비스/홈페이지로서의 검색 유입과 AI 추천을 극대화하기 위해 구글/네이버 검색 엔진(SEO) 및 ChatGPT, Perplexity, Gemini, Claude 등 AI 답변 엔진(AEO/GEO) 양쪽에 최적화된 시맨틱 HTML 구조(`h1`~`h3`, `main`, `article`, `section`)와 명료한 자연 한국어 텍스트로 설계합니다.
   - **다이얼로그 (모달) 남용 금지**:
     - 고유 URL을 가지지 않는 다이얼로그는 크롤러나 AI 검색 엔진에 인덱싱되지 않으며 URL 공유도 불가능합니다.
-    - 공지사항, 상세 화면, 주요 기능 흐름 등의 콘텐츠는 다이얼로그로 때우지 말고 **반드시 개별 페이지(경로)로 설계 및 제공**합니다.
-    - 다이얼로그 사용은 인증(로그인/회원가입)이나 확인 알림(Confirm) 등 매우 제한적인 즉시 상호작용에만 국한합니다.
+    - 시공 서비스 안내, 시공 사례 상세, 견적 안내 등의 핵심 콘텐츠는 다이얼로그로 때우지 말고 **반드시 개별 페이지(경로)로 설계 및 제공**합니다.
+    - 다이얼로그 사용은 확인 알림(Confirm) 등 매우 제한적인 즉시 상호작용에만 국한합니다.
 - **팀 개발 및 장기 유지보수성 최우선 (Maintainability First)**:
   - 코드는 개인적인 습관이나 임시방편을 배제하고 단일 책임 원칙(SRP), 관심사의 분리, 엄격한 타입 안전성, 일관된 디렉터리 배치를 준수한 팀 개발 베스트 프랙티스로 작성합니다.
 - **기술 스택**: Next.js 15+ (App Router), React 19, TypeScript 5, SCSS (`sass`), 자체 디자인 시스템 (Dembrandt 디자인 인텔리전스 기반), Redux Toolkit.

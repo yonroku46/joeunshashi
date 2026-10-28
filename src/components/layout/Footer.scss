@@ -1,29 +1,84 @@
-@use "../../styles/base/mixins" as *;
+@use "@/styles/base/variables" as *;
+@use "@/styles/base/mixins" as *;
 
 .app-footer {
-  height: var(--footer-height);
-  border-top: 1px solid var(--gray-alpha-100);
-  background: var(--background);
-  color: var(--gray-alpha-500);
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
   font-size: 0.875rem;
+  padding: 3rem 1.5rem calc(3rem + 4.5rem); // 모바일 플로팅 CTA 여백 확보
   .footer-inner {
     max-width: 1200px;
-    height: 100%;
     margin: 0 auto;
-    padding: 0 1.5rem;
-    @include flex-between;
-    @include sp {
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.5rem;
-      text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    .company-info {
+      max-width: 520px;
+      .brand-title {
+        font-size: 1.125rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .service-desc {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
     }
+    .footer-nav-groups {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      .nav-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        .group-title {
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: 0.25rem;
+          font-size: 0.9375rem;
+        }
+        a {
+          color: var(--text-secondary);
+          text-decoration: none;
+          font-size: 0.875rem;
+          transition: color var(--transition-fast);
+          @include hover {
+            color: var(--primary-color);
+          }
+        }
+      }
+    }
+  }
+  .footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
     .footer-links {
       display: flex;
       gap: 1.25rem;
       a {
+        color: var(--text-secondary);
+        text-decoration: none;
         @include hover {
-          color: var(--foreground);
+          color: var(--primary-color);
         }
       }
     }

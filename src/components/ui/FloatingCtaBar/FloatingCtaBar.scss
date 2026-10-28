@@ -1,0 +1,69 @@
+@use "@/styles/base/variables" as *;
+@use "@/styles/base/mixins" as *;
+
+.floating-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  padding: 0.625rem 1rem calc(0.625rem + env(safe-area-inset-bottom));
+  display: block;
+  .cta-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.625rem;
+  }
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    .cta-icon {
+      flex-shrink: 0;
+    }
+    .btn-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+      .sub-text {
+        font-size: 0.6875rem;
+        font-weight: 500;
+        opacity: 0.85;
+      }
+      .main-text {
+        font-size: 0.875rem;
+        font-weight: 700;
+      }
+    }
+  }
+  .cta-btn-tel {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    @include hover {
+      background-color: var(--primary-color-hover);
+      transform: translateY(-1px);
+    }
+  }
+  .cta-btn-estimate {
+    background-color: var(--foreground);
+    color: #ffffff;
+    @include hover {
+      background-color: #2b3340;
+      transform: translateY(-1px);
+    }
+  }
+}

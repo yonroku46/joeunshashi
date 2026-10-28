@@ -7,7 +7,7 @@ export default function Loading() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '60vh',
+        minHeight: 'calc(100vh - var(--header-height))',
         width: '100%',
       }}
     >

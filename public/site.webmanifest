@@ -1,0 +1,20 @@
+{
+  "name": "조은샷시 - 부산·김해·창원 유리문·강화도어·상가출입문 수리 전문",
+  "short_name": "조은샷시",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1b55e2",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}

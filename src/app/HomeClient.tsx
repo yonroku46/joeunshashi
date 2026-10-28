@@ -1,397 +1,445 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { SERVICE_REGIONS } from '@/data/regions';
-import QuickEstimateForm from '@/components/ui/QuickEstimateForm/QuickEstimateForm';
+import React, { useRef, useEffect } from 'react';
+import Image from 'next/image';
+import {
+  FiPhoneCall,
+  FiMessageSquare,
+  FiClock,
+  FiShield,
+  FiTool,
+  FiArrowRight,
+  FiCheck,
+  FiChevronLeft,
+  FiChevronRight,
+} from 'react-icons/fi';
+import ServiceAreaMap from '@/components/ui/ServiceAreaMap/ServiceAreaMap';
 import FloatingCtaBar from '@/components/ui/FloatingCtaBar/FloatingCtaBar';
+import BlogCaseStudies from '@/components/ui/BlogCaseStudies/BlogCaseStudies';
 import '@/styles/pages/home.scss';
 
 export default function HomeClient() {
-  const [activeRegionTab, setActiveRegionTab] = useState<string>('busan');
+  const servicesTrackRef = useRef<HTMLDivElement>(null);
 
-  const currentRegion =
-    SERVICE_REGIONS.find((r) => r.slug === activeRegionTab) || SERVICE_REGIONS[0];
+  useEffect(() => {
+    const scrollToHashTarget = () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const targetId = hash.replace(/^#/, '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        // 다른 페이지에서 진입 시 smooth 하지 않고 바로 딱 도착하도록 일시적 auto 전환
+        const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+
+        const headerOffset = 88; // 헤더 높이(64px) + 여유 여백(24px)
+        const elementPosition = element.getBoundingClientRect().top;
+        const targetScrollTop = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: Math.max(0, targetScrollTop),
+          behavior: 'auto',
+        });
+
+        const resetTimer = setTimeout(() => {
+          document.documentElement.style.scrollBehavior = originalScrollBehavior;
+        }, 150);
+
+        return () => clearTimeout(resetTimer);
+      }
+    };
+
+    scrollToHashTarget();
+    const timer1 = setTimeout(scrollToHashTarget, 60);
+    const timer2 = setTimeout(scrollToHashTarget, 220);
+
+    window.addEventListener('hashchange', scrollToHashTarget);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      window.removeEventListener('hashchange', scrollToHashTarget);
+    };
+  }, []);
+
+  const scrollServices = (direction: 'left' | 'right') => {
+    if (servicesTrackRef.current) {
+      const scrollAmount = direction === 'left' ? -340 : 340;
+      servicesTrackRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="home-container">
-      {/* 1. HERO SECTION */}
-      <section className="hero-section" aria-label="조은샷시 수리 서비스 안내">
+      {/* 1. HERO SECTION (배경 일체형 프리미엄 다크 히어로) */}
+      <section className="hero-section" aria-label="조은샷시 유리문 및 강화도어 수리 서비스 안내">
+        <div className="hero-bg-layer" aria-hidden="true">
+          <Image
+            src="/images/door-repair-sample.jpg"
+            alt=""
+            fill
+            className="hero-bg-image"
+            priority
+          />
+          <div className="hero-bg-gradient" />
+        </div>
+
         <div className="hero-inner">
-          <p className="hero-region-label">부산광역시 · 김해시 · 창원시 전지역 출장 수리</p>
-          <h1 className="hero-title">
-            비싼 전체 교체 대신 수리로,<br />
-            <span>새 창문처럼 부드럽게</span> 복원해 드립니다
-          </h1>
-          <p className="hero-desc">
-            뻑뻑해서 안 열리는 창문, 바닥 긁힘, 깨진 레일, 삭아서 날리는 모헤어.<br className="mobile-break" />
-            창틀을 뜯지 않고 규격 부속 수리로 90% 비용을 아껴드립니다.
-          </p>
+          <div className="hero-content">
+            <span className="hero-region-badge">
+              <span className="live-dot" />
+              부산 · 김해 · 양산 · 창원 전지역 당일 긴급 출동
+            </span>
+            <h1 className="hero-title">
+              비싼 문 교체 대신 <span>정밀 수리</span>로<br />
+              새 문처럼 부드럽고 안전하게 복원합니다
+            </h1>
+            <p className="hero-desc">
+              쾅 닫히는 강화도어, 바닥 긁혀서 안 닫히는 유리문, 덜컹거리는 상가 출입문.<br />
+              문 전체를 철거하지 않고 국산 정품 플로어 힌지 및 규격 부속 수리로 <strong>교체 비용 90%</strong>를 아껴드립니다.
+            </p>
 
-          <div className="hero-cta-group">
-            <a href="tel:01093920431" className="hero-tel-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
-                <path
-                  fillRule="evenodd"
-                  d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>전화 상담 바로걸기</span>
-            </a>
-            <Link href="#estimate-section" className="hero-estimate-btn">
-              <span>30초 수리 견적 조회 & 방문 점검</span>
-            </Link>
-          </div>
-
-          <div className="hero-checklist">
-            <span className="check-item">
-              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
-                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
-              </svg>
-              교체 대비 비용 90% 절감
-            </span>
-            <span className="check-item">
-              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
-                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
-              </svg>
-              규격 정품 롤러 & 고강도 스텐 레일
-            </span>
-            <span className="check-item">
-              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
-                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
-              </svg>
-              부산·김해·창원 당일 신속 출장
-            </span>
+            <div className="hero-cta-group">
+              <a href="tel:01093920431" className="hero-tel-primary-btn" aria-label="대표 전화 010-9392-0431 바로걸기">
+                <FiPhoneCall className="btn-icon" aria-hidden="true" />
+                <span>010-9392-0431</span>
+              </a>
+              <a href="sms:01093920431" className="hero-sms-btn" aria-label="고장 사진 문자로 전송하기">
+                <FiMessageSquare className="btn-icon" aria-hidden="true" />
+                <span>고장 사진 문자 전송</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. TRUST STRIP (신뢰 띠 배너) */}
-      <section className="trust-strip" aria-label="조은샷시 핵심 신뢰 요소">
-        <div className="trust-item">
-          <div className="trust-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-            </svg>
+      {/* 2. TRUST STRIP (핵심 신뢰 요소) */}
+      <section className="trust-strip-section" aria-label="조은샷시 핵심 신뢰 요소">
+        <div className="trust-strip-inner">
+          <div className="trust-item">
+            <div className="trust-icon" aria-hidden="true">
+              <FiClock />
+            </div>
+            <div className="trust-text">
+              <strong>당일 1시간 현장 점검</strong>
+              <span>매장 영업 지장 없는 당일 신속 출장</span>
+            </div>
           </div>
-          <div className="trust-text">
-            <strong>당일 신속 출장 수리</strong>
-            <span>부산·김해·창원 전지역 당일 방문 점검</span>
-          </div>
-        </div>
 
-        <div className="trust-item">
-          <div className="trust-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
+          <div className="trust-item">
+            <div className="trust-icon" aria-hidden="true">
+              <FiTool />
+            </div>
+            <div className="trust-text">
+              <strong>교체 비용 90% 절감</strong>
+              <span>문틀 철거 없이 힌지·부속 수리로 복원</span>
+            </div>
           </div>
-          <div className="trust-text">
-            <strong>교체 비용 90% 절감</strong>
-            <span>틀 뜯지 않고 부속 수리로 새 창문 복원</span>
-          </div>
-        </div>
 
-        <div className="trust-item">
-          <div className="trust-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
+          <div className="trust-item">
+            <div className="trust-icon" aria-hidden="true">
+              <FiShield />
+            </div>
+            <div className="trust-text">
+              <strong>국산 King 정품 자재</strong>
+              <span>삼화정밀 KS 인증 규격 부속 및 책임 A/S</span>
+            </div>
           </div>
-          <div className="trust-text">
-            <strong>정품 자재 & 품질 보증</strong>
-            <span>고하중 트윈 롤러 & 스테인리스 레일</span>
-          </div>
-        </div>
 
-        <div className="trust-item">
-          <div className="trust-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-          </div>
-          <div className="trust-text">
-            <strong>투명한 사전 견적 안내</strong>
-            <span>사진 한 장으로 예상 수리비 사전 확인</span>
+          <div className="trust-item">
+            <div className="trust-icon" aria-hidden="true">
+              <FiPhoneCall />
+            </div>
+            <div className="trust-text">
+              <strong>투명한 사진 사전 상담</strong>
+              <span>문 사진 전송 시 5분 내 예상 비용 확인</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 3. SYMPTOMS SECTION (고장 증상 자가진단) */}
+      {/* 3. INTERACTIVE SERVICE AREA MAP (지도 기반 권역 뷰어) */}
+      <section className="service-map-section" aria-label="출장 권역 인터랙티브 지도">
+        <ServiceAreaMap activeRegion="yangsan" />
+      </section>
+
+      {/* 4. SYMPTOMS SECTION (고장 증상 자가진단) */}
       <section className="symptoms-section" aria-labelledby="symptoms-title">
         <div className="section-header">
-          <span className="eyebrow">창문 고장 자가진단</span>
+          <span className="eyebrow">유리문 자가진단</span>
           <h2 id="symptoms-title">이런 증상이 있다면, 즉시 수리가 필요합니다</h2>
-          <p>방치하면 창문이 레일에서 이탈해 추락 사고로 이어질 수 있습니다.</p>
+          <p>방치하면 문이 너무 빠르게 쾅 닫혀 손 끼임 사고나 유리 파손, 이탈로 이어질 수 있습니다.</p>
         </div>
 
         <div className="symptoms-grid">
           <article className="symptom-card">
-            <span className="card-tag">개폐 불량</span>
-            <h3>창문이 뻑뻑하고 무거울 때</h3>
-            <p>창문을 열 때 두 손으로 온 힘을 줘야 열리거나, 롤러가 굳어 바닥을 긁으며 쇠 긁는 굉음이 나는 경우.</p>
+            <span className="card-tag">위험도 상</span>
+            <h3>쾅! 하고 맹렬하게 닫히는 문</h3>
+            <p>플로어 힌지 내부 유압 오일이 터져 제동력을 잃은 상태입니다. 손 끼임 골절 위험이 큽니다.</p>
           </article>
 
           <article className="symptom-card">
-            <span className="card-tag">레일 파손</span>
-            <h3>샷시 레일이 깨지고 파였을 때</h3>
-            <p>플라스틱 레일이 깨져서 바퀴가 걸려 문이 덜컹거리고, 창문이 한쪽으로 기울어 틈이 벌어지는 경우.</p>
+            <span className="card-tag">파손 위험</span>
+            <h3>바닥이나 문틀을 긁으며 뻑뻑함</h3>
+            <p>하부 힌지 또는 H바 볼트가 풀려 문이 주저앉았습니다. 바닥 긁힘 및 강화유리 파손을 유발합니다.</p>
           </article>
 
           <article className="symptom-card">
-            <span className="card-tag">외풍·가루날림</span>
-            <h3>창문 틈새 찬바람 & 털가루</h3>
-            <p>창문을 닫아도 웃바람이 들어오고, 삭아서 검은 털가루가 날리며 호흡기를 위협하는 모헤어 노후 상태.</p>
+            <span className="card-tag">보안 취약</span>
+            <h3>문이 덜 닫히고 열쇠가 안 맞음</h3>
+            <p>0도 센터 정렬이 틀어져 디지털도어락 잠금 데드볼트가 걸리지 않고 냉난방 손실이 큽니다.</p>
           </article>
 
           <article className="symptom-card">
-            <span className="card-tag">안전 위험</span>
-            <h3>창문 흔들림 & 락 잠금 불가</h3>
-            <p>바람이 불면 창문이 덜덜 흔들려 이탈 위험이 있거나, 크리센트 잠금장치가 맞지 않아 문이 안 잠기는 경우.</p>
+            <span className="card-tag">이탈 위험</span>
+            <h3>문이 덜컹거리며 상부가 흔들림</h3>
+            <p>상부 피벗 힌지 핀(상롯트)이 헐거워져 바람이 불면 문이 프레임에서 이탈할 수 있습니다.</p>
           </article>
         </div>
       </section>
 
-      {/* 4. REGIONS SECTION (부산·김해·창원시 권역별 빠른 찾기) */}
-      <section className="regions-section" id="areas-section" aria-labelledby="regions-title">
-        <div className="section-header">
-          <span className="eyebrow">출장 가능 생활권</span>
-          <h2 id="regions-title">부산 · 김해 · 창원시 지역별 수리 안내</h2>
-          <p>고객님이 계신 생활권을 선택하시면 구·동별 창호 수리 사례와 맞춤 솔루션을 확인하실 수 있습니다.</p>
-        </div>
-
-        <div className="region-tabs" role="tablist" aria-label="지역 선택">
-          {SERVICE_REGIONS.map((region) => (
-            <button
-              key={region.slug}
-              type="button"
-              role="tab"
-              aria-selected={activeRegionTab === region.slug}
-              className={`tab-btn ${activeRegionTab === region.slug ? 'active' : ''}`}
-              onClick={() => setActiveRegionTab(region.slug)}
-            >
-              {region.fullName}
-            </button>
-          ))}
-        </div>
-
-        <div className="region-detail-card">
-          <div className="region-card-top">
-            <h3>{currentRegion.fullName} 전 지역 당일 출장 수리</h3>
-            <p>{currentRegion.metaDescription}</p>
-          </div>
-
-          <div className="districts-grid">
-            {currentRegion.districts.map((district) => (
-              <div key={district.slug} className="district-pill">
-                <div className="district-header">
-                  <strong>{district.name}</strong>
-                  <span>당일 출장</span>
-                </div>
-                <div className="neighborhoods">
-                  {district.majorNeighborhoods.slice(0, 4).join(', ')} 등
-                </div>
-                <ul className="issue-list">
-                  {district.keyIssues.map((issue, idx) => (
-                    <li key={idx}>#{issue}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. SERVICES SECTION (전문 수리 서비스) */}
+      {/* 5. SERVICES SECTION (가로 스크롤 캐러셀 UI 트랙) */}
       <section className="services-section" aria-labelledby="services-title">
-        <div className="section-header">
-          <span className="eyebrow">전문 수리 분야</span>
-          <h2 id="services-title">조은샷시 전문 수리 서비스</h2>
-          <p>비싼 샷시 전체 교체 없이, 부속 수리와 보강만으로 새 창문처럼 부드럽게 만듭니다.</p>
+        <div className="section-header-row">
+          <div className="header-titles">
+            <span className="eyebrow">전문 수리 솔루션</span>
+            <h2 id="services-title">조은샷시 핵심 수리 서비스</h2>
+            <p>원인을 정확히 파악하여 꼭 필요한 부속만 정직하고 투명하게 교체·수리합니다.</p>
+          </div>
+          <div className="carousel-controls">
+            <span className="swipe-hint">좌우로 넘겨보기</span>
+            <button
+              type="button"
+              className="ctrl-btn"
+              onClick={() => scrollServices('left')}
+              aria-label="이전 수리 서비스 보기"
+            >
+              <FiChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              className="ctrl-btn"
+              onClick={() => scrollServices('right')}
+              aria-label="다음 수리 서비스 보기"
+            >
+              <FiChevronRight size={20} />
+            </button>
+          </div>
         </div>
 
-        <div className="services-grid">
-          <article className="service-card">
-            <span className="card-badge">당일 수리 1위</span>
-            <h3>창문 롤러(바퀴) 교체 & 수평 조정</h3>
-            <p>마모되고 깨진 롤러를 창호 무게와 규격에 맞는 고하중 정품 트윈 롤러로 교체하여 손가락 하나로 열리게 복원합니다.</p>
-            <ul className="spec-list">
-              <li>알루미늄창, 하이샷시, 시스템창호 전 규격 롤러 보유</li>
-              <li>창문 처짐 및 뒤틀림 수평 완벽 조정</li>
-              <li>바닥 긁힘 방지 및 개폐 소음 100% 제거</li>
-            </ul>
-            <Link href="/services/window-repair" className="detail-link">
-              롤러 교체 수리 상세 보기 &rarr;
-            </Link>
+        <div className="services-carousel-track" ref={servicesTrackRef}>
+          <article className="service-carousel-card">
+            <div className="card-thumb-wrap">
+              <Image
+                src="/images/door-repair-sample.jpg"
+                alt="플로어 힌지 교체 작업"
+                width={360}
+                height={160}
+                className="card-thumb"
+              />
+              <span className="step-pill">01 · HINGE</span>
+            </div>
+            <div className="card-body">
+              <span className="card-badge">Floor Hinge</span>
+              <h3>플로어 힌지 교체 &amp; 감속 조절</h3>
+              <p>기름 터져 쾅 닫히는 문, 국산 삼화 King 8300 정품으로 2단계 부드러운 감속 복원</p>
+              <ul className="spec-list">
+                <li><FiCheck className="spec-check" /> 쾅 닫힘 방지 2단계 감속 세팅</li>
+                <li><FiCheck className="spec-check" /> 힌지 박스 부식 몰탈 용접 보강</li>
+              </ul>
+              <a href="tel:01093920431" className="detail-tel-link">
+                <span>힌지 수리 전화 문의</span>
+                <FiArrowRight />
+              </a>
+            </div>
           </article>
 
-          <article className="service-card">
-            <span className="card-badge">특허형 보강 공법</span>
-            <h3>깨진 샷시 레일 스테인리스 보강 수리</h3>
-            <p>무거운 베란다 창문으로 인해 깨지거나 주저앉은 플라스틱 레일을 튼튼한 고강도 스텐 레일로 덧방 보강합니다.</p>
-            <ul className="spec-list">
-              <li>샷시 틀 전체 교체 없이 레일만 영구적으로 보강</li>
-              <li>부식과 마모에 강한 고강도 스테인리스 커버 시공</li>
-              <li>수리 후 덜컹거림 없는 매끄러운 주행감 회복</li>
-            </ul>
-            <Link href="/services/window-repair" className="detail-link">
-              레일 보강 수리 상세 보기 &rarr;
-            </Link>
+          <article className="service-carousel-card">
+            <div className="card-thumb-wrap">
+              <Image
+                src="/images/door-repair-sample.jpg"
+                alt="강화도어 H바 교체 수리"
+                width={360}
+                height={160}
+                className="card-thumb"
+              />
+              <span className="step-pill">02 · H-BAR</span>
+            </div>
+            <div className="card-body">
+              <span className="card-badge">Stainless H-Bar</span>
+              <h3>강화도어 상/하부 H-Bar 수리·교체</h3>
+              <p>부식되고 찌그러져 유리 이탈 위험이 있는 스텐 H바를 새 규격 자재로 부분 교체</p>
+              <ul className="spec-list">
+                <li><FiCheck className="spec-check" /> 손상 부위만 부분 영구 교체</li>
+                <li><FiCheck className="spec-check" /> 바닥 닿임 및 처짐 영구 해결</li>
+              </ul>
+              <a href="tel:01093920431" className="detail-tel-link">
+                <span>H바 수리 전화 문의</span>
+                <FiArrowRight />
+              </a>
+            </div>
           </article>
 
-          <article className="service-card">
-            <span className="card-badge">단열·외풍 복원</span>
-            <h3>외풍·먼지 차단 모헤어(방풍털) 전면 교체</h3>
-            <p>10년 이상 지나 삭아서 가루가 날리고 바람이 새는 모헤어를 창문 전체를 탈거하여 빽빽한 고밀도 모헤어로 교체합니다.</p>
-            <ul className="spec-list">
-              <li>겨울철 찬바람 웃바람 유입 원천 차단 (실내 2~3℃ 상승)</li>
-              <li>호흡기에 해로운 삭은 미세 털가루 날림 해결</li>
-              <li>외부 소음 및 미세먼지 차단 기밀성 회복</li>
-            </ul>
-            <Link href="/services/window-repair" className="detail-link">
-              모헤어 교체 상세 보기 &rarr;
-            </Link>
+          <article className="service-carousel-card">
+            <div className="card-thumb-wrap">
+              <Image
+                src="/images/door-repair-sample.jpg"
+                alt="상부 피벗 힌지 수리"
+                width={360}
+                height={160}
+                className="card-thumb"
+              />
+              <span className="step-pill">03 · PIVOT</span>
+            </div>
+            <div className="card-body">
+              <span className="card-badge">Pivot Hinge</span>
+              <h3>상부 피벗 힌지(상롯트) 복원</h3>
+              <p>문이 흔들리고 상부 축이 덜렁거리는 증상, 견고한 피벗 핀 교체로 이탈 원천 차단</p>
+              <ul className="spec-list">
+                <li><FiCheck className="spec-check" /> 상부 프레임 홀 유격 완벽 보강</li>
+                <li><FiCheck className="spec-check" /> 센터 0도 정렬로 문 덜 닫힘 해결</li>
+              </ul>
+              <a href="tel:01093920431" className="detail-tel-link">
+                <span>상부 축 수리 전화 문의</span>
+                <FiArrowRight />
+              </a>
+            </div>
           </article>
 
-          <article className="service-card">
-            <span className="card-badge">날벌레 100% 차단</span>
-            <h3>친환경 미세방충망 교체 & 망갈이</h3>
-            <p>구멍 나고 녹슨 낡은 알루미늄 방충망을 촘촘하고 튼튼한 모노필라멘트 미세방충망으로 현장에서 바로 교체합니다.</p>
-            <ul className="spec-list">
-              <li>0.5mm 초미세 날벌레 완벽 차단</li>
-              <li>부식 없는 소재로 10년 이상 깨끗하게 사용</li>
-              <li>창문 틈새 물구멍 방충망 밴드 서비스 부착</li>
-            </ul>
-            <Link href="/services/screen-window" className="detail-link">
-              미세방충망 상세 보기 &rarr;
-            </Link>
+          <article className="service-carousel-card">
+            <div className="card-thumb-wrap">
+              <Image
+                src="/images/door-repair-sample.jpg"
+                alt="강화유리문 디지털도어락 설치"
+                width={360}
+                height={160}
+                className="card-thumb"
+              />
+              <span className="step-pill">04 · LOCK</span>
+            </div>
+            <div className="card-body">
+              <span className="card-badge">Digital Lock</span>
+              <h3>강화유리문 전용 디지털도어락 설치</h3>
+              <p>유리 타공 없이 안전하게 장착되는 상가 매장 전용 클립형 프리미엄 번호키 시공</p>
+              <ul className="spec-list">
+                <li><FiCheck className="spec-check" /> 외도어 / 양도어 맞춤 브라켓 장착</li>
+                <li><FiCheck className="spec-check" /> 허수 번호 보안 및 자동 잠금 지원</li>
+              </ul>
+              <a href="tel:01093920431" className="detail-tel-link">
+                <span>도어락 설치 전화 문의</span>
+                <FiArrowRight />
+              </a>
+            </div>
           </article>
         </div>
       </section>
 
-      {/* 6. BEFORE & AFTER SECTION */}
-      <section className="before-after-section" aria-labelledby="comparison-title">
+      {/* 6. BEFORE & AFTER (비교 점검) */}
+      <section className="before-after-section" aria-label="수리 전후 비교">
         <div className="section-header">
-          <span className="eyebrow">확실한 수리 효과</span>
-          <h2 id="comparison-title">수리 전후 비교 (Before & After)</h2>
-          <p>비싼 교체 대신 1시간 수리로 새 창문처럼 회복됩니다.</p>
+          <span className="eyebrow">전후 비교</span>
+          <h2>조은샷시 수리 후 어떻게 달라지나요?</h2>
+          <p>비싼 문 전체 교체 비용 없이 수리만으로 얻는 확실한 변화를 확인하세요.</p>
         </div>
 
         <div className="comparison-grid">
-          <div className="comparison-card is-before">
+          <article className="comparison-card is-before">
             <div className="comp-header">
-              <span className="comp-tag">수리 전 (고장 증상)</span>
+              <span className="comp-tag">수리 전 고장 상태</span>
             </div>
-            <h3>롤러 마모 / 레일 파손 / 삭은 모헤어</h3>
-            <p>창문이 뻑뻑해 두 손으로 밀어도 안 움직이고, 바람이 숭숭 새며 털가루가 날립니다.</p>
+            <h3>쾅 닫히고 바닥 긁히는 위험한 문</h3>
+            <p>유압 오일이 터져 위험하게 닫히고 바닥에 끌려 손님 통행에 지장을 주며 안전사고가 우려되는 상태.</p>
             <ul className="check-points">
-              <li>❌ 문 열 때마다 드르륵 굉음과 바닥 긁힘</li>
-              <li>❌ 창문 틈새로 들어오는 겨울철 한기 및 외풍</li>
-              <li>❌ 창문이 흔들려 태풍이나 강풍 시 이탈 위험</li>
+              <li>• 바람 불면 흉기처럼 쾅 닫혀 손 끼임 위험</li>
+              <li>• 바닥을 긁어 쇠 긁는 굉음과 유리 파손 위험</li>
+              <li>• 문이 덜 닫혀 열쇠가 잠기지 않고 냉난방 손실</li>
             </ul>
-          </div>
+          </article>
 
-          <div className="comparison-card is-after">
+          <article className="comparison-card is-after">
             <div className="comp-header">
-              <span className="comp-tag">수리 후 (조은샷시 완벽 복원)</span>
+              <span className="comp-tag">조은샷시 수리 후</span>
             </div>
-            <h3>신품 롤러 교체 + 스텐 레일 + 고밀도 모헤어</h3>
-            <p>틀 교체 없이 부속 정밀 교체로 부드러운 손가락 개폐와 완벽한 외풍 차단을 회복합니다.</p>
+            <h3>새 문처럼 부드럽고 안전한 출입문</h3>
+            <p>국산 규격 정품 부속 교체와 정밀 수평 교정으로 매장 손님이 안전하고 부드럽게 이용할 수 있습니다.</p>
             <ul className="check-points">
-              <li>✔ 손가락 하나로 스르륵 열리는 완벽한 구동감</li>
-              <li>✔ 틈새 모헤어 복원으로 찬바람·소음 원천 차단</li>
-              <li>✔ 샷시 전체 교체 대비 90% 이상 비용 절감</li>
+              <li>• 2단계 정밀 감속으로 손을 놓아도 부드러운 닫힘</li>
+              <li>• 바닥에서 5~7mm 일정 높이 유지, 소음 제로</li>
+              <li>• 0도 완벽 밀폐로 자동 잠금 도어락 즉시 작동</li>
             </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. PROCESS SECTION */}
-      <section className="process-section" aria-labelledby="process-title">
-        <div className="section-header">
-          <span className="eyebrow">간편한 수리 절차</span>
-          <h2 id="process-title">조은샷시 당일 수리 절차</h2>
-          <p>사진 한 장이면 예상 수리비 확인부터 당일 방문 수리까지 완료됩니다.</p>
-        </div>
-
-        <div className="process-grid">
-          <article className="process-card">
-            <span className="step-num">STEP 1</span>
-            <h3>문 사진 전송 & 상담</h3>
-            <p>창문 전체와 하부 레일 사진을 보내주시면 증상과 예상 수리비를 바로 안내합니다.</p>
-          </article>
-
-          <article className="process-card">
-            <span className="step-num">STEP 2</span>
-            <h3>당일 출장 방문</h3>
-            <p>부산·김해·창원시 일정을 조율하여 수리 전용 장비와 부속을 싣고 방문합니다.</p>
-          </article>
-
-          <article className="process-card">
-            <span className="step-num">STEP 3</span>
-            <h3>현장 정밀 수리 (30분~1시간)</h3>
-            <p>창문 탈거 후 규격 롤러 교체, 레일 보강, 모헤어 교체 작업을 현장에서 완벽 시공합니다.</p>
-          </article>
-
-          <article className="process-card">
-            <span className="step-num">STEP 4</span>
-            <h3>고객 확인 & 사후 보증</h3>
-            <p>고객님과 함께 부드러운 개폐와 수평을 확인하고 수리 부속 보증을 제공합니다.</p>
           </article>
         </div>
       </section>
 
-      {/* 8. ESTIMATE FORM (수리 견적 신청 폼) */}
-      <div className="estimate-wrapper">
-        <QuickEstimateForm />
-      </div>
+      {/* 7. OFFICIAL BLOG CASE STUDIES (네이버 공식 블로그 시공 일지) */}
+      <BlogCaseStudies />
 
-      {/* 9. FAQ SECTION */}
+      {/* 8. FAQ SECTION */}
       <section className="faq-section" id="faq-section" aria-labelledby="faq-title">
         <div className="section-header">
           <span className="eyebrow">궁금증 해결</span>
           <h2 id="faq-title">자주 묻는 질문 (FAQ)</h2>
-          <p>샷시 수리를 문의하시는 고객님들께서 가장 많이 물어보시는 질문입니다.</p>
+          <p>유리문 및 강화도어 수리를 문의하시는 고객님들께서 가장 많이 물어보시는 질문입니다.</p>
         </div>
 
         <div className="faq-list">
           <article className="faq-item">
-            <h3>비싼 전체 교체 없이 수리만으로 정말 해결이 되나요?</h3>
+            <h3>비싼 전체 유리문 교체 없이 수리만으로 정말 해결이 되나요?</h3>
             <p>
-              네, 대부분의 고객님께서 샷시 전체를 바꿔야 하나 고민하시지만, 실제 현장 점검 결과 80~90%는
-              마모된 롤러 교체와 깨진 레일 스테인리스 보강, 삭은 모헤어 교체만으로도 새 창문처럼 부드럽고
-              외풍 없는 상태로 완벽히 복원됩니다. 큰돈 들이지 마시고 먼저 수리 진단을 받아보세요!
+              네! 대부분의 고객님께서 문 전체를 새로 맞춰야 하나 고민하시지만, 실제 현장 점검 결과 90% 이상은
+              소모품인 플로어 힌지 교체와 하부 H바 수리, 수평 재정렬만으로도 새 문처럼 부드럽고 안전하게 복원됩니다.
+              큰돈 들이지 마시고 먼저 조은샷시의 수리 진단을 받아보세요!
             </p>
           </article>
 
           <article className="faq-item">
-            <h3>수리 비용은 대략 어떻게 되나요?</h3>
+            <h3>문이 너무 빨리 쾅 닫히는데 바로 수리해야 하나요?</h3>
             <p>
-              수리 부위(롤러 교체, 레일 보강, 모헤어 교체)와 창문 크기, 수량에 따라 차이가 있습니다.
-              고장 난 창문 전체와 하부 레일 사진을 찍어 보내주시면 방문 전 대략적인 예상 수리비를
-              투명하게 먼저 안내해 드립니다.
+              네, 매우 위험한 상태입니다. 힌지 내부 유압 오일이 터져 제동력을 상실하면 바람이 불거나 손을 놓을 때
+              문이 흉기처럼 쾅 닫혀 손 끼임 골절이나 유리 파손 사고가 발생할 수 있습니다. 방문객과 직원의 안전을 위해 당일 점검을 권장합니다.
             </p>
           </article>
 
           <article className="faq-item">
-            <h3>당일 출장 수리도 가능한가요?</h3>
+            <h3>상가 매장 영업 중인데 당일 수리가 가능한가요?</h3>
             <p>
-              네! 조은샷시는 부산, 김해, 창원시 전 지역을 상시 순회하고 있어 일정 조율 후 빠른 당일 방문 수리가
-              가능합니다. 급하게 문이 안 닫히거나 이탈 위험이 있는 경우 전화 주시면 신속히 출동합니다.
+              네! 조은샷시는 부산, 김해, 양산, 창원시 전 지역을 상시 순회하고 있어 손님이 덜 붐비는 시간대에 맞춰
+              30분~1시간 내외로 현장에서 신속히 수리를 완료해 드립니다. 매장 영업에 지장을 주지 않으니 안심하세요.
             </p>
           </article>
 
           <article className="faq-item">
-            <h3>수리 후 A/S 및 보증은 어떻게 되나요?</h3>
+            <h3>수리 후 A/S 및 품질 보증은 어떻게 되나요?</h3>
             <p>
-              조은샷시에서 교체한 롤러와 스테인리스 레일, 부속에 대해 확실한 품질 보증을 지원합니다.
+              조은샷시에서 교체한 국산 삼화정밀 King 정품 힌지와 부속에 대해 확실한 품질 보증을 지원합니다.
               작업 후 문제가 생기면 책임지고 신속하게 무상 사후 점검을 진행해 드립니다.
             </p>
           </article>
         </div>
       </section>
+
+      {/* 9. DIRECT PHONE & SMS CALL GUIDE (직접 전화 및 문자 사진 전송) */}
+      <section className="direct-call-section" aria-label="출장 수리 전화 및 문자 상담">
+        <div className="direct-call-card">
+          <span className="call-badge">빠른 전화 상담 &amp; 현장 방문</span>
+          <h2>고장 사진을 문자로 보내주시면<br />5분 내 예상 수리 비용을 바로 안내해 드립니다</h2>
+          <p>
+            복잡한 신청서 작성 없이 고장 난 문 부위(바닥 힌지, H바, 상부 축 등)를
+            사진 찍어 보내주시면 필요한 부속과 당일 출장 수리 일정을 신속히 확인해 드립니다.
+          </p>
+          <div className="call-btn-group">
+            <a href="tel:01093920431" className="btn-call-action" aria-label="010-9392-0431 전화 걸기">
+              <FiPhoneCall className="action-icon" />
+              <span>010-9392-0431</span>
+            </a>
+            <a href="sms:01093920431" className="btn-sms-action" aria-label="문자로 고장 사진 전송하기">
+              <FiMessageSquare className="action-icon" />
+              <span>문자로 고장 사진 전송</span>
+            </a>
+          </div>
+          <span className="call-notice">부산 · 김해 · 양산 · 창원 전지역 당일 방문 가능 · 연중무휴 상담</span>
+        </div>
+      </section>
+
 
       {/* 10. FLOATING CTA BAR (모바일 하단 고정) */}
       <FloatingCtaBar telNumber="010-9392-0431" displayTel="010-9392-0431" />

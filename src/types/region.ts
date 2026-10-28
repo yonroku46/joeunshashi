@@ -1,3 +1,20 @@
+export interface DongInfo {
+  slug: string;
+  name: string;
+  fullName: string;
+  districtSlug: string;
+  districtName: string;
+  regionSlug: string;
+  regionName: string;
+  characteristics?: string[];
+  keyIssues?: string[];
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 export interface District {
   slug: string;
   name: string;
@@ -5,7 +22,7 @@ export interface District {
   postalName: string;
   characteristics: string[];
   majorNeighborhoods: string[];
-  keyIssues: string[]; // 예: 해풍/염분, 노후 단지 단열 취약, 결로 등
+  keyIssues: string[];
 }
 
 export interface ServiceRegion {

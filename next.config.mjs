@@ -3,8 +3,31 @@
 const nextConfig = {
   trailingSlash: false,
   reactStrictMode: false,
+  distDir: process.env.BUILD_DIR || '.next',
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.pstatic.net',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.naver.net',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.phinf.naver.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blogthumb.pstatic.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blogfiles.pstatic.net',
+      },
+    ],
   },
   async rewrites() {
     return [

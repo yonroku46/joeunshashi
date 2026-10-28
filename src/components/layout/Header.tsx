@@ -1,14 +1,62 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useHeaderVisibility } from '@/common/hooks/useHeaderVisibility';
-import Button from '@/components/ui/Button/Button';
+import { FiPhoneCall, FiMenu, FiX, FiCheck } from 'react-icons/fi';
 import './Header.scss';
 
 export default function Header() {
-  const { isHeaderVisible } = useHeaderVisibility();
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isHeaderHidden, setIsHeaderHidden] = useState<boolean>(false);
+
+  useEffect(() => {
+    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      if (!mobileMenuOpen) {
+        if (currentScrollY > lastScrollY && currentScrollY > 70) {
+          setIsHeaderHidden(true);
+        } else if (currentScrollY < lastScrollY) {
+          setIsHeaderHidden(false);
+        }
+      }
+
+      lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setMobileMenuOpen(false);
+        }
+      };
+      const handleResize = () => {
+        if (window.innerWidth > 992) {
+          setMobileMenuOpen(false);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('resize', handleResize);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('resize', handleResize);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [mobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
@@ -18,52 +66,66 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
+  const handleNavClick = (targetId: string) => {
+    closeMobileMenu();
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <>
       <div className="top-banner-notice">
         <div className="site-width banner-inner">
-          <span className="notice-badge">부산·김해·창원 당일 출장</span>
-          <span className="notice-text">비싼 교체 대신 수리로 해결! 뻑뻑한 창문, 깨진 레일, 외풍 모헤어 전문</span>
-          <a href="tel:01093920431" className="banner-tel" aria-label="대표 전화 상담 바로연결">
-            010-9392-0431
-          </a>
+          <span className="notice-badge">당일 출장</span>
+          <span className="notice-text">
+            동남권 전지역 상가·매장 유리문·강화도어 책임 수리
+          </span>
         </div>
       </div>
 
-      <header className={`app-header ${!isHeaderVisible ? 'hidden' : ''}`}>
+      <header
+        className={`app-header ${isScrolled ? 'is-scrolled' : ''} ${
+          isHeaderHidden ? 'is-hidden-mobile' : ''
+        }`}
+      >
         <div className="header-inner">
           <Link href="/" className="brand" onClick={closeMobileMenu}>
-            <span className="brand-badge">샷시·창문 수리</span>
-            <span className="brand-name">조은샷시</span>
+            <div className="brand-symbol" aria-hidden="true">
+              <span className="symbol-char">조</span>
+              <span className="symbol-char accent">은</span>
+            </div>
+            <div className="brand-text-wrap">
+              <span className="brand-name">조은샷시</span>
+              <p className="brand-sub">부산 · 김해 · 양산 · 창원</p>
+            </div>
           </Link>
 
           <nav className="nav-links desktop-nav" aria-label="메인 메뉴">
-            <Link href="/services/window-repair">창문 롤러 교체</Link>
-            <Link href="/services/window-repair">깨진 레일 보강</Link>
-            <Link href="/services/window-repair">모헤어 외풍차단</Link>
-            <Link href="/services/screen-window">미세방충망</Link>
-            <Link href="/pricing">수리 비용 안내</Link>
-            <Link href="#areas-section">출장 지역</Link>
+            <Link href="/#services-title" onClick={() => handleNavClick('services-title')}>
+              수리 서비스
+            </Link>
+            <Link href="/#symptoms-title" onClick={() => handleNavClick('symptoms-title')}>
+              고장 자가진단
+            </Link>
+            <Link href="/area">출장 지역</Link>
+            <Link href="/#faq-section" onClick={() => handleNavClick('faq-section')}>
+              자주 묻는 질문
+            </Link>
           </nav>
 
           <div className="header-actions">
-            <a href="tel:01093920431" className="header-tel-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
-                <path fillRule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clipRule="evenodd" />
-              </svg>
-              <span>전화 상담</span>
-            </a>
-            <Button
-              variant="primary"
-              size="sm"
-              className="header-cta-btn"
-              onClick={() => {
-                const el = document.getElementById('estimate-section');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
+            <a
+              href="tel:01093920431"
+              className="header-tel-btn"
+              aria-label="대표 전화 010-9392-0431 상담 연결"
             >
-              수리 견적
-            </Button>
+              <FiPhoneCall className="action-icon" aria-hidden="true" />
+              <span className="tel-text">전화 문의</span>
+            </a>
 
             <button
               type="button"
@@ -72,43 +134,64 @@ export default function Header() {
               aria-label="모바일 메뉴 열기/닫기"
               aria-expanded={mobileMenuOpen}
             >
-              <span className={`bar ${mobileMenuOpen ? 'open' : ''}`} />
-              <span className={`bar ${mobileMenuOpen ? 'open' : ''}`} />
-              <span className={`bar ${mobileMenuOpen ? 'open' : ''}`} />
+              {mobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
             </button>
           </div>
         </div>
 
         {mobileMenuOpen && (
-          <div className="mobile-menu-drawer">
+          <div className="mobile-menu-drawer" id="mobile-menu-panel">
             <nav className="mobile-nav" aria-label="모바일 전용 메뉴">
-              <Link href="/services/window-repair" onClick={closeMobileMenu}>
-                창문 롤러(바퀴) 교체 & 수평 조정
+              <Link
+                href="/#services-title"
+                onClick={() => handleNavClick('services-title')}
+              >
+                <FiCheck className="menu-icon" />
+                <span>핵심 수리 솔루션 (힌지·H바·도어락)</span>
               </Link>
-              <Link href="/services/window-repair" onClick={closeMobileMenu}>
-                깨진 샷시 레일 스테인리스 보강
+              <Link
+                href="/#symptoms-title"
+                onClick={() => handleNavClick('symptoms-title')}
+              >
+                <FiCheck className="menu-icon" />
+                <span>유리문 고장 증상 자가진단</span>
               </Link>
-              <Link href="/services/window-repair" onClick={closeMobileMenu}>
-                외풍·먼지 차단 모헤어 전면 교체
+              <Link href="/area" onClick={closeMobileMenu}>
+                <FiCheck className="menu-icon" />
+                <span>부산 · 김해 · 양산 · 창원 출장 권역</span>
               </Link>
-              <Link href="/services/screen-window" onClick={closeMobileMenu}>
-                친환경 미세방충망 교체 & 망갈이
-              </Link>
-              <Link href="/pricing" onClick={closeMobileMenu}>
-                부위별 예상 수리비 안내
-              </Link>
-              <Link href="#areas-section" onClick={closeMobileMenu}>
-                부산·김해·창원시 출장 지역
+              <Link
+                href="/#faq-section"
+                onClick={() => handleNavClick('faq-section')}
+              >
+                <FiCheck className="menu-icon" />
+                <span>자주 묻는 질문 (FAQ)</span>
               </Link>
               <div className="mobile-menu-cta">
                 <a href="tel:01093920431" className="mobile-tel-btn">
-                  수리 상담 바로걸기
+                  <FiPhoneCall />
+                  <span>바로 전화문의</span>
                 </a>
               </div>
             </nav>
           </div>
         )}
       </header>
+
+      {mobileMenuOpen && (
+        <div
+          className="mobile-menu-backdrop"
+          onClick={closeMobileMenu}
+          aria-label="메뉴 닫기"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              closeMobileMenu();
+            }
+          }}
+        />
+      )}
     </>
   );
 }

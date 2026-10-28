@@ -1,5 +1,8 @@
 import regionsData from "./regions.json";
-import type { ServiceRegion, District } from "@/types/region";
+import type { ServiceRegion, District, BreadcrumbItem } from "@/types/region";
+import { ALL_DONGS, getDongBySlug, getDongsByDistrict, getNearbyDongs } from "./dongData";
+
+export { ALL_DONGS, getDongBySlug, getDongsByDistrict, getNearbyDongs };
 
 export const SERVICE_REGIONS: ServiceRegion[] = regionsData.regions as ServiceRegion[];
 export const COMMON_SERVICES = regionsData.commonServices;
@@ -36,9 +39,52 @@ export function getDistrictBySlug(
 ): { region: ServiceRegion; district: District } | undefined {
   const region = getRegionBySlug(regionSlug);
   if (!region) return undefined;
-  const district = region.districts.find((d) => d.slug === districtSlug);
+  const normalizedSlug = districtSlug.replace(/-gu$/, '');
+  const district = region.districts.find(
+    (d) => d.slug === districtSlug || d.slug === normalizedSlug
+  );
   if (!district) return undefined;
   return { region, district };
+}
+
+/**
+ * 브레드크럼 아이템 리스트 생성 유틸리티
+ */
+export function buildBreadcrumbItems(params: {
+  regionSlug?: string;
+  districtSlug?: string;
+  dongSlug?: string;
+}): BreadcrumbItem[] {
+  const items: BreadcrumbItem[] = [{ name: '홈', url: '/' }];
+
+  if (params.regionSlug) {
+    const region = getRegionBySlug(params.regionSlug);
+    if (region) {
+      items.push({ name: region.name, url: `/area/${region.slug}` });
+    }
+  }
+
+  if (params.regionSlug && params.districtSlug) {
+    const data = getDistrictBySlug(params.regionSlug, params.districtSlug);
+    if (data) {
+      items.push({
+        name: data.district.name,
+        url: `/area/${params.regionSlug}/${data.district.slug}`,
+      });
+    }
+  }
+
+  if (params.dongSlug) {
+    const dong = getDongBySlug(params.dongSlug);
+    if (dong) {
+      items.push({
+        name: dong.name,
+        url: `/area/${dong.regionSlug}/${dong.districtSlug}/${dong.slug}`,
+      });
+    }
+  }
+
+  return items;
 }
 
 /**

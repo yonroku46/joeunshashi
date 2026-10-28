@@ -11,9 +11,9 @@ export default function QuickEstimateForm() {
 
   const [regionSlug, setRegionSlug] = useState<string>('busan');
   const [districtSlug, setDistrictSlug] = useState<string>('haeundae');
-  const [repairSymptom, setRepairSymptom] = useState<string>('뻑뻑한 창문 / 안 열림 (롤러 교체)');
-  const [windowCount, setWindowCount] = useState<string>('베란다 창문 1~2틀');
-  const [buildingType, setBuildingType] = useState<string>('아파트');
+  const [repairSymptom, setRepairSymptom] = useState<string>('문이 쾅 닫힘 / 유압 터짐 (플로어 힌지 교체)');
+  const [doorCount, setDoorCount] = useState<string>('강화도어 1개 (외도어 단문)');
+  const [placeType, setPlaceType] = useState<string>('상가 / 매장 1층 출입문');
   const [phone, setPhone] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -55,8 +55,8 @@ export default function QuickEstimateForm() {
     <div className="quick-estimate-card" id="estimate-section">
       <div className="card-header">
         <span className="badge">30초 간이 견적 & 당일 출장 수리</span>
-        <h2>부산·김해·창원 샷시 수리 견적 신청</h2>
-        <p>비싼 전체 교체 대신 수리로 해결하세요! 증상과 사진을 남겨주시면 예상 수리 비용을 안내해 드립니다.</p>
+        <h2>부산·김해·창원 유리문·강화도어 수리 견적 신청</h2>
+        <p>비싼 전체 교체 대신 수리로 해결하세요! 증상과 사진을 남겨주시면 예상 수리 비용을 친절히 안내해 드립니다.</p>
       </div>
 
       <form className="estimate-form" onSubmit={handleSubmit}>
@@ -98,42 +98,43 @@ export default function QuickEstimateForm() {
               value={repairSymptom}
               onChange={(e) => setRepairSymptom(e.target.value)}
             >
-              <option value="뻑뻑한 창문 / 안 열림 (롤러 교체)">뻑뻑하고 무거운 창문 (롤러 바퀴 교체)</option>
-              <option value="깨진 레일 / 바닥 긁힘 (스텐 레일 보강)">깨진 플라스틱 레일 (스텐 레일 덧방 보강)</option>
-              <option value="창문 틈새 바람 / 가루 날림 (모헤어 교체)">외풍·웃바람 / 삭은 모헤어 털가루 교체</option>
-              <option value="미세방충망 교체 / 찢어진 방충망">미세방충망 교체 / 찢어진 망갈이</option>
-              <option value="창문 흔들림 / 태풍 이탈 위험">창문 흔들림 / 태풍 대비 이탈 방지</option>
-              <option value="창문 락(잠금장치) 고장 / 안 닫힘">창문 잠금장치(크리센트·오토락) 수리</option>
-              <option value="기타 창문·샷시 수리 점검">기타 창문·샷시 전체 수리 점검</option>
+              <option value="문이 쾅 닫힘 / 유압 터짐 (플로어 힌지 교체)">문이 쾅 닫힘 / 기름 유출 (플로어 힌지 교체)</option>
+              <option value="문이 바닥·문틀에 긁힘 / 안 닫힘 (수평 높이 정렬)">문이 처져 바닥·틀 긁힘 (수평 높이 정렬)</option>
+              <option value="문이 덜 닫히고 제자리에 안 멈춤 (센터 정지 불량)">문이 제자리에 안 멈춤 / 열쇠 안 잠김</option>
+              <option value="하부/상부 H-Bar 파손·부식 (스텐 H바 교체)">하부 스테인리스 H바 파손 / 부식 교체</option>
+              <option value="상부 축 덜렁거림 (상롯트 피벗 힌지 교체)">상부 피벗 힌지(상롯트) 이탈·흔들림 수리</option>
+              <option value="강화유리문 디지털도어락 / 번호키 신규 설치">강화유리문 전용 디지털도어락(번호키) 설치</option>
+              <option value="기타 강화도어 / 상가 출입문 전체 점검">기타 상가 출입문 종합 점검 및 수리</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label htmlFor="window-count">수리 수량</label>
+            <label htmlFor="door-count">수리 수량</label>
             <select
-              id="window-count"
-              value={windowCount}
-              onChange={(e) => setWindowCount(e.target.value)}
+              id="door-count"
+              value={doorCount}
+              onChange={(e) => setDoorCount(e.target.value)}
             >
-              <option value="베란다 창문 1~2틀">베란다 창문 1~2틀 (부분 수리)</option>
-              <option value="베란다 창문 3~4틀">베란다 창문 3~4틀</option>
-              <option value="방창 / 실내창문 1~2틀">방창 / 실내창문 1~2틀</option>
-              <option value="집 전체 창문 모헤어/수리">집 전체 창문 모헤어 / 방충망 전체 수리</option>
-              <option value="상가 / 사무실 창호 수리">상가 / 사무실 창호 수리</option>
+              <option value="강화도어 1개 (외도어 단문)">강화도어 1개 (외도어 - 단문)</option>
+              <option value="강화도어 2개 (양도어 양문)">강화도어 2개 (양도어 - 양문)</option>
+              <option value="매장 내외 유리문 3개 이상">매장 유리문 3개 이상</option>
+              <option value="건물 전체 출입문 일괄 점검">건물 전체 출입문 일괄 수리 점검</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label htmlFor="building-type">주거 형태</label>
+            <label htmlFor="place-type">설치 장소</label>
             <select
-              id="building-type"
-              value={buildingType}
-              onChange={(e) => setBuildingType(e.target.value)}
+              id="place-type"
+              value={placeType}
+              onChange={(e) => setPlaceType(e.target.value)}
             >
-              <option value="아파트">아파트 (구축/대단지)</option>
-              <option value="빌라·다세대">빌라 / 다세대 / 연립</option>
-              <option value="단독주택">단독주택 / 전원주택</option>
-              <option value="상가·오피스텔">상가 / 오피스텔 / 사무실</option>
+              <option value="상가 / 매장 1층 출입문">상가 / 매장 1층 출입문</option>
+              <option value="카페 / 식당 / 주점">카페 / 음식점 / 주점</option>
+              <option value="사무실 / 빌딩 출입문">사무실 / 빌딩 출입문</option>
+              <option value="학원 / 병원 / 약국">학원 / 병원 / 약국 강화도어</option>
+              <option value="빌라 / 오피스텔 공동현관문">빌라 / 오피스텔 공동현관</option>
+              <option value="기타 출입문">기타 출입문</option>
             </select>
           </div>
 
@@ -150,11 +151,11 @@ export default function QuickEstimateForm() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="contact-name">성함 또는 아파트 단지명 (선택)</label>
+            <label htmlFor="contact-name">성함 또는 상호명 (선택)</label>
             <input
               type="text"
               id="contact-name"
-              placeholder="예: 홍길동 (또는 OO아파트)"
+              placeholder="예: 홍길동 (또는 OO카페/매장명)"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />

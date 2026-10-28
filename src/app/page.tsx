@@ -1,29 +1,35 @@
 import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/common/lib/Metadata';
 import HomeClient from './HomeClient';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = '부산·김해·창원 샷시·창문 수리 전문 | 조은샷시';
+  const base = generatePageMetadata();
+  const title = '부산·김해·양산·창원 유리문·강화도어·상가출입문 수리 전문 | 조은샷시';
   const description =
-    '부산광역시, 김해시, 창원시 전 지역 아파트·빌라·상가 샷시 수리, 창문 롤러 교체, 레일 파손 보강, 모헤어 외풍 차단, 미세방충망 당일 출장 수리 전문 조은샷시.';
+    '부산광역시, 김해시, 양산시, 창원시 전 지역 상가·매장·사무실·빌라 유리문 수리, 강화도어 플로어 힌지 교체, H바 수리, 출입문 바닥 긁힘·쾅 닫힘 당일 출장 수리 전문 조은샷시.';
 
   return {
+    ...base,
     title,
     description,
     keywords: [
-      '부산 샷시 수리',
-      '김해 샷시 수리',
-      '창원 샷시 수리',
-      '창문 롤러 교체',
-      '샷시 레일 수리',
-      '창문 외풍 차단',
-      '모헤어 교체',
-      '장유 샷시 수리',
-      '해운대 창문 수리',
-      '창원 샷시 롤러',
-      '미세방충망 교체',
-      '창문 안열림 수리',
+      '부산 유리문 수리',
+      '김해 유리문 수리',
+      '양산 유리문 수리',
+      '창원 유리문 수리',
+      '강화도어 수리',
+      '상가 출입문 수리',
+      '플로어 힌지 교체',
+      '유리문 힌지 수리',
+      '강화유리문 힌지',
+      'H바 교체',
+      '상가 유리문 번호키',
+      '유리문 쾅 닫힘',
+      '물금 강화도어 수리',
+      '조은샷시',
     ],
     openGraph: {
+      ...base.openGraph,
       title,
       description,
       locale: 'ko_KR',
@@ -31,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: '조은샷시',
     },
     twitter: {
-      card: 'summary_large_image',
+      ...base.twitter,
       title,
       description,
     },
@@ -47,43 +53,43 @@ export default function HomePage() {
     '@type': 'HomeAndConstructionBusiness',
     name: '조은샷시',
     description:
-      '부산·김해·창원시 전 지역 아파트·빌라·상가 샷시 수리, 창문 롤러 교체, 레일 파손 보강, 모헤어 외풍 차단, 미세방충망 당일 출장 수리 전문',
+      '부산·김해·양산·창원시 전 지역 상가·매장·사무실·빌라 유리문 수리, 강화도어 플로어 힌지 교체, H바 수리, 출입문 바닥 긁힘·쾅 닫힘 당일 출장 수리 전문',
     telephone: '010-9392-0431',
-    areaServed: ['부산광역시', '경상남도 김해시', '경상남도 창원시'],
+    areaServed: ['부산광역시', '경상남도 김해시', '경상남도 양산시', '경상남도 창원시'],
     makesOffer: [
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: '창문 롤러(바퀴) 교체 & 수평 조정',
+          name: '플로어 힌지(Floor Hinge) 교체 & 감속 조절',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: '깨진 샷시 레일 스테인리스 덧방 보강 수리',
+          name: '강화도어 상/하부 H-Bar(스테인리스 바) 수리·교체',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: '외풍·먼지 차단 모헤어(방풍털) 전면 교체',
+          name: '상부 피벗 힌지(상롯트) & 힌지 박스 부식 복원',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: '친환경 미세방충망 교체 및 망갈이',
+          name: '강화유리문 전용 디지털도어락 / 번호키 & 손잡이 설치',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: '창문 잠금장치(크리센트·오토락) 수리',
+          name: '상가 출입문 수평 정렬 & 바닥 긁힘 들어올림 수리',
         },
       },
     ],
@@ -95,34 +101,34 @@ export default function HomePage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: '비싼 전체 샷시 교체 대신 수리만으로도 해결이 가능한가요?',
+        name: '비싼 유리문 전체 교체 대신 힌지나 부속 수리만으로 해결이 되나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '네, 80% 이상의 창문 문제는 창틀 전체를 뜯어내지 않고 마모된 롤러 교체, 깨진 레일 스테인리스 보강, 삭은 모헤어 교체만으로도 새 창문처럼 부드럽고 외풍 없는 상태로 완벽히 복원됩니다.',
+          text: '네! 문 전체를 비싸게 새로 맞추지 않고도 마모된 플로어 힌지 교체, 바닥 케이스 몰탈 보강, 하부 H바 교체만으로도 새 문처럼 부드럽고 안전하게 멈추도록 완벽 복원됩니다.',
         },
       },
       {
         '@type': 'Question',
-        name: '수리 비용과 출장 견적은 어떻게 확인하나요?',
+        name: '문이 너무 빨리 쾅 닫히는데 어떤 수리가 필요한가요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '고장 난 창문 전체와 하부 레일/바닥 사진을 문자로 보내주시면 예상 수리 비용과 작업 범위를 사전에 투명하게 안내해 드립니다.',
+          text: '하부 플로어 힌지 내부의 유압 오일이 터져 제동력을 잃은 상태입니다. 국산 규격 정품 King 유압 힌지로 교체하여 2단계 부드러운 감속과 손 끼임 방지 안전성을 회복할 수 있습니다.',
         },
       },
       {
         '@type': 'Question',
-        name: '당일 방문 수리도 가능한가요?',
+        name: '매장 영업 중에 당일 방문 수리가 가능한가요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '부산, 김해, 창원시 전 지역을 상시 순회하고 있어 일정 조율 후 빠른 당일 방문 수리가 가능합니다.',
+          text: '네! 부산·김해·양산·창원 전 지역을 신속 순회하고 있어 식당, 카페, 매장 영업에 방해되지 않도록 30분~1시간 내외로 현장에서 신속히 수리를 완료해 드립니다.',
         },
       },
       {
         '@type': 'Question',
-        name: '수리 후 사후관리(A/S)는 어떻게 진행되나요?',
+        name: '수리 전화 상담 및 방문 점검은 어떻게 신청하나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '교체한 롤러와 레일, 부속에 대해 확실한 품질 보증 및 사후 점검을 보장합니다.',
+          text: '문 전체 모습과 바닥 힌지 덮개 사진을 문자로 전송해 주시거나 대표 번호(010-9392-0431)로 전화 주시면 방문 전 대략적인 예상 수리 비용과 당일 출장 일정을 5분 내로 친절히 안내해 드립니다.',
         },
       },
     ],

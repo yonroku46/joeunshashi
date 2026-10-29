@@ -70,8 +70,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const dongName = dong ? dong.name : dongSlug;
     const districtName = districtData ? districtData.district.name : '';
 
-    const title = `${districtName} ${dongName} 문수리 | 유리문·강화도어 힌지교체 | 조은샷시`;
-    const description = `${region.fullName} ${districtName} ${dongName} 전 지역 상가·매장·사무실 유리문 수리, 강화도어 플로어 힌지 교체, H바 수리 당일 출장 전문 조은샷시.`;
+    const title = `${districtName} ${dongName} 유리문·강화도어 수리 | 조은샷시`;
+    const description = `${districtName} ${dongName} 상가 유리문·강화도어 수리 및 플로어 힌지 교체. 출입문 쓸림·고장 당일 신속 수리.`;
 
     return {
       ...base,
@@ -101,8 +101,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const districtData = getDistrictBySlug(regionSlug, districtSlug);
     if (!districtData) return generatePageMetadata();
 
-    const title = `${region.name} ${districtData.district.name} 유리문·강화도어 수리 | 플로어 힌지 교체 | 조은샷시`;
-    const description = `${districtData.district.fullName} 전 지역 상가·매장 유리문 쾅 닫힘, 바닥 긁힘 수리, 플로어 힌지 교체, H바 수리 당일 출장 전문 조은샷시.`;
+    const title = `${region.name} ${districtData.district.name} 유리문·강화도어 수리 | 조은샷시`;
+    const description = `${region.name} ${districtData.district.name} 상가 유리문·강화도어 수리 및 플로어 힌지 교체. 출입문 바닥 쓸림 당일 신속 출장.`;
 
     return {
       ...base,
@@ -127,8 +127,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   // 3. 시/도(Region) 단위 메타데이터
-  const title = `${region.fullName} 유리문·강화도어 수리 | 상가 출입문 힌지 교체 전문 | 조은샷시`;
-  const description = `${region.fullName} 전 지역 상가·매장·사무실 유리문 수리, 강화도어 플로어 힌지 교체, H바 수리, 출입문 바닥 긁힘 당일 출장 수리 전문 조은샷시.`;
+  const title = `${region.fullName} 유리문·강화도어 수리 | 조은샷시`;
+  const description = `${region.fullName} 전 지역 상가 유리문·강화도어 수리 및 플로어 힌지 교체. 출입문 고장 당일 신속 출장.`;
 
   return {
     ...base,

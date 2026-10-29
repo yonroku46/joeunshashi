@@ -6,11 +6,16 @@ export function generatePageMetadata(
   description?: string
 ): Metadata {
   const metaTitle = title
-    ? `${title} - ${config.service.name}`
+    ? (title.includes(config.service.name) ? title : `${title} | ${config.service.name}`)
     : config.service.metadata.title.default;
   const metaDesc = description || config.service.metadata.description;
 
+  const baseUrlString = config.baseUrl.startsWith('http')
+    ? config.baseUrl
+    : `https://${config.baseUrl}`;
+
   return {
+    metadataBase: new URL(baseUrlString),
     title: metaTitle,
     description: metaDesc,
     verification: {
@@ -51,7 +56,7 @@ export function generatePageMetadata(
           url: '/images/og-image.jpg',
           width: 1200,
           height: 630,
-          alt: '조은샷시 - 부담 없이 합리적인 가격! 부산·김해·양산·창원 전지역 당일 출장',
+          alt: '조은샷시 - 부산·김해·창원 유리문·강화도어 수리',
         },
       ],
     },

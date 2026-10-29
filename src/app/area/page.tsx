@@ -4,9 +4,9 @@ import AreaIndexClient from './AreaIndexClient';
 
 export async function generateMetadata(): Promise<Metadata> {
   const base = generatePageMetadata();
-  const title = '부산·김해·창원 출장 수리 지역 안내 | 상가 유리문·강화도어 수리 | 조은샷시';
+  const title = '출장 수리 지역 안내 | 조은샷시';
   const description =
-    '부산광역시, 경상남도 김해시, 창원시 전 지역 상가·매장·사무실 유리문 수리, 강화도어 플로어 힌지 교체, H바 수리, 출입문 바닥 긁힘 당일 출장 가능 지역 안내 조은샷시.';
+    '부산, 김해, 창원 전 지역 상가 유리문·강화도어 출장 수리 가능 지역 안내. 플로어 힌지 교체 및 출입문 당일 신속 수리.';
 
   return {
     ...base,

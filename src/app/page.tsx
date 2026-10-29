@@ -4,9 +4,9 @@ import HomeClient from './HomeClient';
 
 export async function generateMetadata(): Promise<Metadata> {
   const base = generatePageMetadata();
-  const title = '부산·김해·창원 유리문·강화도어 수리 | 당일 힌지교체·출입문 보수 | 조은샷시';
+  const title = '부산·김해·창원 유리문·강화도어 수리 | 조은샷시';
   const description =
-    '부산·김해·창원·양산 전 지역 상가·매장 유리문·강화도어 수리 전문. 문 쾅 닫힘, 바닥 쓸림, 힌지 기름 유출 당일 신속 출장. 사진 전송 시 5분 내 예상 견적 안내 📞 010-9392-0431';
+    '부산·김해·창원 전 지역 상가 유리문·강화도어 수리 전문. 플로어 힌지 교체, 문 쾅 닫힘, 바닥 쓸림 당일 신속 수리.';
 
   return {
     ...base,

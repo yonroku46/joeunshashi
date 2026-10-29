@@ -4,34 +4,48 @@ import React from 'react';
 import Image from 'next/image';
 import { FiExternalLink, FiCalendar } from 'react-icons/fi';
 import { SiNaver } from 'react-icons/si';
-import { BLOG_POSTS, OFFICIAL_BLOG_URL, type BlogPost } from '@/data/blogPosts';
+import { getRankedBlogPosts, OFFICIAL_BLOG_URL, type BlogPost } from '@/data/blogPosts';
 import './BlogCaseStudies.scss';
 
 interface BlogCaseStudiesProps {
   title?: string;
   subtitle?: string;
   filterRegionSlug?: string;
+  filterDistrictSlug?: string;
+  filterDongSlug?: string;
+  locationName?: string;
   maxCount?: number;
 }
 
 export default function BlogCaseStudies({
-  title = '조은샷시 공식 현장 시공 일지',
-  subtitle = '네이버 공식 블로그에 기록된 실제 현장 유리문 수리 및 샷시 교체 시공 리포트입니다.',
+  title,
+  subtitle,
   filterRegionSlug,
+  filterDistrictSlug,
+  filterDongSlug,
+  locationName,
   maxCount = 4,
 }: BlogCaseStudiesProps) {
-  // 특정 지역 페이지일 경우 해당 지역 포스트 우선 정렬
+  // 4단계 스마트 우선순위 필터링 (동 1순위 > 구 2순위 > 시 3순위 > 최신순 Fallback 4순위)
   const displayedPosts: BlogPost[] = React.useMemo(() => {
-    if (!filterRegionSlug) {
-      return BLOG_POSTS.slice(0, maxCount);
-    }
-    const matched = BLOG_POSTS.filter((post) => post.regionSlug === filterRegionSlug);
-    const others = BLOG_POSTS.filter((post) => post.regionSlug !== filterRegionSlug);
-    return [...matched, ...others].slice(0, maxCount);
-  }, [filterRegionSlug, maxCount]);
+    return getRankedBlogPosts({
+      regionSlug: filterRegionSlug,
+      districtSlug: filterDistrictSlug,
+      dongSlug: filterDongSlug,
+      maxCount,
+    });
+  }, [filterRegionSlug, filterDistrictSlug, filterDongSlug, maxCount]);
+
+  const defaultTitle = locationName
+    ? `${locationName} 및 인근 현장 시공 일지`
+    : '조은샷시 공식 현장 시공 일지';
+
+  const defaultSubtitle = locationName
+    ? `네이버 공식 블로그에 기록된 ${locationName} 및 주요 생활권의 실제 유리문 수리·샷시 보수 작업 리포트입니다.`
+    : '네이버 공식 블로그에 기록된 실제 현장 유리문 수리 및 샷시 교체 시공 리포트입니다.';
 
   return (
-    <section className="blog-case-studies-section" aria-label={title}>
+    <section className="blog-case-studies-section" aria-label={title || defaultTitle}>
       <div className="section-header">
         <div className="header-text">
           <span className="eyebrow">
@@ -40,8 +54,8 @@ export default function BlogCaseStudies({
             </span>
             조은샷시 네이버 공식 블로그
           </span>
-          <h2>{title}</h2>
-          <p>{subtitle}</p>
+          <h2>{title || defaultTitle}</h2>
+          <p>{subtitle || defaultSubtitle}</p>
         </div>
         <a
           href={OFFICIAL_BLOG_URL}

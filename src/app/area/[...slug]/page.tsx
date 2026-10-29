@@ -192,11 +192,46 @@ export default async function AreaPage({ params }: PageProps) {
       ],
     };
 
+    const jsonLdFaq = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: `${locationName} 당일 방문 문수리가 가능한가요?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `네! ${locationName} 전담 순회 차량이 상시 운행되어 식당, 카페, 매장, 사무실 유리문 쾅 닫힘, 바닥 쓸림, 힌지 교체를 당일 30분~1시간 내외로 신속히 해결해 드립니다.`,
+          },
+        },
+        {
+          '@type': 'Question',
+          name: `${locationName} 유리문 수리 견적은 어떻게 확인하나요?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `문 전체 모습과 바닥 힌지 덮개 사진을 문자로 보내주시면(010-9392-0431), 현장 방문 전 5분 내 정확한 예상 비용을 친절히 안내해 드립니다.`,
+          },
+        },
+        {
+          '@type': 'Question',
+          name: `${locationName} 문 전체를 교체하지 않고 수리만으로 해결되나요?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `네! 문 전체를 새로 맞출 필요 없이 유압이 터진 플로어 힌지나 부식된 H바 등 핵심 부속만 1:1 교체하여 비용을 80% 이상 절감하면서 새 문 수준으로 복원해 드립니다.`,
+          },
+        },
+      ],
+    };
+
     return (
       <>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBusiness) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
         />
         <AreaClient
           breadcrumbItems={breadcrumbItems}
@@ -238,11 +273,38 @@ export default async function AreaPage({ params }: PageProps) {
       areaServed: [locationName, region.fullName],
     };
 
+    const jsonLdFaq = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: `${locationName} 전 지역 당일 문수리가 가능한가요?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `네! ${locationName} 전 지역 상가·매장 유리문 쾅 닫힘, 바닥 쓸림, 힌지 교체를 당일 신속하게 방문 처리해 드립니다.`,
+          },
+        },
+        {
+          '@type': 'Question',
+          name: `${locationName} 유리문 수리 견적 문의는 어떻게 하나요?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `문 전체 사진과 바닥 힌지 덮개 사진을 문자로 보내주시면(010-9392-0431) 5분 내 예상 견적을 안내해 드립니다.`,
+          },
+        },
+      ],
+    };
+
     return (
       <>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBusiness) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
         />
         <AreaClient
           breadcrumbItems={breadcrumbItems}
@@ -275,11 +337,38 @@ export default async function AreaPage({ params }: PageProps) {
     areaServed: [locationName],
   };
 
+  const jsonLdFaq = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `${locationName} 전 지역 출장 수리가 가능한가요?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `네! ${locationName} 전 지역 구·군별 순회 차량을 통해 유리문 수리, 강화도어 힌지 교체, H바 수리를 당일 신속 방문 점검해 드립니다.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `${locationName} 수리 견적 상담 방법은 어떻게 되나요?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `문 전체 사진과 바닥 힌지 덮개 사진을 문자로 보내주시면(010-9392-0431) 5분 내 정확한 예상 비용과 일정을 안내해 드립니다.`,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBusiness) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
       />
       <AreaClient
         breadcrumbItems={breadcrumbItems}

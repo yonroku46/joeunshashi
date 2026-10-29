@@ -497,21 +497,16 @@ export default function HomeClient() {
                 <span>조은샷시 현장 맞춤 처방</span>
               </div>
               <p className="rx-text">{activeSymptom.solution}</p>
-              <div className="rx-badges">
-                <span className="meta-badge"><FiClock /> {activeSymptom.timeRequired}</span>
-                <span className="meta-badge"><FiShield /> 국산 삼화정밀 King 정품 자재 사용</span>
+              <div className="rx-footer">
+                <div className="rx-badges">
+                  <span className="meta-badge"><FiClock /> {activeSymptom.timeRequired}</span>
+                  <span className="meta-badge"><FiShield /> 국산 삼화정밀 King 정품 자재 사용</span>
+                </div>
+                <a href="tel:01093920431" className="rx-inquiry-link">
+                  <span>이 증상으로 문의</span>
+                  <FiArrowRight size={13} aria-hidden="true" />
+                </a>
               </div>
-            </div>
-
-            <div className="report-cta-actions">
-              <a href="tel:01093920431" className="report-tel-btn">
-                <FiPhoneCall />
-                <span>이 증상 수리 전화 문의</span>
-              </a>
-              <a href="sms:01093920431" className="report-sms-btn">
-                <FiMessageSquare />
-                <span>사진 전송하고 5분 견적 받기</span>
-              </a>
             </div>
           </div>
         </div>
@@ -683,7 +678,7 @@ export default function HomeClient() {
       </section>
 
       {/* 7. OFFICIAL BLOG CASE STUDIES (네이버 공식 블로그 시공 일지) */}
-      <BlogCaseStudies />
+      <BlogCaseStudies filterRegionSlug={currentRegion} />
 
       {/* 8. FAQ SECTION */}
       <section className="faq-section" id="faq-section" aria-labelledby="faq-title">

@@ -46,6 +46,8 @@ export default function AreaClient({
   nearbyDongs,
   districts = [],
   regionSlug,
+  districtSlug,
+  dongSlug,
 }: AreaClientProps) {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
@@ -294,8 +296,11 @@ export default function AreaClient({
       {/* 6. OFFICIAL BLOG CASE STUDIES (네이버 공식 블로그 시공 일지) */}
       <BlogCaseStudies
         filterRegionSlug={regionSlug}
+        filterDistrictSlug={districtSlug}
+        filterDongSlug={dongSlug}
+        locationName={locationName}
         title={`${locationName} 및 주요 현장 시공 일지`}
-        subtitle={`네이버 공식 블로그에 기록된 ${locationName} 및 인근 생활권의 실제 유리문 수리 작업 리포트입니다.`}
+        subtitle={`네이버 공식 블로그에 기록된 ${locationName} 및 인근 생활권의 실제 현장 시공 리포트입니다.`}
       />
 
       {/* 7. CONTACT BANNER (직접 전화 및 문자 안내) */}

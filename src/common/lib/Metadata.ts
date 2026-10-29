@@ -41,11 +41,20 @@ export function generatePageMetadata(
       siteName: config.service.name,
       locale: 'ko_KR',
       type: 'website',
+      images: [
+        {
+          url: '/images/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: '조은샷시 - 부담 없이 합리적인 가격! 부산·김해·양산·창원 전지역 당일 출장',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: metaTitle,
       description: metaDesc,
+      images: ['/images/og-image.jpg'],
     },
   };
 }

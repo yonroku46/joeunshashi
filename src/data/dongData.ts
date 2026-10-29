@@ -457,7 +457,7 @@ export const ALL_DONGS: DongInfo[] = [
     regionSlug: 'yangsan',
     regionName: '경상남도 양산시',
     characteristics: ['양산역 이마트 중심 번화가 및 금융·오피스', '고객 통행 많은 매장 강화도어 힌지 기름 터짐 다수'],
-    keyIssues: ['양산역 상가 유리문 힌지 교체', '출입문 쾅 닫힘 방지 King 8300 교체', '상가 번호키 당일 설치'],
+    keyIssues: ['양산역 상가 유리문 힌지 교체', '출입문 쾅 닫힘 방지 힌지 교체', '상가 번호키 당일 설치'],
   },
   {
     slug: 'nambu-dong',
@@ -512,7 +512,7 @@ export const ALL_DONGS: DongInfo[] = [
     regionSlug: 'yangsan',
     regionName: '경상남도 양산시',
     characteristics: ['이마트 트레이더스 웅상점 상권 및 먹자골목', '유리문 센터 불일치 및 열쇠 구멍 어긋남 수리'],
-    keyIssues: ['평산 상가 강화도어 수평 정렬', '플로어 힌지 King 정품 교체', '출입문 번호키 시공'],
+    keyIssues: ['평산 상가 강화도어 수평 정렬', '플로어 힌지 규격 부속 교체', '출입문 번호키 시공'],
   },
 ];
 

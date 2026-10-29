@@ -12,7 +12,7 @@ import { SERVICE_REGIONS, ALL_DONGS } from '@/data/regions';
 import '@/styles/pages/area.scss';
 
 const HERO_SLIDES = [
-  { id: 1, src: '/images/hero-1.jpg', alt: '조은샷시 상가 출입문 국산 King 정품 플로어 힌지 1:1 교체 및 유압 감속 밸브 정밀 세팅 현장' },
+  { id: 1, src: '/images/hero-1.jpg', alt: '조은샷시 상가 출입문 플로어 힌지 교체 및 유압 감속 밸브 정밀 세팅 현장' },
   { id: 2, src: '/images/hero-2.jpg', alt: '조은샷시 강화도어 하단 스텐 H-Bar 교체 결합 및 바닥 쓸림 방지 볼트 체결 현장' },
   { id: 3, src: '/images/hero-3.jpg', alt: '조은샷시 창문 샷시 프레임 전문가용 흡착기 복층 페어유리 안착 및 실리콘 시공 현장' },
   { id: 4, src: '/images/hero-4.jpg', alt: '조은샷시 상가 매장 강화유리문 전용 무타공 클립형 디지털도어락 정밀 시공 현장' },
@@ -93,8 +93,8 @@ export default function AreaIndexClient() {
               <span>상가 유리문·강화도어 수리 전문</span>
             </h1>
             <p className="hero-desc">
-              부산광역시, 경상남도 김해시, 경상남도 양산시, 경상남도 창원시 전 지역 상가, 매장, 카페, 식당, 학원, 사무실 출입문 수리를 당일 신속 출장 방문합니다.
-              고객님이 계신 생활권을 선택하시면 구·동별 맞춤 수리 안내와 예상 비용을 확인하실 수 있습니다.
+              부산 · 김해 · 양산 · 창원 전 지역 상가·매장 출입문 당일 신속 출장.
+              계신 생활권을 선택하시면 구·동별 맞춤 수리 안내와 예상 비용을 바로 확인하실 수 있습니다.
             </p>
 
             <div className="hero-cta-group">

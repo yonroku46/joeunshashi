@@ -96,8 +96,23 @@
       grid-template-columns: repeat(2, 1fr);
     }
     @include sp {
-      grid-template-columns: 1fr;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 0.75rem;
+      -webkit-overflow-scrolling: touch;
       gap: 0.875rem;
+      padding: 0.25rem 0.75rem 1rem;
+      margin: 0 -0.75rem;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      &::after {
+        content: '';
+        flex: 0 0 0.001px;
+        padding-right: 0.75rem;
+      }
     }
   }
   .blog-card {
@@ -110,6 +125,12 @@
     text-decoration: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    @include sp {
+      flex: 0 0 78%;
+      max-width: 300px;
+      min-width: 250px;
+      scroll-snap-align: start;
+    }
     @include hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);

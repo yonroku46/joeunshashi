@@ -12,7 +12,7 @@ import type { BreadcrumbItem, District, DongInfo } from '@/types/region';
 import '@/styles/pages/area.scss';
 
 const HERO_SLIDES = [
-  { id: 1, src: '/images/hero-1.jpg', alt: '조은샷시 상가 출입문 국산 King 정품 플로어 힌지 1:1 교체 및 유압 감속 밸브 정밀 세팅 현장' },
+  { id: 1, src: '/images/hero-1.jpg', alt: '조은샷시 상가 출입문 플로어 힌지 교체 및 유압 감속 밸브 정밀 세팅 현장' },
   { id: 2, src: '/images/hero-2.jpg', alt: '조은샷시 강화도어 하단 스텐 H-Bar 교체 결합 및 바닥 쓸림 방지 볼트 체결 현장' },
   { id: 3, src: '/images/hero-3.jpg', alt: '조은샷시 창문 샷시 프레임 전문가용 흡착기 복층 페어유리 안착 및 실리콘 시공 현장' },
   { id: 4, src: '/images/hero-4.jpg', alt: '조은샷시 상가 매장 강화유리문 전용 무타공 클립형 디지털도어락 정밀 시공 현장' },
@@ -138,27 +138,37 @@ export default function AreaClient({
       <section className="location-intro" aria-label={`${locationName} 출입문 환경 및 맞춤 진단`}>
         <div className="intro-header">
           <p className="eyebrow">{locationName} 출장 맞춤 수리 안내</p>
-          <h2>문 상태와 설치 환경을 확인한 뒤<br />필요한 부속 작업 범위를 안내합니다</h2>
+          <h2>문 상태와 고장 증상을 확인한 뒤<br />꼭 필요한 부속만 수리합니다</h2>
         </div>
         <p className="intro-content">
-          {locationName}의 상가 1층 매장, 카페, 식당, 사무실, 병원, 학원 및 빌라 공동현관 강화유리문 고장 상담을 신속히 진행합니다.
-          문이 너무 빨리 쾅 닫히거나 바닥에 끌려 덜 닫히는 증상, 하부 H바 파손, 열쇠 구멍 불일치 사진을 보내주시면
-          방문 전 대략적인 예상 수리 비용과 당일 일정 조율을 도와드립니다.
+          {locationName} 상가·매장·사무실 출입문 고장 상담을 신속히 진행합니다.
+          문 전체 사진과 바닥 힌지 부위를 찍어 문자로 보내주시면 현장 방문 전 예상 수리 비용과 당일 일정을 신속히 확인해 드립니다.
         </p>
 
         {(characteristics.length > 0 || keyIssues.length > 0) && (
           <div className="key-points-grid">
             <div className="point-card">
-              <strong>{locationName} 주요 출입문 환경 특성</strong>
-              <p>{characteristics.join(' · ') || '상가 및 주거 밀집 상권 출입문 점검'}</p>
+              <span className="point-badge">환경 특성</span>
+              <strong>{locationName} 주요 출입문 환경</strong>
+              <div className="point-chips">
+                {(characteristics.length > 0 ? characteristics : ['상가 및 주거 밀집 상권 출입문 점검']).map((item, idx) => (
+                  <span key={idx} className="point-chip">{item}</span>
+                ))}
+              </div>
             </div>
             <div className="point-card">
-              <strong>자주 접수되는 대표 고장 증상</strong>
-              <p>{keyIssues.join(' · ') || '플로어 힌지 유압 터짐, 하부 바닥 긁힘, H바 부식'}</p>
+              <span className="point-badge warning">주요 증상</span>
+              <strong>자주 접수되는 대표 고장</strong>
+              <div className="point-chips">
+                {(keyIssues.length > 0 ? keyIssues : ['힌지 유압 터짐', '바닥 긁힘', 'H바 부식']).map((item, idx) => (
+                  <span key={idx} className="point-chip">{item}</span>
+                ))}
+              </div>
             </div>
             <div className="point-card">
-              <strong>신속 당일 출장 지원</strong>
-              <p>영업 매장에 지장 없도록 30분~1시간 내 현장 정밀 수리 완결</p>
+              <span className="point-badge success">당일 완결</span>
+              <strong>신속 현장 출장 지원</strong>
+              <p>매장 영업에 지장 없도록 30분~1시간 내 현장 정밀 수리 완결</p>
             </div>
           </div>
         )}
@@ -170,18 +180,18 @@ export default function AreaClient({
           {locationName} 주요 유리문 수리 항목
         </h2>
         <p className="section-sub">
-          비싼 문 전체 교체 없이, 국산 규격 플로어 힌지 및 핵심 부속 수리로 70% 비용을 아껴드립니다.
+          문 전체 교체 없이, 국산 정품 힌지 및 핵심 부속 수리로 70% 비용을 아껴드립니다.
         </p>
 
         <div className="service-grid">
           <article className="service-card">
             <div>
-              <h3>플로어 힌지(Floor Hinge) 교체 &amp; 감속 조절</h3>
-              <p>기름이 새어 나와 쾅 닫히는 유리문, 국산 삼화정밀 King 정품 힌지로 2단계 부드러운 감속을 복원합니다.</p>
+              <h3>플로어 힌지 교체</h3>
+              <p>기름 누출로 쾅 닫히는 문, 내구성 높은 규격 힌지로 교체하여 끝에서 부드럽게 멈추도록 복원합니다.</p>
               <ul className="spec-list">
-                <li>King 8300, 8500 전 규격 정품 보유</li>
+                <li>문 무게와 크기에 맞춘 현장 규격 부속 보유</li>
                 <li>손 끼임 방지 2단계 감속 속도 정밀 세팅</li>
-                <li>바닥 힌지 케이스 몰탈 용접 보강</li>
+                <li>부식된 힌지 케이스 몰탈 용접 보강</li>
               </ul>
             </div>
             <a href="tel:01093920431" className="card-link">
@@ -192,12 +202,12 @@ export default function AreaClient({
 
           <article className="service-card">
             <div>
-              <h3>강화도어 상/하부 H-Bar(스테인리스 바) 수리·교체</h3>
-              <p>찌그러지거나 부식되어 헐거워진 스테인리스 H바를 새 규격 자재로 교체하여 유리 이탈을 방지합니다.</p>
+              <h3>강화도어 상/하부 H-Bar 수리·교체</h3>
+              <p>부식되거나 찌그러진 스테인리스 H바를 새 규격 자재로 교체하여 바닥 긁힘과 유리 이탈을 차단합니다.</p>
               <ul className="spec-list">
-                <li>손상된 H바만 부분 영구 교체</li>
-                <li>부식 없는 고강도 스테인리스 커버 시공</li>
-                <li>바닥 긁힘 및 처짐 현상 영구 해결</li>
+                <li>손상된 부위만 부분 영구 교체</li>
+                <li>부식 없는 고강도 SUS304 스텐 시공</li>
+                <li>바닥 쓸림 해결 &amp; 5~7mm 표준 간격 확보</li>
               </ul>
             </div>
             <a href="tel:01093920431" className="card-link">
@@ -208,12 +218,12 @@ export default function AreaClient({
 
           <article className="service-card">
             <div>
-              <h3>상부 피벗 힌지(상롯트) &amp; 힌지 박스 복원</h3>
+              <h3>상부 피벗 힌지(상롯트) 축 복원</h3>
               <p>문이 흔들리거나 상부 축이 덜렁거리는 증상, 견고한 피벗 핀 교체로 안전 이탈을 원천 차단합니다.</p>
               <ul className="spec-list">
-                <li>상부 프레임 홀 유격 완벽 보강</li>
-                <li>강풍 대비 출입문 이탈 방지</li>
-                <li>센터 정렬로 문 덜 닫힘 해결</li>
+                <li>마모된 상부 프레임 홀 유격 정밀 보강</li>
+                <li>돌풍 대비 출입문 이탈 위험 방지</li>
+                <li>회전축 센터 정렬로 문 덜 닫힘 해결</li>
               </ul>
             </div>
             <a href="tel:01093920431" className="card-link">
@@ -224,12 +234,12 @@ export default function AreaClient({
 
           <article className="service-card">
             <div>
-              <h3>강화유리문 전용 디지털도어락 / 번호키 설치</h3>
-              <p>유리 타공 없이 안전하게 장착되는 상가 매장 전용 클립형·타공형 프리미엄 디지털도어락을 당일 시공합니다.</p>
+              <h3>강화유리문 전용 무타공 번호키</h3>
+              <p>유리 타공 없이 안전하게 장착되는 상가 매장 전용 클립형 프리미엄 디지털도어락을 시공합니다.</p>
               <ul className="spec-list">
-                <li>외도어 / 양도어 전용 브라켓 장착</li>
-                <li>허수 번호 보안 및 자동 잠금 지원</li>
-                <li>매장 인테리어 어울리는 디자인</li>
+                <li>외도어 / 양도어 전용 브라켓 맞춤 장착</li>
+                <li>비밀번호 허수 기능 &amp; 자동 잠금 지원</li>
+                <li>문 닫힘 즉시 체결되는 센서 세팅</li>
               </ul>
             </div>
             <a href="tel:01093920431" className="card-link">

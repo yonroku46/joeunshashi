@@ -40,11 +40,11 @@ const SYMPTOMS_LIST: SymptomData[] = [
     urgency: '즉시 점검 권장',
     title: '쾅! 하고 맹렬하게 닫히는 문',
     shortDesc: '플로어 힌지 내부 유압 오일 누출',
-    lead: '유압 실링이 터져 제동력을 상실한 상태로 바람이나 손을 놓을 때 무서운 속도로 닫힙니다.',
-    rootCause: '오랜 사용과 충격으로 힌지 내부 유압 피스톤 실링이 파손되어 오일이 외부로 모두 유출되었습니다.',
-    hazard: '손 끼임 시 분쇄 골절 위험 및 문틀 충격으로 강화유리가 산산조각 날 수 있습니다.',
-    solution: '국산 삼화정밀 King 8300 정품 힌지로 1:1 교체하고 2단계 감속 속도를 정밀 셋팅합니다.',
-    timeRequired: '당일 방문 시 30분 이내 완료',
+    lead: '유압 실링 파손으로 제동력을 상실해 손을 놓으면 문이 급속도로 쾅 닫히는 위험 상태입니다.',
+    rootCause: '오랜 사용과 충격으로 힌지 내부 피스톤 실링이 파손되어 오일이 유출되었습니다.',
+    hazard: '손 끼임 시 골절 사고 및 문틀 충격으로 인한 강화유리 파손 위험이 큽니다.',
+    solution: '국산 고강도 규격 힌지로 교체하고 끝에서 부드럽게 멈추도록 감속을 정밀 세팅합니다.',
+    timeRequired: '당일 방문 시 30분 내외 완료',
   },
   {
     id: 'floor-drag',
@@ -52,11 +52,11 @@ const SYMPTOMS_LIST: SymptomData[] = [
     urgency: '당일 점검 필요',
     title: '바닥이나 문틀을 긁으며 뻑뻑함',
     shortDesc: '하부 힌지 또는 H바 볼트 풀림 및 처짐',
-    lead: '문이 아래로 주저앉아 바닥 타일이나 문틀 프레임을 쇠 긁는 굉음과 함께 긁는 증상입니다.',
-    rootCause: '진동으로 하부 스텐 H바의 고정 볼트가 풀리거나 내부 베어링이 파손되어 문이 처졌습니다.',
-    hazard: '바닥 타일 파손은 물론, 강화유리 모서리에 직접 하중이 실려 유리 파손으로 이어집니다.',
-    solution: '강화도어 탈거 후 하부 H바 보강 수리 및 5~7mm 표준 바닥 틈새를 확보하도록 재조정합니다.',
-    timeRequired: '당일 방문 시 40분 이내 완료',
+    lead: '문이 아래로 주저앉아 바닥 타일이나 프레임을 쇠 긁는 소리와 함께 긁는 증상입니다.',
+    rootCause: '하부 스텐 H바 고정 볼트가 풀리거나 내부 베어링이 파손되어 문이 처졌습니다.',
+    hazard: '바닥 타일 훼손 및 강화유리 모서리에 하중이 집중되어 자파(깨짐)로 이어질 수 있습니다.',
+    solution: '강화도어 탈거 후 하부 H바 보강 수리 및 5~7mm 표준 바닥 틈새를 복원합니다.',
+    timeRequired: '당일 방문 시 40분 내외 완료',
   },
   {
     id: 'lock-misaligned',
@@ -64,11 +64,11 @@ const SYMPTOMS_LIST: SymptomData[] = [
     urgency: '정밀 교정 필요',
     title: '문이 덜 닫히고 번호키가 안 잠김',
     shortDesc: '틀어짐 & 풍압 밀림',
-    lead: '정지 위치가 어긋나 디지털도어락 잠금 핀이 걸리지 않고 문틈으로 외풍과 소음이 유입됩니다.',
-    rootCause: '힌지 박스 고정 볼트 유격과 바람의 영향으로 문의 센터축이 비틀어졌습니다.',
-    hazard: '야간 퇴근 시 문이 잠기지 않아 도난 위험에 노출되며 여름·겨울 냉난방 손실이 극심합니다.',
-    solution: '힌지 센터 정밀 영점 조율 및 번호키 스트라이커 위치를 1:1로 맞춤 교정합니다.',
-    timeRequired: '당일 방문 시 25분 이내 완료',
+    lead: '정지 위치가 어긋나 디지털도어락 잠금 핀이 걸리지 않고 문틈으로 외풍이 유입됩니다.',
+    rootCause: '힌지 박스 고정 볼트 유격과 바람의 영향으로 문의 회전 중심축이 비틀어졌습니다.',
+    hazard: '퇴근 시 자동 잠금 불량으로 도난에 노출되며, 냉난방 열손실이 발생합니다.',
+    solution: '힌지 회전축 영점 조율 및 번호키 스트라이커 위치를 정밀 교정합니다.',
+    timeRequired: '당일 방문 시 25분 내외 완료',
   },
   {
     id: 'top-pivot',
@@ -76,11 +76,11 @@ const SYMPTOMS_LIST: SymptomData[] = [
     urgency: '긴급 조치 권장',
     title: '문이 덜컹거리며 상부가 흔들림',
     shortDesc: '상부 피벗 힌지(상롯트) 축 마모',
-    lead: '문 상단 축이 헐거워져 문을 열고 닫을 때마다 상부가 심하게 요동치며 이탈 조짐을 보입니다.',
-    rootCause: '상부 프레임의 피벗 핀 홀이 닳아 넓어지거나 상롯트 회전 핀이 마모되어 발생합니다.',
-    hazard: '돌풍이 불거나 손님이 문을 세게 밀었을 때 문이 통째로 바닥으로 전도될 수 있습니다.',
-    solution: '고강도 특수 피벗 핀 교체 및 넓어진 상부 프레임 홀 유격을 완벽 용접·보강합니다.',
-    timeRequired: '당일 방문 시 30분 이내 완료',
+    lead: '문 상단 축이 헐거워져 여닫을 때마다 상부가 심하게 흔들리며 이탈 조짐을 보입니다.',
+    rootCause: '상부 프레임 홀이 마모되어 넓어졌거나 상롯트 회전 핀이 닳아서 발생합니다.',
+    hazard: '돌풍이나 강한 충격 시 문짝 전체가 바닥으로 전도될 수 있어 매우 위험합니다.',
+    solution: '고강도 특수 피벗 핀 교체 및 넓어진 상부 프레임 유격을 정밀 용접·보강합니다.',
+    timeRequired: '당일 방문 시 30분 내외 완료',
   },
 ];
 
@@ -102,15 +102,15 @@ const SERVICES_LIST: ServiceItem[] = [
     id: 'hinge',
     tabName: '플로어 힌지 교체',
     category: 'Floor Hinge Precision Replacement',
-    title: '국산 삼화 King 정품 플로어 힌지 1:1 교체',
-    desc: '기름이 터져 쾅 닫히거나 제동을 잃은 문, 국내 시장 점유율 1위 삼화정밀 King 8300 정품으로 교체하여 끝에서 부드럽게 멈추는 감속을 완벽 복원합니다.',
-    badge: '삼화정밀 King 8300 정품',
+    title: '출입문 플로어 힌지 교체 & 감속 복원',
+    desc: '기름이 터져 쾅 닫히는 문, 내구성 높은 규격 힌지로 교체하여 끝에서 부드럽게 멈추도록 완벽 복원합니다.',
+    badge: 'KS 규격 고강도 힌지',
     duration: '평균 30~40분 소요',
     image: '/images/solutions-1.png',
-    steps: ['유압 오일 누출 점검', '부식 힌지박스 몰탈 보강', '2단계 감속 밸브 셋팅'],
+    steps: ['유압 오일 누출 점검', '부식 힌지박스 몰탈 보강', '2단계 감속 밸브 세팅'],
     specs: [
-      '국산 삼화정밀 King 8300 정품 사용',
-      '1단계(90°~20°) 회전 및 2단계(20°~0°) 저속 감속 정밀 조율',
+      '검증된 국산 KS 규격 부속 시공',
+      '1단계 회전 및 2단계(20°~0°) 저속 감속 정밀 조율',
       '부식된 힌지 박스 철거 후 몰탈 보강 및 수평 재용접',
     ],
   },
@@ -119,15 +119,15 @@ const SERVICES_LIST: ServiceItem[] = [
     tabName: '상·하부 H-Bar 수리',
     category: 'Stainless H-Bar Renovation',
     title: '강화도어 상/하부 스텐 H-Bar 부분 교체',
-    desc: '부식되거나 찌그러져 바닥을 긁고 유리 이탈 위험이 있는 스텐 H바를 문 전체 교체 없이 손상된 부위만 새 규격 자재로 영구 교체합니다.',
+    desc: '부식되거나 찌그러져 바닥을 긁는 스텐 H바를 문 전체 교체 없이 손상된 부위만 새 규격 자재로 영구 교체합니다.',
     badge: '고강도 SUS304 스텐',
     duration: '평균 40~50분 소요',
     image: '/images/solutions-2.png',
-    steps: ['강화도어 안전 탈거', '손상 H바 정밀 절단 분리', '신규 H바 압착 영구 결합'],
+    steps: ['강화도어 안전 탈거', '손상 H바 분리 및 절단', '신규 H바 영구 압착 결합'],
     specs: [
-      '녹슬지 않는 최고급 SUS304 규격 스테인리스 자재 시공',
-      '강화유리 하부 물림 실리콘 영구 양생 접착 공법 적용',
-      '바닥 닿임·긁힘 완전 해결 및 바닥 틈새 5~7mm 표준 확보',
+      '녹슬지 않는 최고급 SUS304 규격 스테인리스 자재',
+      '강화유리 하부 물림 실리콘 영구 양생 접착 공법',
+      '바닥 긁힘 완전 해결 및 바닥 틈새 5~7mm 표준 확보',
     ],
   },
   {
@@ -135,15 +135,15 @@ const SERVICES_LIST: ServiceItem[] = [
     tabName: '상부 피벗 힌지 복원',
     category: 'Pivot Hinge Axis Alignment',
     title: '상부 피벗 힌지(상롯트) 축 유격 복원',
-    desc: '문이 덜컹거리고 상부 축이 헐거워져 바람에 넘어갈 듯한 증상, 견고한 정품 피벗 핀 교체와 프레임 홀 유격 보강으로 이탈을 원천 차단합니다.',
+    desc: '문이 덜컹거리고 상부 축이 헐거워져 넘어갈 듯한 증상, 견고한 정품 피벗 핀 교체와 프레임 보강으로 이탈을 차단합니다.',
     badge: '특수강 피벗 핀 적용',
     duration: '평균 25~35분 소요',
     image: '/images/solutions-3.png',
-    steps: ['상부 유격 정밀 계측', '피벗 핀 1:1 신품 교체', '수직·수평 센터 정렬'],
+    steps: ['상부 유격 정밀 계측', '피벗 핀 신품 정품 교체', '수직·수평 센터 정렬'],
     specs: [
-      '마모된 구형 피벗 핀을 고강도 특수 열처리 핀으로 1:1 교체',
-      '넓어진 상부 프레임 홀(구멍) 용접 및 특수 부싱 정밀 보강',
-      '센터 회전축 완전 일치로 덜 닫힘 및 흔들림 박멸',
+      '마모된 구형 피벗 핀을 고강도 특수 열처리 핀으로 교체',
+      '넓어진 상부 프레임 홀 용접 및 특수 부싱 정밀 보강',
+      '회전축 완전 일치로 덜 닫힘 및 문 흔들림 원천 해결',
     ],
   },
   {
@@ -151,47 +151,47 @@ const SERVICES_LIST: ServiceItem[] = [
     tabName: '강화유리문 번호키',
     category: 'Commercial Digital Door Lock',
     title: '강화유리문 전용 무타공 디지털도어락 시공',
-    desc: '유리에 구멍을 뚫지 않고도 견고하게 장착되는 상가 매장 전용 클립형 디지털도어락을 외도어/양도어 구조에 맞춰 안전하게 시공합니다.',
+    desc: '유리에 구멍을 뚫지 않고도 견고하게 장착되는 상가 매장 전용 무타공 도어락을 외도어/양도어 구조에 맞춰 당일 시공합니다.',
     badge: '유리 무타공 특수 클립',
     duration: '평균 20~30분 소요',
     image: '/images/solutions-4.png',
-    steps: ['유리 두께 규격 실측', '무타공 클립 정밀 장착', '잠금 센서 자동 세팅'],
+    steps: ['유리 규격 실측', '무타공 클립 장착', '잠금 센서 자동 세팅'],
     specs: [
-      '유리 손상 위험 없는 강화도어 전용 클립 고정 방식',
-      '비밀번호 노출 방지 허수 번호 보안 및 자동 잠금 지원',
-      '문이 닫히면 1초 내 즉각 체결되는 매장 맞춤 스트라이커 시공',
+      '유리 손상 없는 강화도어 전용 클립 고정 방식',
+      '비밀번호 노출 방지 허수 기능 및 자동 잠금 지원',
+      '문 닫힘 즉시 체결되는 매장 맞춤 스트라이커 시공',
     ],
   },
   {
     id: 'glass-break',
     tabName: '강화도어 파손·교체',
     category: 'Tempered Glass Replacement',
-    title: '파손·자파된 강화유리문 맞춤 제작 및 당일 신속 교체',
-    desc: '모서리 충격이나 자파현상으로 산산조각 난 상가·사무실 강화도어, 현장 잔해 수거부터 레이저 정밀 실측, KS 인증 고강도 안전강화유리 맞춤 제작 및 설치까지 원스톱으로 해결합니다.',
-    badge: 'KS 규격 12mm 고강도 강화유리',
+    title: '파손 강화유리문 맞춤 제작 및 신속 교체',
+    desc: '충격이나 자파로 깨진 강화도어, 현장 잔해 수거부터 레이저 정밀 실측, KS 고강도 안전강화유리 맞춤 설치까지 해결합니다.',
+    badge: 'KS 12mm 고강도 강화유리',
     duration: '맞춤 제작 후 설치 40~50분',
     image: '/images/solutions-5.png',
-    steps: ['현장 잔여 파편 안전 수거', '프레임 레이저 정밀 실측', '신품 강화유리 압착 안착'],
+    steps: ['현장 파편 안전 수거', '레이저 정밀 실측', '신품 강화유리 안착'],
     specs: [
-      '비산 방지 및 풍압을 견디는 KS 인증 12mm 정품 안전강화유리',
-      '손잡이 타공 및 힌지 롯트 규격 100% 일치 맞춤 정밀 가공',
-      '하부 스텐 H바 결합 및 상하부 부속 일체 신품 교체 지원',
+      '비산 방지 및 풍압을 견디는 KS 인증 12mm 안전강화유리',
+      '손잡이 타공 및 힌지 롯트 규격 100% 일치 맞춤 가공',
+      '하부 스텐 H바 및 상하부 부속 일체 신품 교체 지원',
     ],
   },
   {
     id: 'fire-door',
     tabName: '방화문 교체·수리',
     category: 'Fire Door Repair & Replacement',
-    title: '처진 방화문 수리·도어클로저 교체 및 노후문 신규 교체',
-    desc: '바닥을 긁거나 문틀에 걸려 닫히지 않는 아파트·빌라·상가 방화문, 힌지 단차 교정과 도어클로저 1:1 교체로 부드럽게 복원하고 심하게 삭은 문은 신규 규격 방화문으로 교체합니다.',
+    title: '처진 방화문 수리 & 도어클로저 교체',
+    desc: '바닥을 긁거나 문틀에 걸려 안 닫히는 방화문, 힌지 단차 교정과 도어클로저 교체로 부드럽게 복원하고 노후문은 교체합니다.',
     badge: '소방법 규격 방화도어 인증',
     duration: '수리 30분 / 교체 1~2시간',
     image: '/images/solutions-6.png',
-    steps: ['처짐 각도 및 힌지 단차 계측', '피벗 힌지 용접·와셔 정밀 보강', '도어클로저 밸브 및 도어락 정렬'],
+    steps: ['처짐 각도 계측', '피벗 힌지 용접 보강', '도어클로저 밸브 정렬'],
     specs: [
-      '문틀 닿임과 바닥 긁힘을 원천 해결하는 힌지 축 단차 교정 공법',
-      '기름 터진 도어클로저 국산 삼화정밀 King K630 정품 교체',
-      '소방법 화재 안전 기준을 준수하는 각종 방화문 규격 시공',
+      '문틀 닿임과 바닥 긁힘을 해결하는 힌지 단차 교정 공법',
+      '기름 터진 도어클로저 신품 규격 부속 교체',
+      '화재 안전 기준을 준수하는 소방법 규격 방화문 시공',
     ],
   },
 ];
@@ -206,32 +206,32 @@ interface ComparisonRow {
 
 const COMPARISON_ROWS: ComparisonRow[] = [
   {
-    criteria: '닫힘 속도 & 안전성',
-    beforeTitle: '쾅! 맹렬하게 닫혀 손 끼임 골절 위험',
-    beforeDesc: '유압 오일이 누출되어 제동력을 상실, 손님이나 직원의 손 끼임 및 유리 파손 사고 위험 극심',
-    afterTitle: '2단계 유압 감속으로 끝에서 스르륵 정지',
-    afterDesc: '손을 놓아도 마지막 20도 구간에서 자동으로 감속되어 누구에게나 안전하고 조용하게 닫힘',
+    criteria: '닫힘 속도 & 안전',
+    beforeTitle: '쾅! 맹렬하게 닫혀 손 끼임 위험',
+    beforeDesc: '유압 오일 유출로 제동력을 잃어 손 끼임 골절 및 유리 파손 위험',
+    afterTitle: '2단계 감속으로 스르륵 부드럽게 정지',
+    afterDesc: '손을 놓아도 마지막 20도 구간에서 자동 감속되어 안전하게 닫힘',
   },
   {
-    criteria: '하부 틈새 & 소음',
+    criteria: '바닥 틈새 & 소음',
     beforeTitle: '바닥을 긁는 굉음과 타일 훼손',
-    beforeDesc: '하부 볼트가 풀려 문이 주저앉아 바닥을 긁고 거친 소음과 함께 강화유리 코너에 충격 누적',
-    afterTitle: '바닥 5~7mm 일정 간격 유지 및 무소음',
-    afterDesc: '수평 재조정과 H바 보강으로 바닥 긁힘 없이 0dB에 가까운 부드럽고 매끄러운 회전 보장',
+    beforeDesc: '문이 주저앉아 바닥을 긁고 거친 소음과 함께 유리에 충격 누적',
+    afterTitle: '바닥 5~7mm 표준 간격 유지 및 무소음',
+    afterDesc: '수평 재조정과 H바 보강으로 바닥 긁힘 없이 조용하고 매끄러운 회전',
   },
   {
     criteria: '센터 정렬 & 보안',
     beforeTitle: '틀어짐으로 번호키 잠금 불량',
-    beforeDesc: '문이 덜 닫히거나 밖으로 튀어나와 도어락 데드볼트가 걸리지 않고 냉난방 손실 발생',
-    afterTitle: '오차 없는 밀폐 & 도어락 즉시 체결',
-    afterDesc: '정밀 센터 영점 교정으로 문이 정확히 닫히고 디지털도어락이 즉시 잠겨 야간 보안 완벽',
+    beforeDesc: '문이 덜 닫혀 번호키가 걸리지 않고 문틈으로 외풍과 소음 유입',
+    afterTitle: '오차 없는 밀폐 & 번호키 즉시 체결',
+    afterDesc: '정밀 영점 교정으로 문이 딱 맞게 닫히며 디지털도어락 즉시 잠금',
   },
   {
     criteria: '비용 & 공사 부담',
-    beforeTitle: '문틀 전체 철거 시 수백만 원대 공사',
-    beforeDesc: '전체 교체 시 매장 영업 중단, 철거 분진 발생, 막대한 제작 및 설치 비용 부담',
-    afterTitle: '핵심 부속만 1:1 수리하여 60~80% 절감',
-    afterDesc: '영업 중단 없이 30분~1시간 내외 현장 부분 수리 완료, 합리적인 비용으로 새 문 수준 복원',
+    beforeTitle: '문틀 전체 철거 시 수백만 원대',
+    beforeDesc: '매장 영업 중단, 철거 분진 발생, 막대한 제작 및 설치비 부담',
+    afterTitle: '핵심 부속만 수리하여 70% 비용 절감',
+    afterDesc: '영업 중단 없이 30분~1시간 내 부분 수리 완료, 새 문 수준 복원',
   },
 ];
 
@@ -246,8 +246,8 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
     src: '/images/hero-1.jpg',
-    alt: '조은샷시 상가 출입문 국산 King 정품 플로어 힌지 1:1 교체 및 유압 감속 밸브 정밀 세팅 현장',
-    title: 'King 플로어 힌지 교체',
+    alt: '조은샷시 상가 출입문 플로어 힌지 교체 및 유압 감속 밸브 정밀 세팅 현장',
+    title: '플로어 힌지 교체',
   },
   {
     id: 2,
@@ -390,11 +390,10 @@ export default function HomeClient() {
             </span>
             <h1 className="hero-title">
               비싼 문 교체 대신 <span>정밀 수리</span>로<br />
-              새 문처럼 부드럽고 안전하게 복원합니다
+              새 문처럼 부드럽고 안전하게
             </h1>
             <p className="hero-desc">
-              쾅 닫히는 강화도어, 바닥 긁혀서 안 닫히는 유리문, 덜컹거리는 상가 출입문.<br />
-              문 전체를 철거하지 않고 국산 정품 플로어 힌지 및 규격 부속 수리로 <strong>교체 비용 70%</strong>를 아껴드립니다.
+              쾅 닫히는 강화도어 · 바닥 긁히는 유리문, 문틀 철거 없이 국산 정품 부속 수리로 <strong>교체 비용 70%</strong>를 절감해 드립니다.
             </p>
 
             <div className="hero-cta-group">
@@ -439,8 +438,8 @@ export default function HomeClient() {
               <FiShield />
             </div>
             <div className="trust-text">
-              <strong>국산 King 정품 자재</strong>
-              <span>삼화정밀 KS 인증 규격 부속 및 책임 A/S</span>
+              <strong>안전 인증 규격 자재</strong>
+              <span>내구성 높은 KS 인증 부속 시공 및 책임 A/S</span>
             </div>
           </div>
 
@@ -466,7 +465,7 @@ export default function HomeClient() {
         <div className="section-header">
           <span className="eyebrow">유리문 정밀 자가진단</span>
           <h2 id="symptoms-title">우리 매장 문에 이런 증상이 있나요?</h2>
-          <p>증상을 선택하시면 고장의 근본 원인과 방치 시 위험도, 조은샷시의 맞춤 처방을 즉시 확인하실 수 있습니다.</p>
+          <p>증상을 선택하시면 고장 원인과 해결 방법을 바로 확인하실 수 있습니다.</p>
         </div>
 
         <div className="diagnostic-terminal">
@@ -528,12 +527,8 @@ export default function HomeClient() {
                 <FiCheckCircle className="rx-icon" />
                 <span>조은샷시 현장 맞춤 처방</span>
               </div>
-              <p className="rx-text">{activeSymptom.solution}</p>
+              <p className="rx-text">{activeSymptom.solution} ({activeSymptom.timeRequired})</p>
               <div className="rx-footer">
-                <div className="rx-badges">
-                  <span className="meta-badge"><FiClock /> {activeSymptom.timeRequired}</span>
-                  <span className="meta-badge"><FiShield /> 국산 삼화정밀 King 정품 자재 사용</span>
-                </div>
                 <a href="tel:01093920431" className="rx-inquiry-link">
                   <span>이 증상으로 문의</span>
                   <FiArrowRight size={13} aria-hidden="true" />
@@ -549,7 +544,7 @@ export default function HomeClient() {
         <div className="section-header">
           <span className="eyebrow">원인별 맞춤 솔루션</span>
           <h2 id="services-title">주요 작업 범위</h2>
-          <p>문 전체 교체 대신 꼭 필요한 부속만 국산 정품으로 1:1 교체하여 비용과 안전을 동시에 지킵니다.</p>
+          <p>문 교체 없이 핵심 부속만 정품으로 교체하여 비용을 아껴드립니다.</p>
         </div>
 
         <div className="solutions-showcase">
@@ -637,12 +632,12 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* 6. BEFORE & AFTER (성능 & 안전 1:1 대조 매트릭스) */}
+      {/* 6. BEFORE & AFTER (성능 & 안전 수리 전후 비교) */}
       <section className="before-after-section" aria-label="수리 전후 비교">
         <div className="section-header">
           <span className="eyebrow">전후 성능 대조</span>
           <h2>조은샷시 수리 후 어떻게 달라지나요?</h2>
-          <p>위험하고 불편했던 문이 조은샷시의 손을 거쳐 완벽히 안전하고 부드러운 문으로 복원됩니다.</p>
+          <p>고장 난 문을 안전하고 부드러운 새 문처럼 복원해 드립니다.</p>
         </div>
 
         <div className="comparison-matrix-board">
@@ -698,7 +693,7 @@ export default function HomeClient() {
             </div>
             <div className="summary-text-wrap">
               <strong>문 전체를 비싸게 새로 맞출 필요가 전혀 없습니다</strong>
-              <p>실제 강화유리문 고장의 70% 이상은 소모성 부속 1:1 교체와 수평 재조정만으로 신품 수준으로 복원됩니다.</p>
+              <p>강화유리문 고장의 70% 이상은 핵심 부속 교체와 수평 재조정만으로 신품 수준으로 복원됩니다.</p>
             </div>
             <a href="tel:01093920431" className="summary-cta-link">
               <span>수리 견적 바로 확인</span>
@@ -716,40 +711,39 @@ export default function HomeClient() {
         <div className="section-header">
           <span className="eyebrow">궁금증 해결</span>
           <h2 id="faq-title">자주 묻는 질문 (FAQ)</h2>
-          <p>유리문 및 강화도어 수리를 문의하시는 고객님들께서 가장 많이 물어보시는 질문입니다.</p>
+          <p>출입문 수리 전 고객님들께서 가장 자주 묻는 질문입니다.</p>
         </div>
 
         <div className="faq-list">
           <article className="faq-item">
             <h3>비싼 전체 유리문 교체 없이 수리만으로 정말 해결이 되나요?</h3>
             <p>
-              네! 대부분의 고객님께서 문 전체를 새로 맞춰야 하나 고민하시지만, 실제 현장 점검 결과 70% 이상은
-              소모품인 플로어 힌지 교체와 하부 H바 수리, 수평 재정렬만으로도 새 문처럼 부드럽고 안전하게 복원됩니다.
-              큰돈 들이지 마시고 먼저 조은샷시의 수리 진단을 받아보세요!
+              <strong className="faq-lead">전체 고장의 70% 이상은 핵심 소모 부속 수리만으로 해결됩니다.</strong>
+              플로어 힌지 정품 교체, 하부 H바 보강 및 수평 재정렬을 통해 문 전체 교체 비용의 70%를 아끼며 새 문처럼 복원해 드립니다.
             </p>
           </article>
 
           <article className="faq-item">
             <h3>문이 너무 빨리 쾅 닫히는데 바로 수리해야 하나요?</h3>
             <p>
-              네, 매우 위험한 상태입니다. 힌지 내부 유압 오일이 터져 제동력을 상실하면 바람이 불거나 손을 놓을 때
-              문이 흉기처럼 쾅 닫혀 손 끼임 골절이나 유리 파손 사고가 발생할 수 있습니다. 방문객과 직원의 안전을 위해 당일 점검을 권장합니다.
+              <strong className="faq-lead">네, 손 끼임 사고와 유리 파손 위험이 매우 높은 긴급 상태입니다.</strong>
+              힌지 내부 유압 오일이 누출되어 제동력을 상실한 것으로, 방문객과 직원의 안전을 위해 당일 점검 및 교체를 권장합니다.
             </p>
           </article>
 
           <article className="faq-item">
             <h3>상가 매장 영업 중인데 당일 수리가 가능한가요?</h3>
             <p>
-              네! 조은샷시는 부산, 김해, 양산, 창원시 전 지역을 상시 순회하고 있어 손님이 덜 붐비는 시간대에 맞춰
-              30분~1시간 내외로 현장에서 신속히 수리를 완료해 드립니다. 매장 영업에 지장을 주지 않으니 안심하세요.
+              <strong className="faq-lead">보통 30분~1시간 내외로 현장에서 당일 완결됩니다.</strong>
+              부산, 김해, 양산, 창원 전역을 상시 순회하여 손님이 덜 붐비는 시간대에 맞춰 신속히 시공하므로 매장 영업에 지장을 주지 않습니다.
             </p>
           </article>
 
           <article className="faq-item">
-            <h3>수리 후 A/S 및 품질 보증은 어떻게 되나요?</h3>
+            <h3>수리 후 사후 관리(A/S) 및 품질 보증은 어떻게 되나요?</h3>
             <p>
-              조은샷시에서 교체한 국산 삼화정밀 King 정품 힌지와 부속에 대해 확실한 품질 보증을 지원합니다.
-              작업 후 문제가 생기면 책임지고 신속하게 무상 사후 점검을 진행해 드립니다.
+              <strong className="faq-lead">검증된 안전 규격 자재 시공 및 철저한 책임 A/S를 보증합니다.</strong>
+              교체 부속에 대한 품질 보증을 지원하며, 사용 중 이상이 발생할 경우 신속하게 무상 사후 점검을 진행해 드립니다.
             </p>
           </article>
         </div>

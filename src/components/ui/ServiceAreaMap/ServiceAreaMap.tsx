@@ -38,7 +38,7 @@ const REGION_INFOS: Record<string, RegionMeta> = {
     title: '내외동·삼계동·장유·율하·진영 전지역',
     subText: '김해 전지역 상가·식당·오피스 출입문 1시간 출장',
     majorAreas: ['내외동·삼계동', '장유1·2·3동(율하)', '부원동·동상동', '진영읍·주촌면'],
-    features: '상가 쾅 닫힘 방지 King 8300 교체, 하부 스텐 H바 수리, 처짐 해결',
+    features: '상가 쾅 닫힘 방지 힌지 교체, 하부 스텐 H바 수리, 처짐 해결',
   },
   busan: {
     slug: 'busan',
@@ -138,7 +138,7 @@ export default function ServiceAreaMap({
           <span className="badge">동남권 핵심 4대 권역</span>
         </div>
         <h3>부산 · 김해 · 양산 · 창원 당일 출장 권역</h3>
-        <p>원하시는 지역을 지도나 탭에서 선택하시면 세부 출장 생활권을 확인하실 수 있습니다.</p>
+        <p>지도나 탭에서 지역을 선택하시면 상세 출장 권역을 확인하실 수 있습니다.</p>
       </div>
 
       <div className="map-layout">

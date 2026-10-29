@@ -185,7 +185,7 @@ export default async function AreaPage({ params }: PageProps) {
       telephone: '010-9392-0431',
       areaServed: [locationName, region.fullName],
       makesOffer: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '플로어 힌지(Floor Hinge) 교체 & 감속 조절' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '플로어 힌지 교체 & 감속 조절' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '강화도어 상/하부 H-Bar(스테인리스 바) 수리·교체' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '상부 피벗 힌지(상롯트) & 힌지 박스 복원' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '강화유리문 전용 디지털도어락 / 번호키 설치' } },
@@ -201,7 +201,7 @@ export default async function AreaPage({ params }: PageProps) {
           name: `${locationName} 당일 방문 문수리가 가능한가요?`,
           acceptedAnswer: {
             '@type': 'Answer',
-            text: `네! ${locationName} 전담 순회 차량이 상시 운행되어 식당, 카페, 매장, 사무실 유리문 쾅 닫힘, 바닥 쓸림, 힌지 교체를 당일 30분~1시간 내외로 신속히 해결해 드립니다.`,
+            text: `${locationName} 전담 순회 차량이 상시 운행되어 식당, 카페, 매장, 사무실 유리문 쾅 닫힘, 바닥 쓸림, 힌지 교체를 당일 30분~1시간 내외로 신속히 해결해 드립니다.`,
           },
         },
         {
@@ -217,7 +217,7 @@ export default async function AreaPage({ params }: PageProps) {
           name: `${locationName} 문 전체를 교체하지 않고 수리만으로 해결되나요?`,
           acceptedAnswer: {
             '@type': 'Answer',
-            text: `네! 문 전체를 새로 맞출 필요 없이 유압이 터진 플로어 힌지나 부식된 H바 등 핵심 부속만 1:1 교체하여 비용을 80% 이상 절감하면서 새 문 수준으로 복원해 드립니다.`,
+            text: `문 전체를 새로 맞출 필요 없이 유압이 터진 플로어 힌지나 부식된 H바 등 핵심 부속만 정품 교체하여 비용을 80% 이상 절감하면서 새 문 수준으로 복원해 드립니다.`,
           },
         },
       ],
@@ -238,7 +238,7 @@ export default async function AreaPage({ params }: PageProps) {
           targetType="dong"
           title={`${shortLocation} 문수리 전문`}
           eyebrow={`${region.name} ${dong?.districtName || ''} 출장 문수리 안내`}
-          description={`${locationName} 유리문 수리 안내입니다. 문 쾅 닫힘, 바닥 긁힘, 힌지 기름 유출, H바 교체, 번호키 설치 등 현장 맞춤 당일 출장 수리를 제공합니다.`}
+          description={`${locationName} 상가·매장 출입문 당일 출장 수리. 쾅 닫힘, 바닥 긁힘, 힌지 고장을 문틀 철거 없이 부속 수리로 해결합니다.`}
           locationName={locationName}
           characteristics={dong?.characteristics || districtData?.district.characteristics || []}
           keyIssues={dong?.keyIssues || districtData?.district.keyIssues || []}
@@ -282,7 +282,7 @@ export default async function AreaPage({ params }: PageProps) {
           name: `${locationName} 전 지역 당일 문수리가 가능한가요?`,
           acceptedAnswer: {
             '@type': 'Answer',
-            text: `네! ${locationName} 전 지역 상가·매장 유리문 쾅 닫힘, 바닥 쓸림, 힌지 교체를 당일 신속하게 방문 처리해 드립니다.`,
+            text: `${locationName} 전 지역 상가·매장 유리문 쾅 닫힘, 바닥 쓸림, 힌지 교체를 당일 신속하게 방문 처리해 드립니다.`,
           },
         },
         {
@@ -311,7 +311,7 @@ export default async function AreaPage({ params }: PageProps) {
           targetType="district"
           title={`${district.name} 유리문·강화도어 수리 전문`}
           eyebrow={`${region.name} 출장 문수리 안내`}
-          description={`${locationName} 전 지역 상가·매장 출입문 수리 안내입니다. 식당, 카페, 사무실 유리문 힌지 교체 및 H바 수리를 당일 신속하게 처리해 드립니다.`}
+          description={`${locationName} 전 지역 상가·사무실 출입문 당일 출장. 힌지 교체 및 바닥 쓸림 수리로 교체 비용을 70% 절감해 드립니다.`}
           locationName={locationName}
           characteristics={district.characteristics}
           keyIssues={district.keyIssues}
@@ -346,7 +346,7 @@ export default async function AreaPage({ params }: PageProps) {
         name: `${locationName} 전 지역 출장 수리가 가능한가요?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `네! ${locationName} 전 지역 구·군별 순회 차량을 통해 유리문 수리, 강화도어 힌지 교체, H바 수리를 당일 신속 방문 점검해 드립니다.`,
+          text: `${locationName} 전 지역 구·군별 순회 차량을 통해 유리문 수리, 강화도어 힌지 교체, H바 수리를 당일 신속 방문 점검해 드립니다.`,
         },
       },
       {
@@ -375,7 +375,7 @@ export default async function AreaPage({ params }: PageProps) {
         targetType="region"
         title={`${region.name} 전지역 유리문·강화도어 수리`}
         eyebrow={`${region.fullName} 전지역 당일 출장`}
-        description={`${locationName} 전 지역 상가, 매장, 사무실, 빌라 출입문 수리 안내입니다. 구·군별 전담 순회 차량이 상시 운행되어 신속한 당일 방문 점검을 지원합니다.`}
+        description={`${locationName} 전 지역 구·군별 전담 순회 차량 상시 운행. 식당, 카페, 매장 출입문 쾅 닫힘과 바닥 긁힘을 당일 신속 수리합니다.`}
         locationName={locationName}
         characteristics={[`${region.name} 중심 상권 및 주거단지 전 지역 출장`]}
         keyIssues={['상가 출입문 힌지 교체', '유리문 쾅 닫힘 방지', '하부 H바 부식 교체']}

@@ -13,6 +13,11 @@ export function generatePageMetadata(
   return {
     title: metaTitle,
     description: metaDesc,
+    verification: {
+      other: {
+        'naver-site-verification': config.service.metadata.naverSiteVerification,
+      },
+    },
     icons: {
       icon: [
         { url: '/icons/favicon.ico' },

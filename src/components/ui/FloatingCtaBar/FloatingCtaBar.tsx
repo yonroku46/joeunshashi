@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { FiPhoneCall, FiArrowRight } from 'react-icons/fi';
+import { FiPhoneCall } from 'react-icons/fi';
 import './FloatingCtaBar.scss';
 
 interface FloatingCtaBarProps {
@@ -46,16 +46,11 @@ export default function FloatingCtaBar({
         <a
           href={`tel:${rawTel}`}
           className="cta-btn-main"
-          aria-label={`전화 상담 바로 연결 ${displayTel}`}
+          aria-label={`전화 상담 연결 ${displayTel}`}
         >
-          <div className="cta-icon-box" aria-hidden="true">
-            <FiPhoneCall size={18} />
-          </div>
-          <div className="btn-text">
-            <span className="main-text">{displayTel} 전화 상담 연결</span>
-            <span className="sub-text">부산 · 김해 · 양산 · 창원 당일 출장 점검</span>
-          </div>
-          <FiArrowRight className="cta-arrow" aria-hidden="true" />
+          <FiPhoneCall className="cta-icon" size={17} aria-hidden="true" />
+          <span className="tel-number">{displayTel}</span>
+          <span className="tel-action">전화 연결</span>
         </a>
       </div>
     </aside>

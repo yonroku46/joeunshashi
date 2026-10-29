@@ -12,10 +12,10 @@ import { SERVICE_REGIONS, ALL_DONGS } from '@/data/regions';
 import '@/styles/pages/area.scss';
 
 const HERO_SLIDES = [
-  { id: 1, src: '/images/hero-1.jpg', alt: '조은샷시 강화유리문 및 플로어 힌지 정밀 수리 현장' },
-  { id: 2, src: '/images/hero-2.jpg', alt: '아파트 및 상가 알루미늄·하이샷시 레일 롤러 보수 현장' },
-  { id: 3, src: '/images/hero-3.jpg', alt: '외풍 차단 고밀도 모헤어 및 미세방충망 시공 현장' },
-  { id: 4, src: '/images/hero-4.jpg', alt: '빌라 및 주택 창문 처짐 수평 조율 및 잠금장치 수리' },
+  { id: 1, src: '/images/hero-1.jpg', alt: '조은샷시 상가 출입문 국산 King 정품 플로어 힌지 1:1 교체 및 유압 감속 밸브 정밀 세팅 현장' },
+  { id: 2, src: '/images/hero-2.jpg', alt: '조은샷시 강화도어 하단 스텐 H-Bar 교체 결합 및 바닥 쓸림 방지 볼트 체결 현장' },
+  { id: 3, src: '/images/hero-3.jpg', alt: '조은샷시 창문 샷시 프레임 전문가용 흡착기 복층 페어유리 안착 및 실리콘 시공 현장' },
+  { id: 4, src: '/images/hero-4.jpg', alt: '조은샷시 상가 매장 강화유리문 전용 무타공 클립형 디지털도어락 정밀 시공 현장' },
 ];
 
 export default function AreaIndexClient() {

@@ -70,7 +70,7 @@ export const ALL_DONGS: DongInfo[] = [
     regionSlug: 'busan',
     regionName: '부산광역시',
     characteristics: ['지사과학단지 및 주거단지 상가', '상가 출입문 덜 닫힘 및 번호키 오류'],
-    keyIssues: ['지사동 상가 유리문 힌지 교체', '출입문 0도 정렬 데드볼트 맞춤', '도어락 설치'],
+    keyIssues: ['지사동 상가 유리문 힌지 교체', '출입문 정렬 데드볼트 맞춤', '도어락 설치'],
   },
 
   // 2. 부산광역시 해운대구
@@ -175,7 +175,7 @@ export const ALL_DONGS: DongInfo[] = [
     regionSlug: 'busan',
     regionName: '부산광역시',
     characteristics: ['빵천동 베이커리 거리 및 전통 고급 주거지', '상가 출입문 덜 닫힘 및 번호키 작동 불량'],
-    keyIssues: ['베이커리 매장 유리문 힌지 교체', '출입문 0도 정렬 데드볼트 맞춤', '상가 도어락 설치'],
+    keyIssues: ['베이커리 매장 유리문 힌지 교체', '출입문 정렬 데드볼트 맞춤', '상가 도어락 설치'],
   },
 
   // 5. 부산광역시 동래구
@@ -423,7 +423,7 @@ export const ALL_DONGS: DongInfo[] = [
     districtName: '동면',
     regionSlug: 'yangsan',
     regionName: '경상남도 양산시',
-    characteristics: ['석산신도시 및 사송복합신도시 신축 상권', '신축 매장 유리문 틀어짐 및 센터 0도 정렬 불량'],
+    characteristics: ['석산신도시 및 사송복합신도시 신축 상권', '신축 매장 유리문 틀어짐 및 센터 불량'],
     keyIssues: ['동면 상가 강화도어 힌지 교체', '신축 매장 출입문 수평 교정', '상가 번호키 설치'],
   },
   {

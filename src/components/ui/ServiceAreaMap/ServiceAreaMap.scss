@@ -12,10 +12,10 @@
   }
   .map-header {
     text-align: center;
-    margin-bottom: 1.75rem;
+    margin-bottom: 2.25rem;
     @include sp {
       text-align: left;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
     .title-row {
       display: inline-flex;
@@ -56,11 +56,11 @@
   .map-layout {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: 1.75rem;
+    gap: 2.25rem;
     align-items: center;
     @include tab {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
   }
   .map-graphic-box {
@@ -126,7 +126,7 @@
           .region-path {
             fill: #cbd5e1;
             stroke: var(--primary-color);
-            stroke-width: 3;
+            stroke-width: 1.5;
             filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.15));
           }
           .region-text {
@@ -135,29 +135,57 @@
           }
         }
       }
-      &.is-hovered:not(.is-active) {
-        .region-path {
-          fill: #cbd5e1;
-          stroke: var(--primary-color);
-          stroke-width: 3;
-          filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.15));
-        }
-        .region-text {
-          fill: var(--foreground);
-          font-weight: 900;
-        }
-      }
       &.is-active {
         .region-path {
           fill: var(--primary-color);
           stroke: #ffffff;
-          stroke-width: 3;
+          stroke-width: 1.5;
           filter: drop-shadow(0 4px 12px rgba(27, 85, 226, 0.35));
         }
         .region-text {
           fill: #ffffff;
           font-weight: 900;
           font-size: 18px;
+        }
+      }
+    }
+    .region-overlay {
+      pointer-events: none;
+      user-select: none;
+      .region-path {
+        stroke-linejoin: round;
+        transition: fill 0.2s ease, stroke 0.2s ease, filter 0.2s ease;
+      }
+      .region-text {
+        text-anchor: middle;
+        dominant-baseline: central;
+        user-select: none;
+        pointer-events: none;
+      }
+      &.is-active {
+        .region-path {
+          fill: var(--primary-color);
+          stroke: #ffffff;
+          stroke-width: 1.5;
+          filter: drop-shadow(0 4px 12px rgba(27, 85, 226, 0.35));
+        }
+        .region-text {
+          fill: #ffffff;
+          font-weight: 900;
+          font-size: 18px;
+        }
+      }
+      &.is-hovered {
+        .region-path {
+          fill: #cbd5e1;
+          stroke: var(--primary-color);
+          stroke-width: 1.5;
+          filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
+        }
+        .region-text {
+          fill: var(--foreground);
+          font-weight: 900;
+          font-size: 16px;
         }
       }
     }
@@ -244,13 +272,14 @@
       .btn-detail-link {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 0.375rem;
         background: #f8fafc;
         border: 1px solid var(--border-soft);
         color: var(--foreground);
         font-size: 0.8125rem;
         font-weight: 700;
-        padding: 0.625rem 0.875rem;
+        padding: 0.6875rem 0.875rem;
         border-radius: var(--radius-md);
         text-decoration: none;
         transition: all var(--transition-fast);
@@ -258,22 +287,36 @@
           background: var(--primary-color-bg);
           color: var(--primary-color);
           border-color: var(--primary-color);
+          .btn-icon {
+            transform: translateX(2px);
+          }
+        }
+        .btn-icon {
+          font-size: 0.875rem;
+          flex-shrink: 0;
+          transition: transform var(--transition-fast);
         }
       }
       .btn-direct-tel {
-        display: block;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
         background-color: var(--primary-color);
         color: #ffffff;
         font-size: 0.875rem;
         font-weight: 800;
-        padding: 0.625rem 0.875rem;
+        padding: 0.6875rem 0.875rem;
         border-radius: var(--radius-md);
         text-decoration: none;
         box-shadow: 0 2px 8px rgba(27, 85, 226, 0.2);
         transition: background-color var(--transition-fast);
         @include hover {
           background-color: var(--primary-color-hover);
+        }
+        .btn-icon {
+          font-size: 0.9375rem;
+          flex-shrink: 0;
         }
       }
     }

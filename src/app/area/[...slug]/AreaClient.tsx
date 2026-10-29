@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiPhoneCall, FiMessageSquare, FiArrowRight } from 'react-icons/fi';
@@ -10,6 +10,13 @@ import FloatingCtaBar from '@/components/ui/FloatingCtaBar/FloatingCtaBar';
 import BlogCaseStudies from '@/components/ui/BlogCaseStudies/BlogCaseStudies';
 import type { BreadcrumbItem, District, DongInfo } from '@/types/region';
 import '@/styles/pages/area.scss';
+
+const HERO_SLIDES = [
+  { id: 1, src: '/images/hero-1.jpg', alt: '조은샷시 강화유리문 및 플로어 힌지 정밀 수리 현장' },
+  { id: 2, src: '/images/hero-2.jpg', alt: '아파트 및 상가 알루미늄·하이샷시 레일 롤러 보수 현장' },
+  { id: 3, src: '/images/hero-3.jpg', alt: '외풍 차단 고밀도 모헤어 및 미세방충망 시공 현장' },
+  { id: 4, src: '/images/hero-4.jpg', alt: '빌라 및 주택 창문 처짐 수평 조율 및 잠금장치 수리' },
+];
 
 interface AreaClientProps {
   breadcrumbItems: BreadcrumbItem[];
@@ -40,18 +47,60 @@ export default function AreaClient({
   districts = [],
   regionSlug,
 }: AreaClientProps) {
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+  // 배경 슬라이드 자동 전환 (완벽한 메모리 누수 방지 & 백그라운드 탭 리소스 절약)
+  useEffect(() => {
+    let timer: NodeJS.Timeout | null = null;
+
+    const runTimer = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => {
+        if (typeof document !== 'undefined' && document.hidden) return;
+        setCurrentHeroIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+      }, 5000);
+    };
+
+    runTimer();
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        if (timer) clearInterval(timer);
+      } else {
+        runTimer();
+      }
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      if (timer) clearInterval(timer);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    };
+  }, []);
+
   return (
     <div className="area-container">
-      {/* 1. BREADCRUMB & HERO SECTION (배경 일체형 프리미엄 다크 히어로) */}
+      {/* 1. BREADCRUMB & HERO SECTION (배경 일체형 프리미엄 다크 히어로 & 4장 크로스페이드) */}
       <section className="location-hero" aria-label={`${locationName} 출장 수리 안내`}>
         <div className="hero-bg-layer" aria-hidden="true">
-          <Image
-            src="/images/door-repair-sample.jpg"
-            alt=""
-            fill
-            className="hero-bg-image"
-            priority
-          />
+          <div className="hero-slider-track">
+            {HERO_SLIDES.map((slide, idx) => (
+              <div
+                key={slide.id}
+                className={`hero-slide-item ${idx === currentHeroIndex ? 'is-active' : ''}`}
+              >
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  fill
+                  className="hero-bg-image"
+                  priority={idx === 0}
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                />
+              </div>
+            ))}
+          </div>
           <div className="hero-bg-gradient" />
         </div>
 
@@ -251,18 +300,31 @@ export default function AreaClient({
 
       {/* 7. CONTACT BANNER (직접 전화 및 문자 안내) */}
       <section className="location-contact-banner" aria-label="출장 상담 안내">
-        <span className="banner-badge">빠른 전화 상담</span>
-        <h2>{locationName} 유리문·강화도어 당일 출장 상담</h2>
-        <p>문 전체 사진과 바닥 힌지 덮개 사진을 문자로 보내주시면 5분 내 정확한 수리 비용과 일정을 안내해 드립니다.</p>
-        <div className="banner-btn-group">
-          <a href="tel:01093920431" className="contact-tel-btn">
-            <FiPhoneCall className="btn-icon" />
-            <span>010-9392-0431</span>
-          </a>
-          <a href="sms:01093920431" className="contact-sms-btn">
-            <FiMessageSquare className="btn-icon" />
-            <span>사진 전송 문자 문의</span>
-          </a>
+        <div className="banner-content-wrap">
+          <span className="banner-badge">빠른 전화 상담</span>
+          <h2>{locationName} 유리문·강화도어 당일 출장 상담</h2>
+          <p>문 전체 사진과 바닥 힌지 덮개 사진을 문자로 보내주시면 5분 내 정확한 수리 비용과 일정을 안내해 드립니다.</p>
+          <div className="banner-btn-group">
+            <a href="tel:01093920431" className="contact-tel-btn">
+              <FiPhoneCall className="btn-icon" />
+              <span>010-9392-0431</span>
+            </a>
+            <a href="sms:01093920431" className="contact-sms-btn">
+              <FiMessageSquare className="btn-icon" />
+              <span>사진 전송 문자 문의</span>
+            </a>
+          </div>
+        </div>
+
+        {/* 우측 하단 전문 엔지니어 캐릭터 (Absolute Position) */}
+        <div className="engineer-character-wrap" aria-hidden="true">
+          <Image
+            src="/images/engineer.png"
+            alt=""
+            width={260}
+            height={260}
+            className="engineer-img"
+          />
         </div>
       </section>
 

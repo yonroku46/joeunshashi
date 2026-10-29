@@ -53,7 +53,6 @@ export default function Footer() {
           </p>
           <div className="footer-links">
             <a href={OFFICIAL_BLOG_URL} target="_blank" rel="noopener noreferrer">
-              <SiNaver size={11} style={{ marginRight: '5px', verticalAlign: 'middle', color: '#03c75a' }} />
               <span>네이버 공식 블로그</span>
             </a>
             <a href="tel:01093920431">전화 상담 바로걸기</a>

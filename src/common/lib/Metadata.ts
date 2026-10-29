@@ -3,22 +3,14 @@ import { config } from '@/config';
 
 export function getResolvedBaseUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const vercelUrl =
-    process.env.NEXT_PUBLIC_VERCEL_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-    process.env.VERCEL_URL;
+  if (envUrl && !envUrl.includes('localhost')) {
+    const cleaned = envUrl.replace(/\/$/, '');
+    return cleaned.startsWith('http') ? cleaned : `https://${cleaned}`;
+  }
 
-  const rawUrl =
-    envUrl && !envUrl.includes('localhost')
-      ? envUrl
-      : vercelUrl
-      ? `https://${vercelUrl}`
-      : config.baseUrl && !config.baseUrl.includes('localhost')
-      ? config.baseUrl
-      : 'https://joeunshashi.com';
-
-  const cleaned = rawUrl.replace(/\/$/, '');
-  return cleaned.startsWith('http') ? cleaned : `https://${cleaned}`;
+  // Vercel의 임시 배포 주소(VERCEL_URL)는 SSO/로그인 보호로 인해 카카오/네이버 등 외부 크롤러가 차단되므로,
+  // 실제 정식 운영 커스텀 도메인(www.joeunshashi.com)을 직접 기본값으로 사용합니다.
+  return 'https://www.joeunshashi.com';
 }
 
 export function generatePageMetadata(

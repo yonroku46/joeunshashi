@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       ? envUrl
       : config.baseUrl && !config.baseUrl.includes('localhost')
       ? config.baseUrl
-      : 'https://joeunshashi.com'
+      : 'https://www.joeunshashi.com'
   ).replace(/\/$/, '');
 
   return {

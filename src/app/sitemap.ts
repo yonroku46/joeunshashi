@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ? envUrl
       : config.baseUrl && !config.baseUrl.includes('localhost')
       ? config.baseUrl
-      : 'https://joeunshashi.com'
+      : 'https://www.joeunshashi.com'
   ).replace(/\/$/, '');
   const now = new Date();
 

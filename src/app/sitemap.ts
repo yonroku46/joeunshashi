@@ -3,7 +3,14 @@ import { SERVICE_REGIONS, ALL_DONGS } from '@/data/regions';
 import { config } from '@/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || config.baseUrl || 'https://joeunshashi.com').replace(/\/$/, '');
+  const envUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = (
+    envUrl && !envUrl.includes('localhost')
+      ? envUrl
+      : config.baseUrl && !config.baseUrl.includes('localhost')
+      ? config.baseUrl
+      : 'https://joeunshashi.com'
+  ).replace(/\/$/, '');
   const now = new Date();
 
   const routes: MetadataRoute.Sitemap = [

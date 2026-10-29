@@ -1,6 +1,26 @@
 import { Metadata } from 'next';
 import { config } from '@/config';
 
+export function getResolvedBaseUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const vercelUrl =
+    process.env.NEXT_PUBLIC_VERCEL_URL ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+    process.env.VERCEL_URL;
+
+  const rawUrl =
+    envUrl && !envUrl.includes('localhost')
+      ? envUrl
+      : vercelUrl
+      ? `https://${vercelUrl}`
+      : config.baseUrl && !config.baseUrl.includes('localhost')
+      ? config.baseUrl
+      : 'https://joeunshashi.com';
+
+  const cleaned = rawUrl.replace(/\/$/, '');
+  return cleaned.startsWith('http') ? cleaned : `https://${cleaned}`;
+}
+
 export function generatePageMetadata(
   title?: string,
   description?: string
@@ -10,9 +30,8 @@ export function generatePageMetadata(
     : config.service.metadata.title.default;
   const metaDesc = description || config.service.metadata.description;
 
-  const baseUrlString = config.baseUrl.startsWith('http')
-    ? config.baseUrl
-    : `https://${config.baseUrl}`;
+  const baseUrlString = getResolvedBaseUrl();
+  const ogImageUrl = `${baseUrlString}/images/og-image.jpg`;
 
   return {
     metadataBase: new URL(baseUrlString),
@@ -47,16 +66,18 @@ export function generatePageMetadata(
     openGraph: {
       title: metaTitle,
       description: metaDesc,
-      url: config.baseUrl,
+      url: baseUrlString,
       siteName: config.service.name,
       locale: 'ko_KR',
       type: 'website',
       images: [
         {
-          url: '/images/og-image.jpg',
+          url: ogImageUrl,
+          secureUrl: ogImageUrl,
           width: 1200,
           height: 630,
           alt: '조은샷시 - 부산·김해·창원 유리문·강화도어 수리',
+          type: 'image/jpeg',
         },
       ],
     },
@@ -64,7 +85,7 @@ export function generatePageMetadata(
       card: 'summary_large_image',
       title: metaTitle,
       description: metaDesc,
-      images: ['/images/og-image.jpg'],
+      images: [ogImageUrl],
     },
   };
 }

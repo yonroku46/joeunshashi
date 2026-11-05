@@ -1,0 +1,54 @@
+@use '@/styles/base/variables' as *;
+@use '@/styles/base/mixins' as *;
+
+.ui-dialog-paper.photo-consult-dialog-paper {
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  .photo-consult-dialog {
+    padding: var(--space-4) var(--space-5) var(--space-5);
+    .dialog-lead {
+      font-size: var(--font-sm);
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin: 0 0 var(--space-4);
+      word-break: keep-all;
+    }
+    .consult-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .btn-kakao,
+      .btn-copy {
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-radius: var(--radius-lg);
+        font-size: var(--font-sm);
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      }
+      .btn-kakao {
+        background-color: #fee500;
+        color: #191919;
+        border: 1px solid #fada0a;
+        @include hover {
+          background-color: #fada0a;
+        }
+      }
+      .btn-copy {
+        background-color: var(--surface-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        @include hover {
+          background-color: var(--muted);
+          border-color: var(--primary-color);
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+}

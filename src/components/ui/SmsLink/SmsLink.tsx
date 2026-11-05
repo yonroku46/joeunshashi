@@ -1,6 +1,7 @@
 'use client';
 
-import React, { AnchorHTMLAttributes, forwardRef, MouseEvent, useEffect, useState } from 'react';
+import React, { AnchorHTMLAttributes, forwardRef, MouseEvent, useState } from 'react';
+import PhotoConsultDialog from '@/components/dialog/PhotoConsultDialog';
 
 const KAKAO_OPEN_CHAT_URL = 'https://open.kakao.com/o/st9et7Ai';
 
@@ -16,31 +17,14 @@ export const SmsLink = forwardRef<HTMLAnchorElement, SmsLinkProps>(
       fallbackUrl = KAKAO_OPEN_CHAT_URL,
       href,
       onClick,
-      target,
-      rel,
       children,
       ...rest
     },
     ref
   ) => {
+    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const rawPhone = phone.replace(/[^0-9]/g, '');
-    const smsHref = href || `sms:${rawPhone}`;
-
-    // SSR 하이드레이션 일치를 위해 초기값 false, 마운트 후 감지
-    const [isMounted, setIsMounted] = useState<boolean>(false);
-    const [isMobile, setIsMobile] = useState<boolean>(true);
-
-    useEffect(() => {
-      setIsMounted(true);
-      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-      const detectedMobile = mobileRegex.test(navigator.userAgent);
-      setIsMobile(detectedMobile);
-    }, []);
-
-    const isPc = isMounted && !isMobile;
-    const finalHref = isPc ? fallbackUrl : smsHref;
-    const finalTarget = isPc ? (target || '_blank') : target;
-    const finalRel = isPc ? (rel || 'noopener noreferrer') : rel;
+    const actualHref = href || `sms:${rawPhone}`;
 
     const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
       if (onClick) {
@@ -48,30 +32,34 @@ export const SmsLink = forwardRef<HTMLAnchorElement, SmsLinkProps>(
       }
       if (e.defaultPrevented) return;
 
-      // 즉시 감지 (마운트 시점 타이밍 이슈 대비)
-      const currentIsMobile =
+      const isMobile =
         typeof navigator !== 'undefined' &&
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
         );
 
-      if (!currentIsMobile) {
+      // PC(데스크톱) 환경일 때: 다이얼로그 팝업 표출
+      if (!isMobile) {
         e.preventDefault();
-        window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
+        setIsDialogOpen(true);
       }
     };
 
     return (
-      <a
-        ref={ref}
-        href={finalHref}
-        target={finalTarget}
-        rel={finalRel}
-        onClick={handleClick}
-        {...rest}
-      >
-        {children}
-      </a>
+      <>
+        <a ref={ref} href={actualHref} onClick={handleClick} {...rest}>
+          {children}
+        </a>
+
+        {isDialogOpen && (
+          <PhotoConsultDialog
+            open={isDialogOpen}
+            onClose={() => setIsDialogOpen(false)}
+            phone={phone}
+            kakaoUrl={fallbackUrl}
+          />
+        )}
+      </>
     );
   }
 );

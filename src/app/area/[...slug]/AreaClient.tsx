@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb/Breadcrumb';
 import ServiceAreaMap from '@/components/ui/ServiceAreaMap/ServiceAreaMap';
 import FloatingCtaBar from '@/components/ui/FloatingCtaBar/FloatingCtaBar';
 import BlogCaseStudies from '@/components/ui/BlogCaseStudies/BlogCaseStudies';
+import { SmsLink } from '@/components/ui/SmsLink';
 import type { BreadcrumbItem, District, DongInfo } from '@/types/region';
 import '@/styles/pages/area.scss';
 
@@ -123,10 +124,10 @@ export default function AreaClient({
                 <FiPhoneCall className="btn-icon" />
                 <span>010-9392-0431</span>
               </a>
-              <a href="sms:01093920431" className="btn-sms" aria-label="문자로 고장 사진 전송하기">
+              <SmsLink phone="010-9392-0431" className="btn-sms" aria-label="문자로 고장 사진 전송하기">
                 <FiMessageSquare className="btn-icon" />
                 <span>문자로 사진 전송</span>
-              </a>
+              </SmsLink>
             </div>
           </div>
         </div>
@@ -324,10 +325,10 @@ export default function AreaClient({
               <FiPhoneCall className="btn-icon" />
               <span>010-9392-0431</span>
             </a>
-            <a href="sms:01093920431" className="contact-sms-btn">
+            <SmsLink phone="010-9392-0431" className="contact-sms-btn" aria-label="사진 전송 문자 문의하기">
               <FiMessageSquare className="btn-icon" />
               <span>사진 전송 문자 문의</span>
-            </a>
+            </SmsLink>
           </div>
         </div>
 

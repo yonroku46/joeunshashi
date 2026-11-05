@@ -7,6 +7,7 @@ import { FiPhoneCall, FiMessageSquare, FiArrowRight } from 'react-icons/fi';
 import Breadcrumb from '@/components/ui/Breadcrumb/Breadcrumb';
 import ServiceAreaMap from '@/components/ui/ServiceAreaMap/ServiceAreaMap';
 import FloatingCtaBar from '@/components/ui/FloatingCtaBar/FloatingCtaBar';
+import { SmsLink } from '@/components/ui/SmsLink';
 import { useUserRegion } from '@/common/hooks/useUserRegion';
 import { SERVICE_REGIONS, ALL_DONGS } from '@/data/regions';
 import '@/styles/pages/area.scss';
@@ -102,10 +103,10 @@ export default function AreaIndexClient() {
                 <FiPhoneCall className="btn-icon" />
                 <span>010-9392-0431</span>
               </a>
-              <a href="sms:01093920431" className="btn-sms" aria-label="문자로 고장 사진 전송하기">
+              <SmsLink phone="010-9392-0431" className="btn-sms" aria-label="문자로 고장 사진 전송하기">
                 <FiMessageSquare className="btn-icon" />
                 <span>문자로 사진 전송</span>
-              </a>
+              </SmsLink>
             </div>
           </div>
         </div>

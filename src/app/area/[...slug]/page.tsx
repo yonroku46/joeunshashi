@@ -49,6 +49,19 @@ export async function generateStaticParams() {
   return paramsList;
 }
 
+function formatShortLocation(districtName: string, dongName: string): string {
+  if (!districtName || districtName === dongName) return dongName;
+  if (dongName.startsWith(districtName)) return dongName;
+  return `${districtName} ${dongName}`;
+}
+
+function formatLocationTitle(regionName: string, districtName: string, dongName: string): string {
+  if (!districtName || districtName === dongName || dongName.startsWith(districtName)) {
+    return `${regionName} ${dongName}`;
+  }
+  return `${regionName} ${dongName}`;
+}
+
 /**
  * 지역별 동적 메타데이터 생성 (SEO / AEO 최적화)
  */
@@ -70,19 +83,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const dongName = dong ? dong.name : dongSlug;
     const districtName = districtData ? districtData.district.name : '';
 
-    const title = `${districtName} ${dongName} 유리문·강화도어 수리 | 조은샷시`;
-    const description = `${districtName} ${dongName} 상가 유리문·강화도어 수리 및 플로어 힌지 교체. 출입문 쓸림·고장 당일 신속 수리.`;
+    const displayLocation = formatLocationTitle(region.name, districtName, dongName);
+    const shortLocation = formatShortLocation(districtName, dongName);
+
+    const title = `${displayLocation} 유리문·강화도어 수리 | 조은샷시`;
+    const description = `${displayLocation} 전 지역 상가 유리문·강화도어 수리 및 플로어 힌지 교체. 출입문 쾅 닫힘·바닥 쓸림 당일 신속 출장.`;
 
     return {
       ...base,
       title,
       description,
       keywords: [
-        `${districtName} ${dongName} 문수리`,
-        `${districtName} ${dongName} 유리문 수리`,
-        `${districtName} ${dongName} 강화도어 수리`,
+        `${displayLocation} 문수리`,
+        `${displayLocation} 유리문 수리`,
+        `${displayLocation} 강화도어 수리`,
         `${dongName} 힌지 교체`,
         `${dongName} 상가 출입문 수리`,
+        `${shortLocation} 문수리`,
         '조은샷시',
       ],
       openGraph: {
@@ -169,7 +186,7 @@ export default async function AreaPage({ params }: PageProps) {
     if (!dong && !districtData) notFound();
 
     const locationName = dong ? dong.fullName : `${region.fullName} ${dongSlug}`;
-    const shortLocation = dong ? `${dong.districtName} ${dong.name}` : dongSlug;
+    const shortLocation = dong ? formatShortLocation(dong.districtName, dong.name) : dongSlug;
     const breadcrumbItems = buildBreadcrumbItems({
       regionSlug,
       districtSlug: rawDistrictSlug,

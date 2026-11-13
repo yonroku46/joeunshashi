@@ -83,7 +83,7 @@ export default function AuthDialog({ open, onClose, defaultTab = 'login' }: Auth
     setLoading(true);
     try {
       await authService.signup({
-        name: signupName,
+        userName: signupName,
         email: signupEmail,
         password: signupPassword,
       });

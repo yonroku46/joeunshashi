@@ -87,7 +87,7 @@ export default function AreaIndexClient() {
             <Breadcrumb items={breadcrumbItems} />
           </div>
           <div className="hero-content">
-            <span className="hero-eyebrow">부산 · 김해 · 양산 · 창원 전지역 당일 출장</span>
+            <span className="hero-eyebrow">부산 · 김해 · 창원 · 양산 전지역 당일 출장</span>
             <h1 className="hero-title">
               조은샷시 출장 가능 지역 안내<br />
               <span>상가 유리문·강화도어 수리 전문</span>
@@ -126,6 +126,7 @@ export default function AreaIndexClient() {
               <p>{region.metaDescription}</p>
             </div>
 
+            {/* 1단계: 관할 구·군 및 핵심 생활권 안내 */}
             <div className="nearby-links-grid">
               {region.districts.map((d) => (
                 <Link
@@ -133,27 +134,60 @@ export default function AreaIndexClient() {
                   href={`/area/${region.slug}/${d.slug}`}
                   className="nearby-dong-link"
                 >
-                  <span>{d.fullName} 문수리</span>
+                  <span>{d.name} 전지역 수리</span>
                   <FiArrowRight aria-hidden="true" />
                 </Link>
               ))}
             </div>
 
+            {/* 2단계: 생활권별 상세 읍·면·동 세부 바로가기 그리드 */}
             <div className="dongs-sub-block">
               <h3 className="sub-block-title">
-                {region.name} 주요 읍·면·동 바로가기
+                {region.name} 생활권별 상세 읍·면·동 바로가기
               </h3>
-              <div className="nearby-links-grid">
-                {ALL_DONGS.filter((dong) => dong.regionSlug === region.slug).map((dong) => (
-                  <Link
-                    key={dong.slug}
-                    href={`/area/${dong.regionSlug}/${dong.districtSlug}/${dong.slug}`}
-                    className="nearby-dong-link"
-                  >
-                    <span>{dong.districtName} {dong.name}</span>
-                    <FiArrowRight aria-hidden="true" />
-                  </Link>
-                ))}
+
+              <div className="district-groups-container">
+                {region.districts.map((district) => {
+                  const districtDongs = ALL_DONGS.filter(
+                    (dong) => dong.regionSlug === region.slug && dong.districtSlug === district.slug
+                  );
+
+                  return (
+                    <div key={district.slug} className="district-group-card">
+                      <div className="district-group-header">
+                        <Link
+                          href={`/area/${region.slug}/${district.slug}`}
+                          className="district-title-link"
+                        >
+                          <span className="district-name-text">{district.name}</span>
+                          <span className="district-more-hint">
+                            전체보기 <FiArrowRight aria-hidden="true" />
+                          </span>
+                        </Link>
+                      </div>
+
+                      <div className="district-dong-pills">
+                        {districtDongs.length > 0 ? (
+                          districtDongs.map((dong) => (
+                            <Link
+                              key={dong.slug}
+                              href={`/area/${dong.regionSlug}/${dong.districtSlug}/${dong.slug}`}
+                              className="dong-pill"
+                            >
+                              <span>{dong.name}</span>
+                            </Link>
+                          ))
+                        ) : (
+                          district.majorNeighborhoods.map((name) => (
+                            <span key={name} className="dong-pill is-static">
+                              {name}
+                            </span>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>

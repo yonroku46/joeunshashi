@@ -271,7 +271,12 @@ export default function AreaClient({
                 href={`/area/${dong.regionSlug}/${dong.districtSlug}/${dong.slug}`}
                 className="nearby-dong-link"
               >
-                <span>{dong.districtName} {dong.name} 문수리</span>
+                <span>
+                  {dong.districtName === dong.name || dong.name.startsWith(dong.districtName)
+                    ? dong.name
+                    : `${dong.districtName} ${dong.name}`}{' '}
+                  문수리
+                </span>
                 <FiArrowRight aria-hidden="true" />
               </Link>
             ))}

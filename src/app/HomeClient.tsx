@@ -17,6 +17,7 @@ import {
 import ServiceAreaMap from '@/components/ui/ServiceAreaMap/ServiceAreaMap';
 import FloatingCtaBar from '@/components/ui/FloatingCtaBar/FloatingCtaBar';
 import BlogCaseStudies from '@/components/ui/BlogCaseStudies/BlogCaseStudies';
+import { SmsLink } from '@/components/ui/SmsLink';
 import { useUserRegion } from '@/common/hooks/useUserRegion';
 import '@/styles/pages/home.scss';
 
@@ -401,10 +402,10 @@ export default function HomeClient() {
                 <FiPhoneCall className="btn-icon" aria-hidden="true" />
                 <span>010-9392-0431</span>
               </a>
-              <a href="sms:01093920431" className="hero-sms-btn" aria-label="고장 사진 문자로 전송하기">
+              <SmsLink phone="010-9392-0431" className="hero-sms-btn" aria-label="고장 사진 문자로 전송하기">
                 <FiMessageSquare className="btn-icon" aria-hidden="true" />
                 <span>고장 사진 문자 전송</span>
-              </a>
+              </SmsLink>
             </div>
           </div>
         </div>
@@ -764,10 +765,10 @@ export default function HomeClient() {
                 <FiPhoneCall className="action-icon" />
                 <span>010-9392-0431</span>
               </a>
-              <a href="sms:01093920431" className="btn-sms-action" aria-label="문자로 고장 사진 전송하기">
+              <SmsLink phone="010-9392-0431" className="btn-sms-action" aria-label="문자로 고장 사진 전송하기">
                 <FiMessageSquare className="action-icon" />
                 <span>문자로 고장 사진 전송</span>
-              </a>
+              </SmsLink>
             </div>
             <span className="call-notice">부산 · 김해 · 양산 · 창원 전지역 당일 방문 가능 · 연중무휴 상담</span>
           </div>

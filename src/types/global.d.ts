@@ -32,4 +32,7 @@ declare global {
     errors?: ErrorItem[];
     responseData?: T;
   }
+  interface Window {
+    clarity?: (...args: unknown[]) => void;
+  }
 }

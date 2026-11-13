@@ -9,7 +9,12 @@ import {
   buildBreadcrumbItems,
   ALL_DONGS,
 } from '@/data/regions';
-import { generatePageMetadata } from '@/common/lib/Metadata';
+import { generatePageMetadata, getResolvedBaseUrl } from '@/common/lib/Metadata';
+import {
+  getRegionGalleryItems,
+  getRegionOgImageUrl,
+  getRegionSchemaImages,
+} from '@/common/lib/RegionImages';
 import AreaClient from './AreaClient';
 
 interface PageProps {
@@ -76,6 +81,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const region = getRegionBySlug(regionSlug);
   if (!region) return generatePageMetadata();
 
+  const baseUrl = getResolvedBaseUrl();
+  const regionOgImage = getRegionOgImageUrl(regionSlug, baseUrl);
+
   // 1. 동(Dong) 단위 메타데이터
   if (slug.length >= 3 && dongSlug) {
     const dong = getDongBySlug(dongSlug);
@@ -106,6 +114,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         ...base.openGraph,
         title,
         description,
+        images: [
+          {
+            url: regionOgImage,
+            secureUrl: regionOgImage,
+            width: 1200,
+            height: 630,
+            alt: `${displayLocation} 상가 유리문·강화도어 수리 현장`,
+            type: regionOgImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg',
+          },
+        ],
+      },
+      twitter: {
+        ...base.twitter,
+        title,
+        description,
+        images: [regionOgImage],
       },
       alternates: {
         canonical: `/area/${regionSlug}/${rawDistrictSlug}/${dongSlug}`,
@@ -136,6 +160,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         ...base.openGraph,
         title,
         description,
+        images: [
+          {
+            url: regionOgImage,
+            secureUrl: regionOgImage,
+            width: 1200,
+            height: 630,
+            alt: `${region.name} ${districtData.district.name} 유리문 수리 현장`,
+            type: regionOgImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg',
+          },
+        ],
+      },
+      twitter: {
+        ...base.twitter,
+        title,
+        description,
+        images: [regionOgImage],
       },
       alternates: {
         canonical: `/area/${regionSlug}/${rawDistrictSlug}`,
@@ -162,6 +202,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ...base.openGraph,
       title,
       description,
+      images: [
+        {
+          url: regionOgImage,
+          secureUrl: regionOgImage,
+          width: 1200,
+          height: 630,
+          alt: `${region.fullName} 상가 유리문·강화도어 수리 현장`,
+          type: regionOgImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg',
+        },
+      ],
+    },
+    twitter: {
+      ...base.twitter,
+      title,
+      description,
+      images: [regionOgImage],
     },
     alternates: {
       canonical: `/area/${regionSlug}`,
@@ -179,6 +235,9 @@ export default async function AreaPage({ params }: PageProps) {
   const region = getRegionBySlug(regionSlug);
   if (!region) notFound();
 
+  const baseUrl = getResolvedBaseUrl();
+  const schemaImages = getRegionSchemaImages(regionSlug, baseUrl);
+
   // A. 동(Dong) 단위 페이지
   if (slug.length >= 3 && dongSlug) {
     const dong = getDongBySlug(dongSlug);
@@ -193,12 +252,14 @@ export default async function AreaPage({ params }: PageProps) {
       dongSlug: dong?.slug,
     });
     const nearbyDongs = dong ? getNearbyDongs(dong.slug) : [];
+    const galleryItems = getRegionGalleryItems(regionSlug, locationName);
 
     const jsonLdBusiness = {
       '@context': 'https://schema.org',
       '@type': 'HomeAndConstructionBusiness',
       name: '조은샷시',
       description: `${locationName} 상가·매장·사무실 유리문 수리, 강화도어 플로어 힌지 교체, H바 수리 전문`,
+      image: schemaImages,
       telephone: '010-9392-0431',
       areaServed: [locationName, region.fullName],
       makesOffer: [
@@ -260,6 +321,7 @@ export default async function AreaPage({ params }: PageProps) {
           characteristics={dong?.characteristics || districtData?.district.characteristics || []}
           keyIssues={dong?.keyIssues || districtData?.district.keyIssues || []}
           nearbyDongs={nearbyDongs}
+          galleryItems={galleryItems}
           regionSlug={regionSlug}
           districtSlug={rawDistrictSlug}
           dongSlug={dong?.slug}
@@ -280,12 +342,14 @@ export default async function AreaPage({ params }: PageProps) {
       districtSlug: rawDistrictSlug,
     });
     const districtDongs = ALL_DONGS.filter((d) => d.districtSlug === districtSlug);
+    const galleryItems = getRegionGalleryItems(regionSlug, locationName);
 
     const jsonLdBusiness = {
       '@context': 'https://schema.org',
       '@type': 'HomeAndConstructionBusiness',
       name: '조은샷시',
       description: `${locationName} 전 지역 상가·매장 유리문 수리, 강화도어 플로어 힌지 교체 전문`,
+      image: schemaImages,
       telephone: '010-9392-0431',
       areaServed: [locationName, region.fullName],
     };
@@ -333,6 +397,7 @@ export default async function AreaPage({ params }: PageProps) {
           characteristics={district.characteristics}
           keyIssues={district.keyIssues}
           nearbyDongs={districtDongs}
+          galleryItems={galleryItems}
           regionSlug={regionSlug}
           districtSlug={rawDistrictSlug}
         />
@@ -344,12 +409,14 @@ export default async function AreaPage({ params }: PageProps) {
   const locationName = region.fullName;
   const breadcrumbItems = buildBreadcrumbItems({ regionSlug });
   const regionDongs = ALL_DONGS.filter((d) => d.regionSlug === regionSlug).slice(0, 10);
+  const galleryItems = getRegionGalleryItems(regionSlug, locationName);
 
   const jsonLdBusiness = {
     '@context': 'https://schema.org',
     '@type': 'HomeAndConstructionBusiness',
     name: '조은샷시',
     description: `${locationName} 전 지역 상가·매장 유리문·강화도어 수리, 플로어 힌지 교체 전문`,
+    image: schemaImages,
     telephone: '010-9392-0431',
     areaServed: [locationName],
   };
@@ -397,6 +464,7 @@ export default async function AreaPage({ params }: PageProps) {
         characteristics={[`${region.name} 중심 상권 및 주거단지 전 지역 출장`]}
         keyIssues={['상가 출입문 힌지 교체', '유리문 쾅 닫힘 방지', '하부 H바 부식 교체']}
         nearbyDongs={regionDongs}
+        galleryItems={galleryItems}
         districts={region.districts}
         regionSlug={regionSlug}
       />

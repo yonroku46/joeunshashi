@@ -10,6 +10,7 @@ import FloatingCtaBar from '@/components/ui/FloatingCtaBar/FloatingCtaBar';
 import BlogCaseStudies from '@/components/ui/BlogCaseStudies/BlogCaseStudies';
 import { SmsLink } from '@/components/ui/SmsLink';
 import type { BreadcrumbItem, District, DongInfo } from '@/types/region';
+import type { RegionGalleryItem } from '@/common/lib/RegionImages';
 import '@/styles/pages/area.scss';
 
 const HERO_SLIDES = [
@@ -29,6 +30,7 @@ interface AreaClientProps {
   characteristics: string[];
   keyIssues: string[];
   nearbyDongs: DongInfo[];
+  galleryItems?: RegionGalleryItem[];
   districts?: District[];
   regionSlug: string;
   districtSlug?: string;
@@ -45,6 +47,7 @@ export default function AreaClient({
   characteristics,
   keyIssues,
   nearbyDongs,
+  galleryItems = [],
   districts = [],
   regionSlug,
   districtSlug,
@@ -255,6 +258,52 @@ export default function AreaClient({
       <section className="area-map-container" aria-label="출장 권역 지도">
         <ServiceAreaMap activeRegion={regionSlug} />
       </section>
+
+      {/* 4.5 REGION REAL CONSTRUCTION GALLERY (12장 현장 시공 갤러리) */}
+      {galleryItems.length > 0 && (
+        <section className="region-gallery-section" aria-label={`${locationName} 실제 출장 수리 시공 갤러리`}>
+          <div className="gallery-header">
+            <p className="eyebrow">{locationName} 현장 시공 사례</p>
+            <h2>{locationName} 실제 출장 수리 시공 갤러리</h2>
+            <p>
+              조은샷시 현장 전문 엔지니어가 {locationName} 전 지역 상가·매장·오피스에서 직접 시공한
+              실제 현장 수리 공정 및 전후 비교 사진입니다.
+            </p>
+          </div>
+
+          <div className="gallery-grid">
+            {galleryItems.map((item) => (
+              <div key={item.id} className="gallery-card">
+                <div className="gallery-img-wrap">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="gallery-img"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (target.src.endsWith('.webp')) {
+                        target.src = item.jpgSrc;
+                      } else if (!target.src.includes('hero-')) {
+                        target.src = item.fallbackSrc;
+                      }
+                    }}
+                  />
+                  <span className="gallery-badge">현장 공정 No.{item.id}</span>
+                </div>
+                <div className="gallery-card-body">
+                  <p className="gallery-caption">{item.title}</p>
+                  <div className="gallery-meta">
+                    <span className="gallery-status">당일 시공 완료</span>
+                    <span className="gallery-location">{locationName}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 5. NEARBY DONGS OR DISTRICTS (내부 링크망 / Internal Linking Hub) */}
       {nearbyDongs.length > 0 && (
